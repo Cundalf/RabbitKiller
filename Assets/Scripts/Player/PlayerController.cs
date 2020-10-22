@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,11 +8,14 @@ public class PlayerController : MonoBehaviour
 {
     public ShootController shootController;
 
+
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
     RaycastHit cameraRayHit;    // The object that the ray hits
-
+    
+    
     void Update()
     {
+        
         // Cast a ray from the camera to the mouse cursor
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
