@@ -6,7 +6,15 @@ public class SFXType : MonoBehaviour
 {
     public enum SoundType
     {
-        ATTACK, DIE, HIT, KNOCK, MISSIONSTART, MISSIONEND
+        SWITCH_OPTION, 
+        COUNTDOWN, 
+        LOSE, 
+        FIRE, 
+        RELOAD, 
+        RABBIT_RESPAWN, 
+        RABBIT_RESPAWN_ALT, 
+        RABBIT_DEATH,
+        RABBIT_DUPLICATE
     }
 
     public SoundType type;
