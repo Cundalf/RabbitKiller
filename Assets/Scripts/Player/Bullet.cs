@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
         _rb.velocity = transform.forward * velocity;
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Enemy"))
