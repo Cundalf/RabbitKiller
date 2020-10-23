@@ -49,4 +49,9 @@ public class GameManager : MonoBehaviour
         actualGameState = GameState.IN_GAME;
         Time.timeScale = 1;
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

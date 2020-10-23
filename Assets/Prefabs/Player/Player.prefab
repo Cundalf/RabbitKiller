@@ -329,7 +329,7 @@ MonoBehaviour:
   shootController: {fileID: 7901637391342010449}
   timeReload: 1.5
   cantMaxBullet: 2
-  InGameCursor: {fileID: 2800000, guid: 9b901b0342008d345a7c96c77616dfe5, type: 3}
+  InGameCursor: {fileID: 2800000, guid: dcc8bcabdce4722439038fc29107481b, type: 3}
   cantBullet: 0
   health: 4
 --- !u!21 &-3279533589654999013

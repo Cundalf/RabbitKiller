@@ -16,12 +16,14 @@ public class SFXManager : MonoBehaviour
     }
 
     public List<GameObject> audios;
-
     private void Awake()
     {
-        if(sharedInstance != null && sharedInstance != this)
+        Debug.Log(sharedInstance);
+        Debug.Log(gameObject);
+        if (sharedInstance != null && sharedInstance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         sharedInstance = this;
