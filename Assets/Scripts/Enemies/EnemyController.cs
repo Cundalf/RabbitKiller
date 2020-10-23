@@ -10,36 +10,46 @@ public class EnemyController : MonoBehaviour
 {
     public ParticleSystem BloodPS;
 
+    public float timeStop = 1f;
+    private float time;
+
+    private GameManager gameManager;
+    private UIManager uiManager;
+    private bool isMoving = false;
     Transform playerT;
     NavMeshAgent agent;
     Animator _Anim;
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
         playerT = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
         _Anim = GetComponent<Animator>();
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
+
+        time += Time.deltaTime;
+
+        if (time >= timeStop && !isMoving)
         {
+            isMoving = true;
             agent.destination = playerT.position;
             _Anim.SetBool("Jump", true);
-
-            StartCoroutine(MoveToPlayer());
+            StartCoroutine(StopMoving());
         }
     }
 
-    IEnumerator MoveToPlayer()
-    {
-        Debug.Log("1");
-        
+    IEnumerator StopMoving()
+    {   
         yield return new WaitForSeconds(0.5f);
-        Debug.Log("2");
-        _Anim.SetBool("Jump", false);
         agent.ResetPath();
-     
+        _Anim.SetBool("Jump", false);
+        time = 0;
+        isMoving = false;
         yield return null;
     }
 
@@ -47,7 +57,7 @@ public class EnemyController : MonoBehaviour
     {
         Instantiate(BloodPS, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
-        
-        //TODO: Notificar al GameMananger o UIManager
+        uiManager.PointsControl();
     }
+
 }

@@ -9,6 +9,7 @@ public class EnemyRespawnController : MonoBehaviour
     public float minStopTime = 2f;
     public float maxStopTime = 5f;
 
+    private GameManager gameManager;
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
@@ -16,6 +17,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         timeStop = Random.Range(minStopTime, maxStopTime);
         respawnPoints = new List<GameObject>();
         foreach (Transform t in transform)
@@ -26,6 +28,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     void Update()
     {
+        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
         timeCounter += Time.deltaTime;
 
         if (timeCounter < timeStop) return;

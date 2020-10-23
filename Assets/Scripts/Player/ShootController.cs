@@ -7,15 +7,11 @@ public class ShootController : MonoBehaviour
 {
     public GameObject BulletGO;
     public GameObject ShootPS;
-    Animator _wepon;
+    public Animator _playeranim;
 
-    void Start()
-    {
-        _wepon = GameObject.Find("Wepon").GetComponent<Animator>();
-    }
     public void Shoot()
     {
-        _wepon.SetTrigger("Trigger");
+        _playeranim.SetTrigger("Shoot");
         Instantiate(BulletGO, transform.position, transform.rotation);
         Instantiate(ShootPS, transform.position, transform.rotation);
     }

@@ -23,7 +23,12 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy"))
         {
             
-            other.gameObject.transform.parent.GetComponent<EnemyController>().Die();
+            other.gameObject.GetComponent<EnemyController>().Die();
+            Destroy(gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Ground"))
+        {
             Destroy(gameObject);
         }
     }

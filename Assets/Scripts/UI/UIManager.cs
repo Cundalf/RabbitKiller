@@ -1,18 +1,99 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject frTime;
+    public GameObject frPoints;
+    public GameObject frGameOver;
+
+    public Text txtTimeGO;
+    public Text txtPointsGO;
+    public Text txtTime;
+    public Text txtPoints;
+
+    public Image Bullet1;
+    public Image Bullet2;
+
+    public Sprite BulletON;
+    public Sprite BulletOFF;
+
+    private GameManager gameManager;
+    private int points;
+    private float timeControl;
+
+    private void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowPoint(int points)
     {
+        txtPoints.text = points.ToString();
+    }
+
+    public void BulletsControl(int cantBullets)
+    {
+        if(cantBullets == 2)
+        {
+            Bullet1.sprite = BulletON;
+            Bullet2.sprite = BulletON;
+        }
+
+        if (cantBullets == 1)
+        {
+            Bullet1.sprite = BulletON;
+            Bullet2.sprite = BulletOFF;
+        }
+
+        if (cantBullets == 0)
+        {
+            Bullet1.sprite = BulletOFF;
+            Bullet2.sprite = BulletOFF;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
+
+        timeControl += Time.fixedDeltaTime;
+
         
+
+        txtTime.text = GetHora();
+    }
+
+    public void PointsControl()
+    {
+        points++;
+        txtPoints.text = points.ToString();
+    }
+
+    public void GameOver()
+    {
+        Bullet1.gameObject.SetActive(false);
+        Bullet2.gameObject.SetActive(false);
+        frTime.SetActive(false);
+        frPoints.SetActive(false);
+        frGameOver.SetActive(true);
+
+        txtTimeGO.text = GetHora();
+        txtPointsGO.text = points.ToString();
+    }
+
+    private string GetHora()
+    {
+        string minutes = Mathf.Floor(timeControl / 60).ToString("00");
+        string seconds = (timeControl % 60).ToString("00");
+
+        return minutes + ":" + seconds;
+    }
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }

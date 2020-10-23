@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+
     public enum GameState
     {
-        MAIN_MENU, IN_GAME, PAUSE
+        MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
     
-    private GameState actualGameState;
-    public GameState GetGameState
-    {
-        get
-        {
-            return actualGameState;
-        }
-    }
+    public GameState actualGameState;
+
 
     // Singleton
     private static GameManager sharedInstance = null;
@@ -30,6 +25,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // VARS
+    
+
     private void Awake()
     {
         if (sharedInstance != null && sharedInstance != this)
@@ -40,6 +38,8 @@ public class GameManager : MonoBehaviour
         sharedInstance = this;
         DontDestroyOnLoad(this);
     }
+
+    
 
     public void PauseGame()
     {
@@ -54,5 +54,4 @@ public class GameManager : MonoBehaviour
         actualGameState = GameState.IN_GAME;
         Time.timeScale = 1;
     }
-
 }

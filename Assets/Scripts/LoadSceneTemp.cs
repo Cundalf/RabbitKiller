@@ -7,6 +7,6 @@ public class LoadSceneTemp : MonoBehaviour
 {
     public void LoadScene()
     {
-        SceneManager.LoadScene("MainGame");
+        SceneManager.LoadScene("Stage1");
     }
 }

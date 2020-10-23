@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8115124099001973704}
   - component: {fileID: 1168643367}
   - component: {fileID: 8556469002311014858}
+  - component: {fileID: 8200906655110530567}
+  - component: {fileID: 2104776343574563277}
   m_Layer: 0
   m_Name: Conejo
   m_TagString: Enemy
@@ -85,6 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BloodPS: {fileID: 6659588706510264770, guid: adb77499e9e7e274fa1921d821e35996, type: 3}
+  timeStop: 1
 --- !u!195 &8556469002311014858
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -94,7 +97,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4119822921054261650}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.44
+  m_Radius: 0.45
   m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -103,10 +106,38 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 2.2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!136 &8200906655110530567
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119822921054261650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &2104776343574563277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119822921054261650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccb1ebd284c1e0d4482d03dc1b9db25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeStopDamage: 2
+  canHit: 1
 --- !u!1 &7197864918332478532
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +149,6 @@ GameObject:
   - component: {fileID: 4558347190719758327}
   - component: {fileID: 1549112046683389421}
   - component: {fileID: 4628106645445928462}
-  - component: {fileID: 556576118}
   m_Layer: 0
   m_Name: Model 0
   m_TagString: Enemy
@@ -186,20 +216,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7197864918332478532}
-  m_Mesh: {fileID: -2055859188522101405}
---- !u!64 &556576118
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7197864918332478532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
   m_Mesh: {fileID: -2055859188522101405}
 --- !u!1001 &1820826415684714794
 PrefabInstance:
