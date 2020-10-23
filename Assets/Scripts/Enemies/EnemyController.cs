@@ -9,11 +9,9 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public ParticleSystem BloodPS;
-
     public float timeStop = 1f;
-    private float time;
 
-    private GameManager gameManager;
+    private float time;
     private UIManager uiManager;
     private bool isMoving = false;
     Transform playerT;
@@ -22,7 +20,6 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
         playerT = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
@@ -30,7 +27,7 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
 
         time += Time.deltaTime;
 
@@ -55,6 +52,8 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+        SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
+       
         Instantiate(BloodPS, gameObject.transform.position, gameObject.transform.rotation);
         Destroy(gameObject);
         uiManager.PointsControl();

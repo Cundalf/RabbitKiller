@@ -14,7 +14,10 @@ public class SFXType : MonoBehaviour
         RABBIT_RESPAWN, 
         RABBIT_RESPAWN_ALT, 
         RABBIT_DEATH,
-        RABBIT_DUPLICATE
+        RABBIT_DUPLICATE,
+        RABBIT_BITE,
+        RABBIT_BITE_ALT,
+        PLAYER_DEATH
     }
 
     public SoundType type;

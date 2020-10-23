@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ public class DamagePlayer : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
         if (!canHit)
         {
             timeDamage += Time.deltaTime;
@@ -30,15 +30,10 @@ public class DamagePlayer : MonoBehaviour
         {
             other.gameObject.GetComponent<PlayerController>().Hit();
             canHit = false;
+
+            int randomSFX = Random.Range(0, 2);
+            if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_BITE);
+            if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_BITE_ALT);
         }
     }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.CompareTag("Player") && canHit)
-        {
-            collision.gameObject.GetComponent<PlayerController>().Hit();
-        }
-    }*/
 }

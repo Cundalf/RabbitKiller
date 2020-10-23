@@ -25,14 +25,19 @@ public class UIManager : MonoBehaviour
     public Sprite CompleteLife;
     public Sprite HalfLife;
     public Sprite Die;
-
-    private GameManager gameManager;
+    
     private int points;
     private float timeControl;
 
+    //TODO: Esto se evita cuando este en sigleton el AudioManager
+    private AudioManager audioManager;
+    private GameObject audioManagerGO;
+
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        //TODO: Esto se evita cuando este en sigleton el AudioManager
+        audioManager = FindObjectOfType<AudioManager>();
+        audioManagerGO = audioManager.gameObject;
     }
 
     public void ShowPoint(int points)
@@ -63,7 +68,7 @@ public class UIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
 
         timeControl += Time.fixedDeltaTime;
 
@@ -88,6 +93,7 @@ public class UIManager : MonoBehaviour
 
         txtTimeGO.text = GetHora();
         txtPointsGO.text = points.ToString();
+        SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.LOSE);
     }
 
     private string GetHora()
@@ -118,6 +124,8 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        //TODO: Esto se evita cuando este en sigleton el AudioManager
+        Destroy(audioManagerGO);
         SceneManager.LoadScene("MainMenu");
     }
 }

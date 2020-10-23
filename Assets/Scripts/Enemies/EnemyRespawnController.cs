@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class EnemyRespawnController : MonoBehaviour
 {
     public GameObject EnemyPrefab;
-    public float minStopTime = 2f;
-    public float maxStopTime = 5f;
+    public float minStopTime;
+    public float maxStopTime;
 
-    private GameManager gameManager;
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
@@ -17,7 +15,6 @@ public class EnemyRespawnController : MonoBehaviour
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         timeStop = Random.Range(minStopTime, maxStopTime);
         respawnPoints = new List<GameObject>();
         foreach (Transform t in transform)
@@ -28,16 +25,36 @@ public class EnemyRespawnController : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
         timeCounter += Time.deltaTime;
 
         if (timeCounter < timeStop) return;
 
         timeCounter = 0;
         timeStop = Random.Range(minStopTime, maxStopTime);
-        int iRespawnPoint = Random.Range(0, respawnPoints.Count);
-        GameObject respawnPointGO = respawnPoints[iRespawnPoint];
 
-        Instantiate(EnemyPrefab, respawnPointGO.transform.position, respawnPointGO.transform.rotation);
+        GameObject respawnPointGO;
+        int iRespawnPoint = Random.Range(0, respawnPoints.Count);
+        respawnPointGO = respawnPoints[iRespawnPoint];
+
+        InstantiateRabbit(respawnPointGO.transform);
+
+        int iRespawnPoint2 = Random.Range(0, respawnPoints.Count);
+
+        if(iRespawnPoint != iRespawnPoint2)
+        {
+            respawnPointGO = respawnPoints[iRespawnPoint2];
+
+            InstantiateRabbit(respawnPointGO.transform);
+        }
+    }
+
+    void InstantiateRabbit(Transform respawnTransform)
+    {
+        Instantiate(EnemyPrefab, respawnTransform.position, respawnTransform.rotation);
+
+        int randomSFX = Random.Range(0, 2);
+        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
+        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
     }
 }

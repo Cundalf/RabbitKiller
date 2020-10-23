@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb1ebd284c1e0d4482d03dc1b9db25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStopDamage: 2
+  timeStopDamage: 1.5
   canHit: 1
 --- !u!1 &7197864918332478532
 GameObject:

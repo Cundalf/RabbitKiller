@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -18,7 +17,6 @@ public class PlayerController : MonoBehaviour
     private int health = 4;
 
     private UIManager uiManager;
-    private GameManager gameManager;
     private Animator _anim;
     private float time;
 
@@ -27,20 +25,18 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
         _anim = GetComponent<Animator>();
         cantBullet = cantMaxBullet;
 
         uiManager.HealthControl(health);
-        gameManager.actualGameState = GameManager.GameState.IN_GAME;
 
         UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
     }
 
     void Update()
     {
-        if (gameManager.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
 
         // Cast a ray from the camera to the mouse cursor
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -66,6 +62,7 @@ public class PlayerController : MonoBehaviour
                 cantBullet = cantMaxBullet;
                 uiManager.BulletsControl(cantBullet);
                 time = 0;
+                SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
             }
         }
         else
@@ -77,19 +74,20 @@ public class PlayerController : MonoBehaviour
             shootController.Shoot();
             cantBullet--;
             uiManager.BulletsControl(cantBullet);
+            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
         }
     }
 
     public void Hit()
     {
         health -= 1;
-
         uiManager.HealthControl(health);
 
         if (health <= 0)
         {
             UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            gameManager.actualGameState = GameManager.GameState.GAME_OVER;
+            GameManager.SharedInstance.actualGameState = GameManager.GameState.GAME_OVER;
+            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.PLAYER_DEATH);
             uiManager.GameOver();
         }
     }

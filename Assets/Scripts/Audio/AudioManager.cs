@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    // TODO: Pasar a Singleton
+
     public AudioSource[] audioTracks;
     public int currentTrack;
     public bool audioCanBePlayed;
