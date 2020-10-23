@@ -15,11 +15,16 @@ public class UIManager : MonoBehaviour
     public Text txtTime;
     public Text txtPoints;
 
+    public Image frPlayer;
     public Image Bullet1;
     public Image Bullet2;
 
     public Sprite BulletON;
     public Sprite BulletOFF;
+
+    public Sprite CompleteLife;
+    public Sprite HalfLife;
+    public Sprite Die;
 
     private GameManager gameManager;
     private int points;
@@ -92,6 +97,25 @@ public class UIManager : MonoBehaviour
 
         return minutes + ":" + seconds;
     }
+
+    public void HealthControl(int healthPoint)
+    {
+        if(healthPoint > 2)
+        {
+            frPlayer.sprite = CompleteLife;
+        }
+
+        if (healthPoint > 0 && healthPoint <= 2)
+        {
+            frPlayer.sprite = HalfLife;
+        }
+
+        if (healthPoint <= 0)
+        {
+            frPlayer.sprite = Die;
+        }
+    }
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");

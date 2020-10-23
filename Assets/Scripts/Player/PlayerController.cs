@@ -9,12 +9,13 @@ public class PlayerController : MonoBehaviour
     public ShootController shootController;
     public float timeReload;
     public int cantMaxBullet;
+    public Texture2D InGameCursor;
 
     [SerializeField]
     private int cantBullet;
 
     [SerializeField]
-    private int health = 3;
+    private int health = 4;
 
     private UIManager uiManager;
     private GameManager gameManager;
@@ -31,7 +32,10 @@ public class PlayerController : MonoBehaviour
         _anim = GetComponent<Animator>();
         cantBullet = cantMaxBullet;
 
+        uiManager.HealthControl(health);
         gameManager.actualGameState = GameManager.GameState.IN_GAME;
+
+        UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
     }
 
     void Update()
@@ -80,8 +84,11 @@ public class PlayerController : MonoBehaviour
     {
         health -= 1;
 
-        if(health <= 0)
+        uiManager.HealthControl(health);
+
+        if (health <= 0)
         {
+            UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             gameManager.actualGameState = GameManager.GameState.GAME_OVER;
             uiManager.GameOver();
         }

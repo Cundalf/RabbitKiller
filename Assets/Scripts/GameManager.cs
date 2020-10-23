@@ -24,10 +24,7 @@ public class GameManager : MonoBehaviour
             return sharedInstance;
         }
     }
-
-    // VARS
     
-
     private void Awake()
     {
         if (sharedInstance != null && sharedInstance != this)
@@ -38,8 +35,6 @@ public class GameManager : MonoBehaviour
         sharedInstance = this;
         DontDestroyOnLoad(this);
     }
-
-    
 
     public void PauseGame()
     {

@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 8364214060231546505
     second: player_state_2
+  - first:
+      213: 5172271451904483793
+    second: player_state_0
+  - first:
+      213: 7457516993603822491
+    second: player_state_1
+  - first:
+      213: 3856302142193822059
+    second: player_state_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,8 +143,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03bbdba7888ede210800000000000000
-      internalID: 1364001935035579184
+      spriteID: 1d129ac4b7997c740800000000000000
+      internalID: 5172271451904483793
       vertices: []
       indices: 
       edges: []
@@ -155,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 889c5bbd7e5f72960800000000000000
-      internalID: 7577295274246523272
+      spriteID: b93e13ea13c6e7760800000000000000
+      internalID: 7457516993603822491
       vertices: []
       indices: 
       edges: []
@@ -176,8 +185,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 986dd6d4f58a31470800000000000000
-      internalID: 8364214060231546505
+      spriteID: b696a04ed56548530800000000000000
+      internalID: 3856302142193822059
       vertices: []
       indices: 
       edges: []

@@ -20,6 +20,12 @@ TextureImporter:
   - first:
       213: 3366745764540755507
     second: gameplay_ui_5
+  - first:
+      213: 3741326727462816106
+    second: gameplay_ui_4
+  - first:
+      213: -2872604225026734422
+    second: gameplay_ui_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -132,12 +138,12 @@ TextureImporter:
       name: gameplay_ui_0
       rect:
         serializedVersion: 2
-        x: 218
-        y: 5183
-        width: 461
-        height: 1224
+        x: 77
+        y: 3239
+        width: 322
+        height: 854
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,12 +159,12 @@ TextureImporter:
       name: gameplay_ui_1
       rect:
         serializedVersion: 2
-        x: 825
-        y: 5190
-        width: 461
-        height: 1224
+        x: 469
+        y: 3241
+        width: 322
+        height: 855
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,12 +180,12 @@ TextureImporter:
       name: gameplay_ui_2
       rect:
         serializedVersion: 2
-        x: 1479
-        y: 5204
-        width: 2668
-        height: 1169
+        x: 915
+        y: 3277
+        width: 1728
+        height: 819
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,12 +201,12 @@ TextureImporter:
       name: gameplay_ui_3
       rect:
         serializedVersion: 2
-        x: 213
-        y: 3721
-        width: 2669
-        height: 1169
+        x: 95
+        y: 2273
+        width: 1728
+        height: 792
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,36 +219,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gameplay_ui_4
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 367
-        width: 3949
-        height: 3062
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4c68430b3ba6bc6f0800000000000000
-      internalID: -663319200119093564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: gameplay_ui_5
       rect:
         serializedVersion: 2
-        x: 4115
-        y: 822
-        width: 2278
-        height: 2159
+        x: 0
+        y: 0
+        width: 2555
+        height: 1823
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -250,6 +235,48 @@ TextureImporter:
       bones: []
       spriteID: 33ea0806f6519be20800000000000000
       internalID: 3366745764540755507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameplay_ui_4
+      rect:
+        serializedVersion: 2
+        x: 2193
+        y: 2447
+        width: 428
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a69881316dcdbe330800000000000000
+      internalID: 3741326727462816106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: gameplay_ui_6
+      rect:
+        serializedVersion: 2
+        x: 2623
+        y: 307
+        width: 1473
+        height: 1462
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa6cef25da57228d0800000000000000
+      internalID: -2872604225026734422
       vertices: []
       indices: 
       edges: []
