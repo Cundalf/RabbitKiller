@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     private int health = 4;
     public Texture2D InGameCursor;
 
-    private UIManager uiManager;
+    public UIManager uiManager;
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
     RaycastHit cameraRayHit;    // The object that the ray hits
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
-        //uiManager.HealthControl(health);
+        uiManager.HealthControl(health);
 
         UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
     }

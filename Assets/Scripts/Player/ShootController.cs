@@ -12,8 +12,20 @@ public class ShootController : MonoBehaviour
 
     public void Shoot()
     {
-        _weponAnimator.SetTrigger("Shoot");
-        Instantiate(BulletGO[0], transform.position, transform.rotation);
-        Instantiate(ShootPS, transform.position, transform.rotation);
+        switch (typeOfWepon) 
+        {
+            case ("ShootGun"):
+                _weponAnimator.SetTrigger("ShootGun");
+                Instantiate(BulletGO[0], transform.position, transform.rotation);
+                Instantiate(ShootPS, transform.position, transform.rotation);
+                break;
+            case ("MachineGun"):
+                _weponAnimator.SetTrigger("MachineGun");
+                Instantiate(BulletGO[1], transform.position, transform.rotation);
+                Instantiate(ShootPS, transform.position, transform.rotation);
+                break;
+            default:
+                break;
+        }
     }
 }
