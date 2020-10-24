@@ -1,36 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    //Wepons
-    public int ammoInCharge;
-    public float timeReload;
-    public ShootController shootController;
-    public Texture2D InGameCursor;
-    public string weponInUse = "ShootGun";
-    [SerializeField]
-    private int ammo;
 
     [SerializeField]
     private int health = 4;
+    public Texture2D InGameCursor;
 
     private UIManager uiManager;
-    private Animator _anim;
-    private float time;
 
-    Ray cameraRay;           // The ray that is cast from the camera to the mouse position
-    RaycastHit cameraRayHit; // The object that the ray hits
+    Ray cameraRay;                // The ray that is cast from the camera to the mouse position
+    RaycastHit cameraRayHit;    // The object that the ray hits
 
     private void Start()
     {
         uiManager = FindObjectOfType<UIManager>();
-        _anim = GetComponent<Animator>();
-        
-        uiManager.HealthControl(health);
+        //uiManager.HealthControl(health);
 
         UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
     }
@@ -52,60 +40,6 @@ public class PlayerController : MonoBehaviour
                 Vector3 targetPosition = new Vector3(cameraRayHit.point.x, transform.position.y, cameraRayHit.point.z);
                 transform.LookAt(targetPosition);
             }
-        }
-        wepon();
-    }
-
-    public void wepon() 
-    {
-        switch (weponInUse) 
-        {
-            case ("ShootGun"):
-                if (ammo == 0)
-                {
-                    reloadWepon(2, 5);
-                }
-                else 
-                {
-                    if (!Input.GetMouseButtonUp((int)MouseButton.LeftMouse)) return;
-                    shoot();
-                }
-                break;
-            case ("MachineGun"):
-                if (ammo == 0)
-                {
-                    reloadWepon(10, 7);
-                }
-                else
-                {
-                    if (!Input.GetMouseButtonDown((int)MouseButton.LeftMouse)) return;
-                    shoot();
-                }
-                break;
-            default:
-                return;
-        }
-    }
-
-    public void shoot()
-    {
-        if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdle")) return;
-
-        shootController.Shoot();
-        ammo--;
-        uiManager.BulletsControl(ammo);
-        SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
-    }
-
-    public void reloadWepon(int ammoInCharge, int timeReload)
-    {
-        time += Time.deltaTime;
-        if (time >= timeReload)
-        {
-            ammo = ammoInCharge;
-            uiManager.BulletsControl(ammo);
-            time = 0;
-            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
         }
     }
 

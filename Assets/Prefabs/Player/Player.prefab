@@ -229,7 +229,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 42b78031d09eef44a8a115729fd99eb7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -261,14 +261,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429f568522235bb4fb679751654403e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoInCharge: 2
-  timeReload: 3
-  shootController: {fileID: 3800023671623065539}
-  InGameCursor: {fileID: 2800000, guid: dcc8bcabdce4722439038fc29107481b, type: 3}
-  weponInUse: ShootGun
-  ammo: 2
-  body: {fileID: 2245727262396309406}
   health: 4
+  InGameCursor: {fileID: 2800000, guid: dcc8bcabdce4722439038fc29107481b, type: 3}
 --- !u!1001 &4510949091328208099
 PrefabInstance:
   m_ObjectHideFlags: 0
