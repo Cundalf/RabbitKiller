@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     public ShootController shootController;
     public Texture2D InGameCursor;
     public string weponInUse = "ShootGun";
-
     [SerializeField]
     private int ammo;
 
@@ -23,8 +22,8 @@ public class PlayerController : MonoBehaviour
     private Animator _anim;
     private float time;
 
-    Ray cameraRay;                // The ray that is cast from the camera to the mouse position
-    RaycastHit cameraRayHit;    // The object that the ray hits
+    Ray cameraRay;           // The ray that is cast from the camera to the mouse position
+    RaycastHit cameraRayHit; // The object that the ray hits
 
     private void Start()
     {
