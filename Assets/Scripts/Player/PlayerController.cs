@@ -1,17 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    public ShootController shootController;
+    //Wepons
+    public int ammoInCharge;
     public float timeReload;
-    public int cantMaxBullet;
+    public ShootController shootController;
     public Texture2D InGameCursor;
+    public string weponInUse = "ShootGun";
 
     [SerializeField]
-    private int cantBullet;
+    private int ammo;
 
     [SerializeField]
     private int health = 4;
@@ -27,8 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         uiManager = FindObjectOfType<UIManager>();
         _anim = GetComponent<Animator>();
-        cantBullet = cantMaxBullet;
-
+        
         uiManager.HealthControl(health);
 
         UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
@@ -52,29 +54,59 @@ public class PlayerController : MonoBehaviour
                 transform.LookAt(targetPosition);
             }
         }
+        wepon();
+    }
 
-        if (cantBullet == 0)
+    public void wepon() 
+    {
+        switch (weponInUse) 
         {
-            time += Time.deltaTime;
-
-            if(time >= timeReload)
-            {
-                cantBullet = cantMaxBullet;
-                uiManager.BulletsControl(cantBullet);
-                time = 0;
-                SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
-            }
+            case ("ShootGun"):
+                if (ammo == 0)
+                {
+                    reloadWepon(2, 5);
+                }
+                else 
+                {
+                    if (!Input.GetMouseButtonUp((int)MouseButton.LeftMouse)) return;
+                    shoot();
+                }
+                break;
+            case ("MachineGun"):
+                if (ammo == 0)
+                {
+                    reloadWepon(10, 7);
+                }
+                else
+                {
+                    if (!Input.GetMouseButtonDown((int)MouseButton.LeftMouse)) return;
+                    shoot();
+                }
+                break;
+            default:
+                return;
         }
-        else
-        {
-            if (!Input.GetMouseButtonUp((int)MouseButton.LeftMouse)) return;
+    }
 
-            if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdle")) return;
-            
-            shootController.Shoot();
-            cantBullet--;
-            uiManager.BulletsControl(cantBullet);
-            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
+    public void shoot()
+    {
+        if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdle")) return;
+
+        shootController.Shoot();
+        ammo--;
+        uiManager.BulletsControl(ammo);
+        SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
+    }
+
+    public void reloadWepon(int ammoInCharge, int timeReload)
+    {
+        time += Time.deltaTime;
+        if (time >= timeReload)
+        {
+            ammo = ammoInCharge;
+            uiManager.BulletsControl(ammo);
+            time = 0;
+            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
         }
     }
 
