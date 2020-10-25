@@ -141,8 +141,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.2102204, y: 0.09581566, z: 0.09750956}
+  m_Center: {x: 0.00007158518, y: 0.046907246, z: 0.050735883}
 --- !u!114 &-2258974212740541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eb39c2c533fad4e91590ac66ed580d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 7
+  velocity: 5
 --- !u!28 &-9094500329030096876
 Texture2D:
   m_ObjectHideFlags: 0

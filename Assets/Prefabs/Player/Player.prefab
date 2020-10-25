@@ -180,7 +180,7 @@ MonoBehaviour:
   - {fileID: 6716099069029428393, guid: 6dc362b812c057c4080b264a3b432b6f, type: 3}
   ShootPS: {fileID: 6682546556614050780, guid: f5f00921302a90346bba9255b56f972f, type: 3}
   _weponAnimator: {fileID: 2256496290838865912}
-  typeOfWepon: ShootGun
+  typeOfWepon: MachineGun
 --- !u!1 &8526515178758428729
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,10 +277,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ea229661032624eadf4abbdc45b565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoCharge: 2
-  ammo: 2
-  weponInUse: ShootGun
-  timeReload: 3
+  ammoCharge: 10
+  ammo: 10
+  weponInUse: MachineGun
+  timeReload: 1
   shootController: {fileID: 3800023671623065539}
 --- !u!1001 &4510949091328208099
 PrefabInstance:
@@ -302,7 +302,7 @@ PrefabInstance:
     - target: {fileID: 1025336441682417537, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
@@ -414,6 +414,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5679375605091082102, guid: a77f89c50ac56e940a5855aff5fb8fe9,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8855417968192128993, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -439,6 +444,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5358775142601534118}
     m_Modifications:
+    - target: {fileID: -8345079172469116665, guid: bfd3adc0d11c5bf439071da3930025ab,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 161946659252628191, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: _weponAnimator
@@ -452,7 +462,7 @@ PrefabInstance:
     - target: {fileID: 1801806149515414472, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6877925521595702970, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}

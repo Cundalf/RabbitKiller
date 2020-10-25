@@ -1,66 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class WeponController : MonoBehaviour
 {
     [SerializeField]
-    public int ammoCharge;
-    public int ammo;
     public string weponInUse;
-    
-    public float timeReload;
-    private UIManager uiManager;
+    public ShootController shootController;
+
+    public UIManager uiManager;
     private Animator _anim;
     private float time;
-
-    public ShootController shootController;
+    private int ammo;
+    private int charger;
+    private int timeReload;
 
     // Start is called before the first frame update
     void Start()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        //uiManager = FindObjectOfType<UIManager>();
         _anim = GetComponent<Animator>();
-        ammo = ammoCharge;
-        
+        changeWepon(weponInUse);
     }
 
     // Update is called once per frame
     void Update()
     {
-        wepon();
+        if (ammo == 0)
+        {
+            reloadWepon(charger, timeReload);
+        }
+        else
+        {
+            if (!Input.GetMouseButtonUp((int)MouseButton.LeftMouse)) return;
+            shoot();
+        }
     }
-
-    public void wepon()
+    public void changeWepon(string wepon) 
     {
-        switch (weponInUse)
+        switch (wepon)
         {
             case ("ShootGun"):
-                if (ammo == 0)
-                {
-                    reloadWepon(2, 5);
-                }
-                else
-                {
-                    if (!Input.GetMouseButtonUp((int)MouseButton.LeftMouse)) return;
-                    shoot();
-                }
+                charger = 2;
+                timeReload = 3;
                 break;
             case ("MachineGun"):
-                if (ammo == 0)
-                {
-                    reloadWepon(10, 7);
-                }
-                else
-                {
-                    if (!Input.GetMouseButtonDown((int)MouseButton.LeftMouse)) return;
-                    shoot();
-                }
+                charger = 10;
+                timeReload = 2;
                 break;
             default:
                 return;
         }
+        ammo = charger;
     }
 
     public void reloadWepon(int ammoInCharge, int timeReload)
@@ -77,8 +70,8 @@ public class WeponController : MonoBehaviour
 
     public void shoot()
     {
-        if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdle")) return;
-
+        //if (!_anim.GetCurrentAnimatorStateInfo(0).IsName("PlayerIdle")) return;
+        
         shootController.Shoot();
         ammo--;
         uiManager.BulletsControl(ammo);
