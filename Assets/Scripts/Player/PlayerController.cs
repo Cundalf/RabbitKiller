@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int health = 4;
     public Texture2D InGameCursor;
+    private WeponController wController;
 
     public UIManager uiManager;
 
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         uiManager = FindObjectOfType<UIManager>();
         uiManager.HealthControl(health);
+
+        wController = FindObjectOfType<WeponController>();
 
         UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
     }
