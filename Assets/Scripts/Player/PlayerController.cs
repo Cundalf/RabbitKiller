@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int health = 4;
     public Texture2D InGameCursor;
-
     public UIManager uiManager;
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position

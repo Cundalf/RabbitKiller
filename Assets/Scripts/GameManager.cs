@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         if (sharedInstance != null && sharedInstance != this)
         {
             Destroy(gameObject);
+            return;
         }
 
         sharedInstance = this;

@@ -72,8 +72,6 @@ public class UIManager : MonoBehaviour
 
         timeControl += Time.fixedDeltaTime;
 
-        
-
         txtTime.text = GetHora();
     }
 
