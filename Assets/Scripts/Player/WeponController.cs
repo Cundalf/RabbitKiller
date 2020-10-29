@@ -1,21 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Security.Principal;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class WeponController : MonoBehaviour
 {
-    [SerializeField]
-    
     public ShootController shootController;
     public List<GameObject> weponGO;
     public List<GameObject> weponAmmo;
     public List<string> weponInUse;
     public GameObject bullet;
     public int numberWepon;
-
 
     private Animator _anim;
     private float time;
