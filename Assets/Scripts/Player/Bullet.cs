@@ -20,15 +20,13 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Pasture"))
         {
-            
-            other.gameObject.GetComponent<EnemyController>().Die();
             Destroy(gameObject);
         }
-
-        if (other.gameObject.CompareTag("Ground"))
+        else if(other.gameObject.CompareTag("Enemy")) 
         {
+            other.gameObject.GetComponent<EnemyController>().Die();
             Destroy(gameObject);
         }
     }

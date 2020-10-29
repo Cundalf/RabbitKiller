@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Pasture
+  - OffSet
+  - Details
   layers:
   - Default
   - TransparentFX
