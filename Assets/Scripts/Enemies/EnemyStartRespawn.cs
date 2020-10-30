@@ -47,5 +47,7 @@ public class EnemyStartRespawn : MonoBehaviour
                 userdRespawn[iRespawnPoint] = true;
             }
         }
+
+        Destroy(gameObject);
     }
 }

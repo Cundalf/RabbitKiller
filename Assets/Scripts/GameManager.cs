@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     
     public GameState actualGameState;
 
-
     // Singleton
     private static GameManager sharedInstance = null;
 
@@ -39,14 +38,12 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        Debug.Log("Juego pausado");
         actualGameState = GameState.PAUSE;
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
-        Debug.Log("Juego Renaudado");
         actualGameState = GameState.IN_GAME;
         Time.timeScale = 1;
     }

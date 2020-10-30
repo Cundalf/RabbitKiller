@@ -6,13 +6,6 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     void Start()
     {
-        //if (!PlayerController.playerCreated)
-        //{
-            DontDestroyOnLoad(gameObject);
-        //}
-        //else
-        //{
-            //Destroy(gameObject);
-        //}
+        DontDestroyOnLoad(gameObject);
     }
 }
