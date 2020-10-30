@@ -94,7 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeReload: 4
   chargerCapacity: 2
-  rateOfFire: 20
+  rateOfFire: 30
   bullet: {fileID: 4493366212808795463, guid: c88eaa2afb5ec8c41b2edc3f0c9a1e73, type: 3}
   shootController: {fileID: 4327128506882521636}
 --- !u!1 &6259740790316900958
@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeReload: 2
-  chargerCapacity: 100
-  rateOfFire: 0
+  chargerCapacity: 30
+  rateOfFire: 20
   bullet: {fileID: 6716099069029428393, guid: 6dc362b812c057c4080b264a3b432b6f, type: 3}
   shootController: {fileID: 4327128506882521636}
 --- !u!1 &8526515178758428729
@@ -307,10 +307,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weponInInventori:
-  - {fileID: 1106782013632352391}
   - {fileID: 3750706699380642861}
-  currentWepon: {fileID: 1106782013632352391}
-  innerWepon: {fileID: 3750706699380642861}
+  - {fileID: 1106782013632352391}
+  currentWepon: {fileID: 3750706699380642861}
+  innerWepon: {fileID: 1106782013632352391}
 --- !u!1001 &4510949091328208099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ PrefabInstance:
     - target: {fileID: 1025336441682417537, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
@@ -497,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 1801806149515414472, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6877925521595702970, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}

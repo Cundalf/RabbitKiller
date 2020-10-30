@@ -4,23 +4,36 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public GameObject player;
+
     private void Update()
     {
         if (GameManager.SharedInstance.actualGameState == GameManager.GameState.IN_GAME)
         {
             // Ataque del personaje (default: left mouse)
-            if (Input.GetButtonUp("Fire1"))
+            if (Input.GetMouseButton(0)) 
             {
+                player.GetComponent<WeponController>().shoot();
                 return;
             }
-
             // Ataque secundario del personaje (default: right mouse)
             if (Input.GetButtonUp("Fire2"))
             {
                 return;
             }
-        }
+            if (Input.GetKeyDown("q"))
+            {
+                player.GetComponent<WeponController>().quickChangeOfWeapon();
+                return;
+            }
+            if (Input.GetKeyDown("r"))
+            {
+                player.GetComponent<WeponController>().reload();
+                return;
+            }
 
+        }
+        
         // Menu (default: Escape)
         if (Input.GetButtonUp("Cancel"))
         {

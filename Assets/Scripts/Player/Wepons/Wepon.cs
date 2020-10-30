@@ -6,7 +6,7 @@ public class Wepon : MonoBehaviour
 {
     public float timeReload;
     public int chargerCapacity;
-    public float rateOfFire;
+    public int rateOfFire;
     public GameObject bullet;
     public ShootController shootController;
     public string nombre { get; set; }
@@ -16,13 +16,12 @@ public class Wepon : MonoBehaviour
 
     void Start()
     {
-        rateOfFire = 10;
         this.ammoInCharger = this.chargerCapacity;
     }
 
     void Update() 
     {
-        if (this.ammoInCharger == 0) 
+        if (this.ammoInCharger == 0)
         {
             reload();
         }
@@ -51,9 +50,9 @@ public class Wepon : MonoBehaviour
                 SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
                 rateOfFire = 10;
             }
-            else
+            else 
             {
-                rateOfFire--;
+                this.rateOfFire--;
             }
         }
     }

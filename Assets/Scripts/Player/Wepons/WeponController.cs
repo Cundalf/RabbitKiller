@@ -22,6 +22,11 @@ public class WeponController : MonoBehaviour
         }
     }
 
+    public void addWepon(Wepon weponToAdd) 
+    {
+        this.weponInInventori.Add(weponToAdd);
+    }
+
     public void quickChangeOfWeapon()
     {
         if (innerWepon != null)
@@ -37,6 +42,11 @@ public class WeponController : MonoBehaviour
     public void shoot() 
     {
         this.currentWepon.shoot();
+    }
+
+    public void reload() 
+    {
+        this.currentWepon.reload();
     }
 
 }
