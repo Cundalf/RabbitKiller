@@ -29,17 +29,6 @@ public class UIManager : MonoBehaviour
     private int points;
     private float timeControl;
 
-    //TODO: Esto se evita cuando este en sigleton el AudioManager
-    private AudioManager audioManager;
-    private GameObject audioManagerGO;
-
-    private void Start()
-    {
-        //TODO: Esto se evita cuando este en sigleton el AudioManager
-        audioManager = FindObjectOfType<AudioManager>();
-        audioManagerGO = audioManager.gameObject;
-    }
-
     public void ShowPoint(int points)
     {
         txtPoints.text = points.ToString();
@@ -122,8 +111,6 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        //TODO: Esto se evita cuando este en sigleton el AudioManager
-        Destroy(audioManagerGO);
         SceneManager.LoadScene("MainMenu");
     }
 }

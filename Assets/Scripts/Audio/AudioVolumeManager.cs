@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -6,14 +7,38 @@ using UnityEngine.UI;
 
 public class AudioVolumeManager : MonoBehaviour
 {
+    [SerializeField]
     private AudioVolumeController[] audios;
     [Range(0, 1)]
+    [Tooltip("Maximo volumen permitido")]
     public float maxVolumeLevel;
     [Range(0, 1)]
+    [Tooltip("Volumen actual")]
     public float CurrentVolumeLevel;
 
+    private static AudioVolumeManager sharedInstance = null;
 
-    void Start()
+    public static AudioVolumeManager SharedInstance
+    {
+        get
+        {
+            return sharedInstance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (sharedInstance != null && sharedInstance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        sharedInstance = this;
+        DontDestroyOnLoad(this);
+    }
+
+    private void Start()
     {
         audios = FindObjectsOfType<AudioVolumeController>();
         ChangeGlobalAudioVolume(AudioVolumeController.AudioType.MUSIC);

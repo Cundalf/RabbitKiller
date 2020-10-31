@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SFXManager : MonoBehaviour
 {
-    // Singleton
     private static SFXManager sharedInstance = null;
 
     public static SFXManager SharedInstance

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayAudioTrack : MonoBehaviour
 {
-    private AudioManager audioManager;
     public int newTrackID;
     public bool noRepeat;
     public bool playOnStart;
+    public bool destroyAfterStart;
 
     private void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
         if(playOnStart)
         {
-            audioManager.PlayNewTrack(newTrackID);
+            AudioManager.SharedInstance.PlayNewTrack(newTrackID);
+            if (destroyAfterStart) Destroy(gameObject);
         }
     }
 
@@ -22,7 +22,7 @@ public class PlayAudioTrack : MonoBehaviour
     {        
         if(collision.gameObject.name.Equals("Player"))
         {
-            audioManager.PlayNewTrack(newTrackID);
+            AudioManager.SharedInstance.PlayNewTrack(newTrackID);
             if(noRepeat) gameObject.SetActive(false);
         }
     }

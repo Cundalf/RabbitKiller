@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public GameObject ConfigPanel;
     public GameObject CreditsPanel;
     public GameObject TutorialPanel;
     //Animeted
@@ -17,6 +18,16 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         random = new System.Random(859633);
+    }
+
+    public void ShowConfig()
+    {
+        ConfigPanel.SetActive(true);
+    }
+
+    public void HideConfig()
+    {
+        ConfigPanel.SetActive(false);
     }
 
     public void ShowCredits()
