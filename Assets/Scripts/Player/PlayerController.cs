@@ -46,9 +46,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
-        health -= 1;
+        health -= damage;
         uiManager.HealthControl(health);
 
         if (health <= 0)

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8067661293480520008}
   - component: {fileID: -8345079172469116665}
   - component: {fileID: -4383396700438060396}
+  - component: {fileID: 5507284789990475693}
   m_Layer: 0
   m_Name: Arma2_Ametralladora
   m_TagString: Untagged
@@ -91,6 +92,23 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5507284789990475693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801806149515414472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100888025cfe6674e930e617a8c9815d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeReload: 3
+  chargerCapacity: 10
+  rateOfFire: 10
+  bullet: {fileID: 6716099069029428393, guid: 6dc362b812c057c4080b264a3b432b6f, type: 3}
+  shootController: {fileID: 0}
 --- !u!1 &5548656235915953949
 GameObject:
   m_ObjectHideFlags: 0

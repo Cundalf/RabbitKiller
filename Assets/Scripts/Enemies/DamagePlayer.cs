@@ -5,6 +5,7 @@ using UnityEngine;
 public class DamagePlayer : MonoBehaviour
 {
     public float timeStopDamage = 2f;
+    public int damage=1;
     private float timeDamage;
 
     [SerializeField]
@@ -28,7 +29,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && canHit)
         {
-            other.gameObject.GetComponent<PlayerController>().Hit();
+            other.gameObject.GetComponent<PlayerController>().Hit(this.damage);
             canHit = false;
 
             int randomSFX = Random.Range(0, 2);

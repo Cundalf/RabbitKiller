@@ -10,10 +10,11 @@ public class EnemyController : MonoBehaviour
 {
     public ParticleSystem BloodPS;
     public float timeStop = 1f;
-
+    public int healt = 1;
     private float time;
     private UIManager uiManager;
     private bool isMoving = false;
+    
     Transform playerT;
     NavMeshAgent agent;
     Animator _Anim;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyRespawnController : MonoBehaviour
 {
-    public GameObject EnemyPrefab;
+    public List<GameObject> EnemyPrefab;
     public float minStopTime;
     public float maxStopTime;
 
@@ -37,7 +37,7 @@ public class EnemyRespawnController : MonoBehaviour
         int iRespawnPoint = Random.Range(0, respawnPoints.Count);
         respawnPointGO = respawnPoints[iRespawnPoint];
 
-        InstantiateRabbit(respawnPointGO.transform);
+        InstantiateEnemis(respawnPointGO.transform);
 
         int iRespawnPoint2 = Random.Range(0, respawnPoints.Count);
 
@@ -45,16 +45,26 @@ public class EnemyRespawnController : MonoBehaviour
         {
             respawnPointGO = respawnPoints[iRespawnPoint2];
 
-            InstantiateRabbit(respawnPointGO.transform);
+            InstantiateEnemis(respawnPointGO.transform);
         }
     }
 
     void InstantiateRabbit(Transform respawnTransform)
     {
-        Instantiate(EnemyPrefab, respawnTransform.position, respawnTransform.rotation);
+        //Instantiate(EnemyPrefab, respawnTransform.position, respawnTransform.rotation);
 
         int randomSFX = Random.Range(0, 2);
         if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
         if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
     }
+
+    void InstantiateEnemis(Transform respawnTransform)
+    {
+        Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
+
+        int randomSFX = Random.Range(0, 2);
+        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
+        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+    }
+
 }
