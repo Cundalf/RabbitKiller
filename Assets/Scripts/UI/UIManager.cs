@@ -113,4 +113,9 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void UpdateRabbitFeet(int cant)
+    {
+
+    }
 }

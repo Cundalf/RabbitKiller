@@ -74,6 +74,10 @@ public class MainMenuManager : MonoBehaviour
                 }
             }
         }
-        else { return; }
+    }
+
+    public void UpdateRabbitFeet(int cant)
+    {
+
     }
 }
