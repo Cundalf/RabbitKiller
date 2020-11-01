@@ -25,7 +25,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
         timeCounter += Time.deltaTime;
 
         if (timeCounter < timeStop) return;

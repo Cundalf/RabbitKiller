@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Text txtPointsGO;
     public Text txtTime;
     public Text txtPoints;
+    public Text txtRabbitFeet;
 
     public Image frPlayer;
     public Image Bullet1;
@@ -57,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
         timeControl += Time.fixedDeltaTime;
 
@@ -114,8 +115,4 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void UpdateRabbitFeet(int cant)
-    {
-
-    }
 }

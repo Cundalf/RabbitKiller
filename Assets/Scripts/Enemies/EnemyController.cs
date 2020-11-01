@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
     }
     void Update()
     {
-        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
         time += Time.deltaTime;
 

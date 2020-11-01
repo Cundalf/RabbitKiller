@@ -14,7 +14,6 @@ public class VirtualGoodsManager : MonoBehaviour
     }
 
     private static VirtualGoodsManager sharedInstance = null;
-
     public static VirtualGoodsManager SharedInstance
     {
         get
@@ -51,14 +50,9 @@ public class VirtualGoodsManager : MonoBehaviour
         PlayerPrefs.SetInt("RabbitFeet", rabbitFeet);
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
-        if(GameManager.SharedInstance.actualGameState == GameManager.GameState.MAIN_MENU)
-        {
-            GetComponent<MainMenuManager>().UpdateRabbitFeet(rabbitFeet);
-        }
-
-        if (GameManager.SharedInstance.actualGameState == GameManager.GameState.IN_GAME)
+        if(GameManager.SharedInstance.ActualGameState == GameManager.GameState.MAIN_MENU)
         {
             GetComponent<MainMenuManager>().UpdateRabbitFeet(rabbitFeet);
         }

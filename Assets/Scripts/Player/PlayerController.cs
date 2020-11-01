@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
         // Cast a ray from the camera to the mouse cursor
         cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            GameManager.SharedInstance.actualGameState = GameManager.GameState.GAME_OVER;
+            GameManager.SharedInstance.ChangeGameManager(GameManager.GameState.GAME_OVER);
             SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.PLAYER_DEATH);
             uiManager.GameOver();
         }
