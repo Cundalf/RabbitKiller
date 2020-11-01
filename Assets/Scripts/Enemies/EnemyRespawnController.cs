@@ -49,15 +49,6 @@ public class EnemyRespawnController : MonoBehaviour
         }
     }
 
-    void InstantiateRabbit(Transform respawnTransform)
-    {
-        //Instantiate(EnemyPrefab, respawnTransform.position, respawnTransform.rotation);
-
-        int randomSFX = Random.Range(0, 2);
-        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
-        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
-    }
-
     void InstantiateEnemis(Transform respawnTransform)
     {
         Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
