@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -52,6 +49,17 @@ public class GameManager : MonoBehaviour
                 VirtualGoodsManager.SharedInstance.UpdateUI();
                 break;
         }
+    }
+
+    public int GetCantRabbitFeet(int rabbitDead)
+    {
+        int cant = 0;
+        for(int i = 1; i <= rabbitDead; i++)
+        {
+            cant += Random.Range(0, 3);
+        }
+
+        return cant;
     }
 
     public void PauseGame()

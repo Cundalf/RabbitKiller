@@ -81,6 +81,7 @@ public class UIManager : MonoBehaviour
 
         txtTimeGO.text = GetHora();
         txtPointsGO.text = points.ToString();
+        txtRabbitFeet.GetComponent<TextAnimator>().SetIncrement(GameManager.SharedInstance.GetCantRabbitFeet(points));
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.LOSE);
     }
 

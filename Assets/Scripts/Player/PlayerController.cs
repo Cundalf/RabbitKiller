@@ -48,6 +48,8 @@ public class PlayerController : MonoBehaviour
 
     public void Hit()
     {
+        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
+
         health -= 1;
         uiManager.HealthControl(health);
 
