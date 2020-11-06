@@ -271,10 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ea229661032624eadf4abbdc45b565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weponInInventori:
-  - {fileID: 4823093751911864453, guid: a77f89c50ac56e940a5855aff5fb8fe9, type: 3}
-  currentWepon: {fileID: 5220295766211641039}
-  innerWepon: {fileID: 0}
+  weaponInInventori: []
+  currentWeapon: {fileID: 5220295766211641039}
+  innerWeapon: {fileID: 0}
 --- !u!1001 &764808614133753418
 PrefabInstance:
   m_ObjectHideFlags: 0

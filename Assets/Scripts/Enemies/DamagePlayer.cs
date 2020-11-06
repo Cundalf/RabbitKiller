@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamagePlayer : MonoBehaviour
 {
     public float timeStopDamage = 2f;
-    public int damage=1;
+    public int damage = 1;
     private float timeDamage;
 
     [SerializeField]

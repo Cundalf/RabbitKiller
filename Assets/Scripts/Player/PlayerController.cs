@@ -1,29 +1,22 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
+
 
 public class PlayerController : MonoBehaviour
 {
 
     [SerializeField]
-    private int health = 4;
+    public int health { set; get; }
     public Texture2D InGameCursor;
-    private WeponController wController;
-
     public UIManager uiManager;
 
     Ray cameraRay;                // The ray that is cast from the camera to the mouse position
     RaycastHit cameraRayHit;    // The object that the ray hits
-
     private void Start()
     {
+        health = 4;
         uiManager = FindObjectOfType<UIManager>();
         uiManager.HealthControl(health);
-
-        wController = FindObjectOfType<WeponController>();
-
-        UnityEngine.Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
     }
 
     void Update()
@@ -53,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0)
         {
-            UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             GameManager.SharedInstance.actualGameState = GameManager.GameState.GAME_OVER;
             SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.PLAYER_DEATH);
             uiManager.GameOver();

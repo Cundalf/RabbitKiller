@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
             // Ataque del personaje (default: left mouse)
             if (Input.GetMouseButton(0)) 
             {
-                player.GetComponent<WeponController>().shoot();
+                player.GetComponent<WeaponController>().shoot();
                 return;
             }
             // Ataque secundario del personaje (default: right mouse)
@@ -23,12 +23,12 @@ public class InputManager : MonoBehaviour
             }
             if (Input.GetKeyDown("q"))
             {
-                player.GetComponent<WeponController>().quickChangeOfWeapon();
+                player.GetComponent<WeaponController>().quickChangeOfWeapon();
                 return;
             }
             if (Input.GetKeyDown("r"))
             {
-                player.GetComponent<WeponController>().reload();
+                player.GetComponent<WeaponController>().reload();
                 return;
             }
 

@@ -36,6 +36,7 @@ Transform:
   - {fileID: 4558347190719758327}
   - {fileID: 8784391067993549147}
   - {fileID: 287399062107951779}
+  - {fileID: 7217567954803607719}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -123,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BloodPS: {fileID: 6659588706510264770, guid: adb77499e9e7e274fa1921d821e35996, type: 3}
+  BloodPSPoint: {fileID: 4806200784149379097}
   timeStop: 1
   healt: 1
 --- !u!114 &2104776343574563277
@@ -140,6 +142,36 @@ MonoBehaviour:
   timeStopDamage: 1.5
   damage: 1
   canHit: 1
+--- !u!1 &4806200784149379097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7217567954803607719}
+  m_Layer: 0
+  m_Name: BloodPSPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7217567954803607719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806200784149379097}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.020019531, y: 1.4340506, z: 0.025520325}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8865386184789965790}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7197864918332478532
 GameObject:
   m_ObjectHideFlags: 0

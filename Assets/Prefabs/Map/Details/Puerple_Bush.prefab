@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3330483081549834468}
+  - component: {fileID: 8413569721627906492}
+  - component: {fileID: 6712966634218272906}
+  - component: {fileID: 4473149677232800272}
   m_Layer: 0
-  m_Name: Arbusto2
-  m_TagString: Untagged
+  m_Name: Puerple_Bush
+  m_TagString: BustMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,9 +31,56 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5982666786751277811}
+  - {fileID: 9021688942868702337}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8413569721627906492
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715225856819527172}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.2218678
+  m_Height: 2.5840297
+  m_Direction: 1
+  m_Center: {x: -0.08198619, y: 1.138814, z: -0.043242574}
+--- !u!114 &6712966634218272906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715225856819527172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6acee013d3e2ad45846dab4cfa2efdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfBust: purpleBushBust
+--- !u!95 &4473149677232800272
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715225856819527172}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 91165ee63858c434184296129dbfdead, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &867094889031656192
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +92,6 @@ GameObject:
   - component: {fileID: 5982666786751277811}
   - component: {fileID: 8198529199917935109}
   - component: {fileID: 5132809178589433126}
-  - component: {fileID: 5124230585637017222}
   m_Layer: 0
   m_Name: Model 0
   m_TagString: Ground
@@ -58,7 +107,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867094889031656192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 1.15, z: 0.2}
+  m_LocalPosition: {x: -0.1, y: 1.15, z: -0.036}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3330483081549834468}
@@ -111,20 +160,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867094889031656192}
   m_Mesh: {fileID: -9210681692872269974}
---- !u!64 &5124230585637017222
-MeshCollider:
+--- !u!1001 &885167457707013118
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3330483081549834468}
+    m_Modifications:
+    - target: {fileID: 6863170707263821014, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_Name
+      value: Bush_Sitk
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.268
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e61d98f64cd2b474e9ef5437e150faaa, type: 3}
+--- !u!4 &9021688942868702337 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 885167457707013118}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867094889031656192}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -9210681692872269974}
 --- !u!43 &-9210681692872269974
 Mesh:
   m_ObjectHideFlags: 0

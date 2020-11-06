@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
@@ -20,14 +18,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Pasture"))
-        {
-            Destroy(gameObject);
-        }
-        else if(other.gameObject.CompareTag("Enemy")) 
+        if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyController>().Die();
-            Destroy(gameObject);
+
+        } else if (other.gameObject.CompareTag("BustMap")) 
+        {
+            other.gameObject.GetComponent<Bust>().appliBust();
         }
+        Destroy(gameObject);
     }
 }

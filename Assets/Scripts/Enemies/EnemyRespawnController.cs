@@ -19,7 +19,7 @@ public class EnemyRespawnController : MonoBehaviour
         respawnPoints = new List<GameObject>();
         foreach (Transform t in transform)
         {
-            respawnPoints.Add(t.gameObject);
+           respawnPoints.Add(t.gameObject);
         }
     }
 

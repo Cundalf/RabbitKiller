@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8496981267366926280}
   - component: {fileID: 8249664225689257739}
   - component: {fileID: 4002393487089531141}
-  - component: {fileID: 2365699460217265355}
   m_Layer: 0
   m_Name: Model 0
   m_TagString: Ground
@@ -80,20 +79,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2695947881209352761}
   m_Mesh: {fileID: 6824287537697259198}
---- !u!64 &2365699460217265355
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2695947881209352761}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 6824287537697259198}
 --- !u!1 &3918367294394341446
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,9 +88,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5353810544761666379}
+  - component: {fileID: 876592757580637922}
+  - component: {fileID: 1707707106283455568}
+  - component: {fileID: 7871744021947075897}
   m_Layer: 0
-  m_Name: Arbusto1
-  m_TagString: Untagged
+  m_Name: Red_bush
+  m_TagString: BustMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,9 +110,131 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8496981267366926280}
+  - {fileID: 7285686330898120417}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &876592757580637922
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918367294394341446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1.1338617
+  m_Height: 2.4144487
+  m_Direction: 1
+  m_Center: {x: -0.11036098, y: 1.1629345, z: 0.20633125}
+--- !u!114 &1707707106283455568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918367294394341446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6acee013d3e2ad45846dab4cfa2efdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfBust: redBushBust
+--- !u!95 &7871744021947075897
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918367294394341446}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b6f0610a94ae0c4bae2f26ed1fe3811, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1001 &1468226574527981982
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5353810544761666379}
+    m_Modifications:
+    - target: {fileID: 6863170707263821014, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_Name
+      value: Bush_Stik
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e61d98f64cd2b474e9ef5437e150faaa, type: 3}
+--- !u!4 &7285686330898120417 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1468226574527981982}
+  m_PrefabAsset: {fileID: 0}
 --- !u!28 &-7937020837730985692
 Texture2D:
   m_ObjectHideFlags: 0

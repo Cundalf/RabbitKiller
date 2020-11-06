@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wepon : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     public float timeReload;
     public int chargerCapacity;
@@ -12,7 +12,7 @@ public class Wepon : MonoBehaviour
     public string nombre { get; set; }
     
     private float time;
-    private int ammoInCharger;
+    public int ammoInCharger { get; set; }
 
     void Start()
     {

@@ -26,6 +26,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         _Anim = GetComponent<Animator>();
     }
+
     void Update()
     {
         if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
@@ -53,9 +54,10 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+        Vector3 bloodPSPoint = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y+3,gameObject.transform.position.z);
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
-       
-        Instantiate(BloodPS, gameObject.transform.position, gameObject.transform.rotation);
+        
+        Instantiate(BloodPS,bloodPSPoint, gameObject.transform.rotation);
         Destroy(gameObject);
         uiManager.PointsControl();
     }

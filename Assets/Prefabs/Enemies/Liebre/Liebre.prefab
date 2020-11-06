@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77389921293573195}
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0.05, y: 0.85, z: -0.05}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5244112947894983059}
@@ -126,10 +126,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.69789433
-  m_Height: 1.873584
+  m_Radius: 0.65586627
+  m_Height: 2.4369574
   m_Direction: 1
-  m_Center: {x: 0.058204174, y: 0.852466, z: 0}
+  m_Center: {x: 0.058204174, y: 1.1341527, z: -0.04202807}
 --- !u!54 &-9197653573628934509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb1ebd284c1e0d4482d03dc1b9db25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStopDamage: 2
+  timeStopDamage: 1.5
   damage: 2
   canHit: 1
 --- !u!114 &-6945607936976892694
@@ -215,7 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BloodPS: {fileID: 6659588706510264770, guid: adb77499e9e7e274fa1921d821e35996, type: 3}
-  timeStop: 1
+  BloodPSPoint: {fileID: 0}
+  timeStop: 0.5
   healt: 1
 --- !u!21 &-3505640843625650235
 Material:
