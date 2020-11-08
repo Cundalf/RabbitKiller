@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,7 +10,7 @@ public class EnemyController : MonoBehaviour
     public float timeStop = 1f;
     public int healt = 1;
     private float time;
-    private UIManager uiManager;
+    private EnemyRespawnController enemyRespawnController;
     private bool isMoving = false;
     
     Transform playerT;
@@ -21,7 +19,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        enemyRespawnController = FindObjectOfType<EnemyRespawnController>();
         playerT = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
         _Anim = GetComponent<Animator>();
@@ -59,7 +57,7 @@ public class EnemyController : MonoBehaviour
         
         Instantiate(BloodPS,bloodPSPoint, gameObject.transform.rotation);
         Destroy(gameObject);
-        uiManager.PointsControl();
+        enemyRespawnController.enemiDead();
     }
 
 }

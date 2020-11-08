@@ -11,12 +11,26 @@ public class EnemyRespawnController : MonoBehaviour
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
+    //Orde variable
+    private int enemisInOrde;
+    private int enemisSapwn;
+    private int enemisDead;
+    private int enemisCounter;
+    private int currentOrdeNumber;
+    private int DELAYNEWORDE = 5;
+    private UIManager currentUI;
     private List<GameObject> respawnPoints;
 
     void Start()
     {
-        timeStop = Random.Range(minStopTime, maxStopTime);
-        respawnPoints = new List<GameObject>();
+        timeStop            = Random.Range(minStopTime, maxStopTime);
+        respawnPoints       = new List<GameObject>();
+        currentUI           = FindObjectOfType<UIManager>();
+        enemisInOrde        = 20;
+        enemisSapwn         = 0;
+        enemisDead          = 0;
+        enemisCounter       = 20;
+        currentOrdeNumber   = 1;
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
@@ -32,7 +46,35 @@ public class EnemyRespawnController : MonoBehaviour
 
         timeCounter = 0;
         timeStop = Random.Range(minStopTime, maxStopTime);
+        ordeControl();
+        currentUI.updateOrdeInfo(enemisCounter, currentOrdeNumber);
+    }
 
+    void InstantiateEnemis(Transform respawnTransform)
+    {
+        enemisSapwn++;
+        Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
+        
+        int randomSFX = Random.Range(0, 2);
+        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
+        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+    }
+
+    void ordeControl() 
+    {
+
+        if (enemisSapwn <= enemisInOrde) 
+        {
+            spawnEnemis();
+        }
+        if (enemisDead == enemisInOrde) 
+        {
+            newOrde();
+        }
+    }
+
+    void spawnEnemis() 
+    {
         GameObject respawnPointGO;
         int iRespawnPoint = Random.Range(0, respawnPoints.Count);
         respawnPointGO = respawnPoints[iRespawnPoint];
@@ -41,7 +83,7 @@ public class EnemyRespawnController : MonoBehaviour
 
         int iRespawnPoint2 = Random.Range(0, respawnPoints.Count);
 
-        if(iRespawnPoint != iRespawnPoint2)
+        if (iRespawnPoint != iRespawnPoint2)
         {
             respawnPointGO = respawnPoints[iRespawnPoint2];
 
@@ -49,13 +91,26 @@ public class EnemyRespawnController : MonoBehaviour
         }
     }
 
-    void InstantiateEnemis(Transform respawnTransform)
+    void newOrde()
     {
-        Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
+        StartCoroutine(delayForNewOrde());
+        currentOrdeNumber++;
+        enemisInOrde = enemisInOrde + 10;
+        enemisDead = 0;
+        enemisSapwn = 0;
+        enemisCounter = enemisInOrde;
+    }
 
-        int randomSFX = Random.Range(0, 2);
-        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
-        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+    public void enemiDead() 
+    {
+        enemisDead++;
+        enemisCounter--;
+        currentUI.PointsControl();
+    }
+
+    IEnumerator delayForNewOrde()
+    {
+        yield return new WaitForSeconds(DELAYNEWORDE);
     }
 
 }
