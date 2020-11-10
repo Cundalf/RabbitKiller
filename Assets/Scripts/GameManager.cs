@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +8,13 @@ public class GameManager : MonoBehaviour
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
     
-    public GameState actualGameState;
+    private GameState actualGameState;
+    public GameState ActualGameState { 
+        get
+        {
+            return actualGameState;
+        }
+    }
 
     // Singleton
     private static GameManager sharedInstance = null;
@@ -34,6 +37,29 @@ public class GameManager : MonoBehaviour
 
         sharedInstance = this;
         DontDestroyOnLoad(this);
+    }
+
+    public void ChangeGameManager(GameState newGameState)
+    {
+        actualGameState = newGameState;
+
+        switch(actualGameState)
+        {
+            case GameState.MAIN_MENU:
+                VirtualGoodsManager.SharedInstance.UpdateUI();
+                break;
+        }
+    }
+
+    public int GetCantRabbitFeet(int rabbitDead)
+    {
+        int cant = 0;
+        for(int i = 1; i <= rabbitDead; i++)
+        {
+            cant += Random.Range(0, 3);
+        }
+
+        return cant;
     }
 
     public void PauseGame()

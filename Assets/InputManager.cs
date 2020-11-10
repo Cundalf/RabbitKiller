@@ -8,10 +8,10 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.SharedInstance.actualGameState == GameManager.GameState.IN_GAME)
+        if (GameManager.SharedInstance.ActualGameState == GameManager.GameState.IN_GAME)
         {
             // Ataque del personaje (default: left mouse)
-            if (Input.GetMouseButton(0)) 
+            if (Input.GetButton("Fire1")) 
             {
                 player.GetComponent<WeaponController>().shoot();
                 return;
@@ -21,12 +21,16 @@ public class InputManager : MonoBehaviour
             {
                 return;
             }
-            if (Input.GetKeyDown("q"))
+
+            // Boton de cambiar arma (default: q)
+            if (Input.GetButtonUp("ChangeWeapon"))
             {
                 player.GetComponent<WeaponController>().quickChangeOfWeapon();
                 return;
             }
-            if (Input.GetKeyDown("r"))
+
+            // Boton de recarga (default: r)
+            if (Input.GetButtonUp("Reload"))
             {
                 player.GetComponent<WeaponController>().reload();
                 return;
@@ -37,7 +41,7 @@ public class InputManager : MonoBehaviour
         // Menu (default: Escape)
         if (Input.GetButtonUp("Cancel"))
         {
-            switch(GameManager.SharedInstance.actualGameState)
+            switch(GameManager.SharedInstance.ActualGameState)
             {
                 case GameManager.GameState.IN_GAME:
                     GameManager.SharedInstance.PauseGame();

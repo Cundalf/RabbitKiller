@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
     public GameObject ConfigPanel;
     public GameObject CreditsPanel;
     public GameObject TutorialPanel;
+    public Text txtRabbitFeet;
+
     //Animeted
     public Animator _playerAnime;
     public Animator _rabbitAnime;
@@ -74,6 +77,10 @@ public class MainMenuManager : MonoBehaviour
                 }
             }
         }
-        else { return; }
+    }
+
+    public void UpdateRabbitFeet(int cant)
+    {
+        txtRabbitFeet.text = cant.ToString();
     }
 }
