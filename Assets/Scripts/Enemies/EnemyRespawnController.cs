@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyRespawnController : MonoBehaviour
 {
     public List<GameObject> EnemyPrefab;
+    public List<GameObject> EnemyBossPrefab;
     public float minStopTime;
     public float maxStopTime;
 
@@ -18,6 +19,8 @@ public class EnemyRespawnController : MonoBehaviour
     private int enemisCounter;
     private int currentOrdeNumber;
     private int DELAYNEWORDE = 5;
+    private int ordeNumberBoss;
+    private bool SPAWNEARBOSS = false;
     private UIManager currentUI;
     private List<GameObject> respawnPoints;
 
@@ -31,6 +34,7 @@ public class EnemyRespawnController : MonoBehaviour
         enemisDead          = 0;
         enemisCounter       = 20;
         currentOrdeNumber   = 1;
+        ordeNumberBoss      = 5;
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
@@ -50,24 +54,20 @@ public class EnemyRespawnController : MonoBehaviour
         currentUI.updateOrdeInfo(enemisCounter, currentOrdeNumber);
     }
 
-    void InstantiateEnemis(Transform respawnTransform)
-    {
-        enemisSapwn++;
-        Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
-        
-        int randomSFX = Random.Range(0, 2);
-        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
-        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
-    }
-
     void ordeControl() 
     {
-
-        if (enemisSapwn <= enemisInOrde) 
+        if (enemisSapwn <= enemisInOrde)
         {
-            spawnEnemis();
+            if (SPAWNEARBOSS)
+            {
+                spawnEnemiBoss();
+            }
+            else 
+            {
+                spawnEnemis();
+            }
         }
-        if (enemisDead == enemisInOrde) 
+        if (enemisDead == enemisInOrde)
         {
             newOrde();
         }
@@ -77,28 +77,55 @@ public class EnemyRespawnController : MonoBehaviour
     {
         GameObject respawnPointGO;
         int iRespawnPoint = Random.Range(0, respawnPoints.Count);
+        int iRespawnPoint2 = Random.Range(0, respawnPoints.Count);
         respawnPointGO = respawnPoints[iRespawnPoint];
 
-        InstantiateEnemis(respawnPointGO.transform);
-
-        int iRespawnPoint2 = Random.Range(0, respawnPoints.Count);
+        InstantiateEnemis(respawnPointGO.transform,EnemyPrefab);
 
         if (iRespawnPoint != iRespawnPoint2)
         {
             respawnPointGO = respawnPoints[iRespawnPoint2];
 
-            InstantiateEnemis(respawnPointGO.transform);
+            InstantiateEnemis(respawnPointGO.transform, EnemyPrefab);
         }
+        
     }
 
+    void spawnEnemiBoss() 
+    {
+        GameObject respawnPointGO;
+        int iRespawnPoint = Random.Range(0, respawnPoints.Count);
+        respawnPointGO = respawnPoints[iRespawnPoint];
+
+        InstantiateEnemis(respawnPointGO.transform, EnemyBossPrefab);
+    }
+
+    void InstantiateEnemis(Transform respawnTransform, List<GameObject> EnemyPrefab)
+    {
+        enemisSapwn++;
+        Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
+
+        int randomSFX = Random.Range(0, 2);
+        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
+        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+    }
     void newOrde()
     {
         StartCoroutine(delayForNewOrde());
         currentOrdeNumber++;
-        enemisInOrde = enemisInOrde + 10;
+        if (currentOrdeNumber == ordeNumberBoss)
+        {
+            enemisInOrde = 1;
+            SPAWNEARBOSS = true;
+        }
+        else 
+        {
+            enemisInOrde = enemisInOrde + 10;
+            SPAWNEARBOSS = false;
+        }
+        enemisCounter = enemisInOrde;
         enemisDead = 0;
         enemisSapwn = 0;
-        enemisCounter = enemisInOrde;
     }
 
     public void enemiDead() 
