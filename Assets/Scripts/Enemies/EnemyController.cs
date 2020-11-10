@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,21 +8,23 @@ public class EnemyController : MonoBehaviour
 {
     public ParticleSystem BloodPS;
     public float timeStop = 1f;
-
+    public int healt = 1;
     private float time;
-    private UIManager uiManager;
+    private EnemyRespawnController enemyRespawnController;
     private bool isMoving = false;
+    
     Transform playerT;
     NavMeshAgent agent;
     Animator _Anim;
 
     void Start()
     {
-        uiManager = FindObjectOfType<UIManager>();
+        enemyRespawnController = FindObjectOfType<EnemyRespawnController>();
         playerT = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
         _Anim = GetComponent<Animator>();
     }
+
     void Update()
     {
         if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
@@ -52,11 +52,12 @@ public class EnemyController : MonoBehaviour
 
     public void Die()
     {
+        Vector3 bloodPSPoint = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y+3,gameObject.transform.position.z);
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
-       
-        Instantiate(BloodPS, gameObject.transform.position, gameObject.transform.rotation);
+        
+        Instantiate(BloodPS,bloodPSPoint, gameObject.transform.rotation);
         Destroy(gameObject);
-        uiManager.PointsControl();
+        enemyRespawnController.enemiDead();
     }
 
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,7 +12,12 @@ public class UIManager : MonoBehaviour
     public Text txtPointsGO;
     public Text txtTime;
     public Text txtPoints;
+<<<<<<< HEAD
+    public Text currentHorde;
+    public Text enemisCurrentHorde;
+=======
     public Text txtRabbitFeet;
+>>>>>>> origin/develop
 
     public Image frPlayer;
     public Image Bullet1;
@@ -34,7 +37,6 @@ public class UIManager : MonoBehaviour
     {
         txtPoints.text = points.ToString();
     }
-
     public void BulletsControl(int cantBullets)
     {
         if(cantBullets == 2)
@@ -54,6 +56,12 @@ public class UIManager : MonoBehaviour
             Bullet1.sprite = BulletOFF;
             Bullet2.sprite = BulletOFF;
         }
+    }
+
+    public void updateOrdeInfo(int cantRabbitInOrde, int currentOrdeNumber) 
+    {
+        currentHorde.text = "Orde:" + currentOrdeNumber.ToString();
+        enemisCurrentHorde.text = "Rabbits:" + cantRabbitInOrde.ToString();
     }
 
     private void FixedUpdate()
