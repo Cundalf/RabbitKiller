@@ -7,18 +7,39 @@ using UnityEngine.UIElements;
 [RequireComponent(typeof(Text))]
 public class TextAnimator : MonoBehaviour
 {
-    public bool finished;
+    [Tooltip("Tiempo de pausa entre letra y letra")]
     public float pauseTime = 0.05f;
-    private Text _text;
+    [Tooltip("Delay para incrementar un valor")]
+    public float numberDelay = 0.1f;
+
+    private bool finished;
+    public bool Finished
+    {
+        get
+        {
+            return finished;
+        }
+    }
+
+    [Tooltip("Saltear texto actual")]
     public bool skip;
-    
+
+    [Tooltip("El usuario puede saltear texto o incremento numerico")]
+    public bool canSkip;
+
+    private Text _text;
+
+    private void Awake()
+    {
+        _text = GetComponent<Text>();
+    }
+
     void Start()
     {
         skip = false;
         finished = true;
-        _text = GetComponent<Text>();
 
-        if(_text.text != "")
+        if (_text.text != "")
         {
             SetText(_text.text);
         }
@@ -26,7 +47,9 @@ public class TextAnimator : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonUp((int)MouseButton.LeftMouse)) {
+        //TODO: Evaluar como pasar el click a InputManager
+        if (Input.GetMouseButtonUp((int)MouseButton.LeftMouse) && canSkip)
+        {
             skip = true;
         }
     }
@@ -42,7 +65,7 @@ public class TextAnimator : MonoBehaviour
     {
         foreach (char letter in text.ToCharArray())
         {
-            if(skip)
+            if (skip)
             {
                 _text.text = text;
                 skip = false;
@@ -51,6 +74,33 @@ public class TextAnimator : MonoBehaviour
 
             _text.text += letter;
             yield return new WaitForSeconds(pauseTime);
+        }
+
+        finished = true;
+    }
+
+    public void SetIncrement(int val)
+    {
+        finished = false;
+        _text.text = "0";
+        StartCoroutine(IncrementValue(val));
+    }
+
+    IEnumerator IncrementValue(int value)
+    {
+        int actualValue = 0;
+        for (int i = 1; i <= value; i++)
+        {
+            if (skip)
+            {
+                _text.text = actualValue.ToString();
+                skip = false;
+                break;
+            }
+
+            actualValue++;
+            _text.text = actualValue.ToString();
+            yield return new WaitForSeconds(numberDelay);
         }
 
         finished = true;

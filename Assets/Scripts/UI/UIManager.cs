@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Text txtPointsGO;
     public Text txtTime;
     public Text txtPoints;
+    public Text txtRabbitFeet;
 
     public Image frPlayer;
     public Image Bullet1;
@@ -57,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.SharedInstance.actualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
         timeControl += Time.fixedDeltaTime;
 
@@ -80,6 +81,7 @@ public class UIManager : MonoBehaviour
 
         txtTimeGO.text = GetHora();
         txtPointsGO.text = points.ToString();
+        txtRabbitFeet.GetComponent<TextAnimator>().SetIncrement(GameManager.SharedInstance.GetCantRabbitFeet(points));
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.LOSE);
     }
 
@@ -113,4 +115,5 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
 }
