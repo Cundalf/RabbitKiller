@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent agent;
     Animator _Anim;
 
-    void Start()
+    public virtual void Start()
     {
         enemyRespawnController = FindObjectOfType<EnemyRespawnController>();
         playerT = FindObjectOfType<PlayerController>().transform;
@@ -33,10 +33,7 @@ public class EnemyController : MonoBehaviour
 
         if (time >= timeStop && !isMoving)
         {
-            isMoving = true;
-            agent.destination = playerT.position;
-            _Anim.SetBool("Jump", true);
-            StartCoroutine(StopMoving());
+            movePNJ();
         }
     }
 
@@ -50,8 +47,16 @@ public class EnemyController : MonoBehaviour
         yield return null;
     }
 
-    public void Die()
+    public virtual void movePNJ()
     {
+        isMoving = true;
+        agent.destination = playerT.position;
+        _Anim.SetBool("Jump", true);
+        StartCoroutine(StopMoving());
+    }
+
+    public void Die()
+    {   
         Vector3 bloodPSPoint = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y+3,gameObject.transform.position.z);
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
         
