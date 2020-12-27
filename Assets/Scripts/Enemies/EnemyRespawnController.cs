@@ -102,6 +102,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     void InstantiateEnemis(Transform respawnTransform, List<GameObject> EnemyPrefab)
     {
+        if (enemisSapwn ==enemisInOrde ) return;
         enemisSapwn++;
         Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
 
