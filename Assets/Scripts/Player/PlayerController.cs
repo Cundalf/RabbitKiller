@@ -50,8 +50,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
-            GameManager.SharedInstance.actualGameState = GameManager.GameState.GAME_OVER;
-            UnityEngine.Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
             GameManager.SharedInstance.ChangeGameManager(GameManager.GameState.GAME_OVER);
             SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.PLAYER_DEATH);
             uiManager.GameOver();
