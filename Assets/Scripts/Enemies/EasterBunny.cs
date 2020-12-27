@@ -9,6 +9,13 @@ public class EasterBunny : EnemyController
     public GameObject respanPoint3;
     public GameObject respanPoint4;
 
+    public int healtBarAmount;
+
+    public override void Update() 
+    {
+        base.Update();
+        this.healtControl();
+    }
     public override void Start()
     {
         base.Start();
@@ -16,8 +23,17 @@ public class EasterBunny : EnemyController
         timeStop = 15f;
     }
 
+    public void healtControl() 
+    {
+        if (this.healtBarAmount > 0 && this.healt == 0) 
+        {
+            this.healtBarAmount--;
+            this.healt = 100;
+        }
+    }
 
-    public override void movePNJ() {
+    public override void movePNJ() 
+    {
         base.movePNJ();
         Instantiate(slavePrefab, respanPoint1.transform.position, respanPoint1.transform.rotation);
         Instantiate(slavePrefab, respanPoint2.transform.position, respanPoint2.transform.rotation);

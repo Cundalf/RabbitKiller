@@ -25,7 +25,12 @@ public class EnemyController : MonoBehaviour
         _Anim = GetComponent<Animator>();
     }
 
-    void Update()
+    public virtual void Update()
+    {
+        moveControl();
+    }
+
+    private void moveControl() 
     {
         if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
