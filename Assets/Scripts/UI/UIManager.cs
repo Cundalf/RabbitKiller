@@ -12,12 +12,9 @@ public class UIManager : MonoBehaviour
     public Text txtPointsGO;
     public Text txtTime;
     public Text txtPoints;
-<<<<<<< HEAD
     public Text currentHorde;
     public Text enemisCurrentHorde;
-=======
     public Text txtRabbitFeet;
->>>>>>> origin/develop
 
     public Image frPlayer;
     public Image Bullet1;
