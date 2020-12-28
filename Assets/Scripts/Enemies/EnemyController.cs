@@ -4,21 +4,25 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IEnemyController
 {
-    public ParticleSystem BloodPS;
-    public float timeStop = 1f;
-    public int healt = 1;
-    private float time;
-    private EnemyRespawnController enemyRespawnController;
-    private bool isMoving = false;
-    
-    Transform playerT;
-    NavMeshAgent agent;
-    Animator _Anim;
+    public ParticleSystem BloodPS { get; set; }
+    public float timeStop { get; set; }
+    public int healt { get; set; }
+    public float time { get; set; }
+    public EnemyRespawnController enemyRespawnController { get; set; }
+    public bool isMoving { get; set; }
+
+    public Transform playerT { get; set; }
+    public NavMeshAgent agent { get; set; }
+    public Animator _Anim { get; set; }
+    public Vector3 bloodPSPoint { get; set; }
 
     public virtual void Start()
     {
+        timeStop = 1f;
+        healt = 1;
+        isMoving = false;
         enemyRespawnController = FindObjectOfType<EnemyRespawnController>();
         playerT = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
@@ -30,7 +34,7 @@ public class EnemyController : MonoBehaviour
         moveControl();
     }
 
-    private void moveControl() 
+    private void moveControl()
     {
         if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
@@ -43,7 +47,7 @@ public class EnemyController : MonoBehaviour
     }
 
     IEnumerator StopMoving()
-    {   
+    {
         yield return new WaitForSeconds(0.5f);
         agent.ResetPath();
         _Anim.SetBool("Jump", false);
@@ -60,12 +64,12 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(StopMoving());
     }
 
-    public void Die()
-    {   
-        Vector3 bloodPSPoint = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y+3,gameObject.transform.position.z);
+    public virtual void Die()
+    {
+        this.bloodPSPoint = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, gameObject.transform.position.z);
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
-        
-        Instantiate(BloodPS,bloodPSPoint, gameObject.transform.rotation);
+
+        Instantiate(BloodPS, this.bloodPSPoint, gameObject.transform.rotation);
         Destroy(gameObject);
         enemyRespawnController.enemiDead();
     }

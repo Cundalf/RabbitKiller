@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using NSubstitute;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class EasterBunnyTest
+    public class EasterBunnyTest 
     {
-
         private EasterBunny boss;
 
         [Test]
@@ -34,11 +29,21 @@ namespace Tests
             this.seVerificaQueLaBarraDeVidaNoSeRecarga();
         }
 
-
-        private void cuandoLaVidaDelBossLlegaACero() 
+        [Test]
+        public void cuandoLaVidaDelBossLlegaACeroPeroLeQuedaOtraBarraDeVidaYSeEjecutaElMetodoDieElBossNoSeEliminaDelMapa()
         {
-            this.boss.healt = 0;
-            this.boss.healtControl();
+            this.dadoQueTengoUnBoss().conUnaBarrasDeVida();
+
+            this.cuandoLaVidaDelBossLlegaACero();
+            this.cuandoLaVidaDelBossLlegaACero().seEjecutaElMetoDie();
+
+            this.seVerificaQueElBossNoSeDestruye();
+
+        }
+
+        private void seVerificaQueElBossNoSeDestruye()
+        {
+            Assert.IsTrue(this.boss.bloodPSPoint == null, "Se espera que el punto de particulas sea null ya que el metodo die no lo tendira que instancaiar y es:" + this.boss.bloodPSPoint.ToString());
         }
 
         private void seVerificaQueLaBarraDeVidaSeRecarga() 
@@ -52,6 +57,13 @@ namespace Tests
             Assert.IsTrue(this.boss.healtBarAmount == 0, "Se esperaba que la cantidad de vidas esta en cero y esta en: "+this.boss.healtBarAmount);
         }
 
+        private EasterBunnyTest cuandoLaVidaDelBossLlegaACero()
+        {
+            this.boss.healt = 0;
+            this.boss. healtControl();
+            return this;
+        }
+
         private EasterBunnyTest conDosBarrasDeVida()
         {
             this.boss.healtBarAmount = 2; 
@@ -60,7 +72,20 @@ namespace Tests
 
         private EasterBunnyTest dadoQueTengoUnBoss()
         {
-            this.boss = new EasterBunny();
+            this.boss = Substitute.ForPartsOf<EasterBunny>();
+
+            return this;
+        }
+
+        private EasterBunnyTest conUnaBarrasDeVida()
+        {
+            this.boss.healtBarAmount = 1;
+            return this;
+        }
+
+        private EasterBunnyTest seEjecutaElMetoDie()
+        {
+            this.boss.Configure().Die();
             return this;
         }
     }

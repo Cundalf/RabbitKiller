@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Rendering;
 
-public class EasterBunny : EnemyController
+public class EasterBunny : EnemyController, IEasterBunny
 {
-    public GameObject slavePrefab;
-    public GameObject respanPoint1;
-    public GameObject respanPoint2;
-    public GameObject respanPoint3;
-    public GameObject respanPoint4;
+    public GameObject slavePrefab { get; set; }
+    public GameObject respanPoint1 { get; set; }
+    public GameObject respanPoint2 { get; set; }
+    public GameObject respanPoint3 { get; set; }
+    public GameObject respanPoint4 { get; set; }
 
-    public int healtBarAmount;
+    public int healtBarAmount { get; set; }
 
     public override void Update() 
     {
@@ -29,6 +29,14 @@ public class EasterBunny : EnemyController
         {
             this.healtBarAmount--;
             this.healt = 100;
+        }
+    }
+
+    public override void Die()
+    {
+        if (this.healtBarAmount == 0 && this.healt == 0)
+        {
+            base.Die();
         }
     }
 
