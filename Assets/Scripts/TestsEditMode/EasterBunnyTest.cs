@@ -1,16 +1,20 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using System;
+using UnityEngine;
 
 namespace Tests
 {
     public class EasterBunnyTest 
     {
         private EasterBunny boss;
+        private static int DOS_BARRAS_DE_VIDA = 2;
+        private static int UNA_BARRA_DE_VIDA = 1;
 
         [Test]
         public void cuandoLaVidaDelBossLlegaACeroPorPrimeraVesNoMuereSinoQueSeRecarga()
         {
-            this.dadoQueTengoUnBoss().conDosBarrasDeVida();
+            this.dadoQueTengoUnBoss().con(DOS_BARRAS_DE_VIDA);
 
             this.cuandoLaVidaDelBossLlegaACero();
 
@@ -18,9 +22,10 @@ namespace Tests
         }
 
         [Test]
-        public void cuandoLaVidaDelBossLlegaACeroPorSegundaVesLaVidaLlegaACero()
+        public void cuandoLaVidaDelBossLlegaACeroPorSegundaVesLaVidaQuedaEnCero()
         {
-            this.dadoQueTengoUnBoss().conDosBarrasDeVida();
+            this.dadoQueTengoUnBoss().con(DOS_BARRAS_DE_VIDA);
+            this.dadoQueSeVaAEjecutarElMetodoDie();
 
             this.cuandoLaVidaDelBossLlegaACero();
             this.cuandoLaVidaDelBossLlegaACero();
@@ -30,20 +35,25 @@ namespace Tests
         }
 
         [Test]
-        public void cuandoLaVidaDelBossLlegaACeroPeroLeQuedaOtraBarraDeVidaYSeEjecutaElMetodoDieElBossNoSeEliminaDelMapa()
+        public void cuandoLaVidaDelBossLlegaACeroYNoTieneMasBarrasDeVidaElMismoSeMuere() 
         {
-            this.dadoQueTengoUnBoss().conUnaBarrasDeVida();
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+            this.dadoQueSeVaAEjecutarElMetodoDie();
 
             this.cuandoLaVidaDelBossLlegaACero();
-            this.cuandoLaVidaDelBossLlegaACero().seEjecutaElMetoDie();
+            this.cuandoLaVidaDelBossLlegaACero();
 
-            this.seVerificaQueElBossNoSeDestruye();
-
+            this.seVerificaQueSeEjecutaElMetodoDieUnaVes();
         }
 
-        private void seVerificaQueElBossNoSeDestruye()
+        private void dadoQueSeVaAEjecutarElMetodoDie()
         {
-            Assert.IsTrue(this.boss.bloodPSPoint == null, "Se espera que el punto de particulas sea null ya que el metodo die no lo tendira que instancaiar y es:" + this.boss.bloodPSPoint.ToString());
+            this.boss.When(x => x.Die()).DoNotCallBase();
+        }
+
+        private void seVerificaQueSeEjecutaElMetodoDieUnaVes()
+        {
+            this.boss.Received().Die();
         }
 
         private void seVerificaQueLaBarraDeVidaSeRecarga() 
@@ -64,29 +74,17 @@ namespace Tests
             return this;
         }
 
-        private EasterBunnyTest conDosBarrasDeVida()
+        private EasterBunnyTest con( int barras)
         {
-            this.boss.healtBarAmount = 2; 
+            this.boss.healtBarAmount = barras; 
             return this;
         }
 
         private EasterBunnyTest dadoQueTengoUnBoss()
         {
             this.boss = Substitute.ForPartsOf<EasterBunny>();
-
             return this;
         }
 
-        private EasterBunnyTest conUnaBarrasDeVida()
-        {
-            this.boss.healtBarAmount = 1;
-            return this;
-        }
-
-        private EasterBunnyTest seEjecutaElMetoDie()
-        {
-            this.boss.Configure().Die();
-            return this;
-        }
     }
 }

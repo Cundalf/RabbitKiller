@@ -15,8 +15,6 @@ public interface IEnemyController
     NavMeshAgent agent { get; set; }
     Animator _Anim { get; set; }
     Vector3 bloodPSPoint { get; set; }
-
-    void Die();
     void movePNJ();
     void Start();
     void Update();

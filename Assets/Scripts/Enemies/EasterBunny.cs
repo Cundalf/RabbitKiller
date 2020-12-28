@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 
 public class EasterBunny : EnemyController, IEasterBunny
 {
@@ -23,20 +22,16 @@ public class EasterBunny : EnemyController, IEasterBunny
         timeStop = 15f;
     }
 
-    public void healtControl() 
+    public void healtControl()
     {
-        if (this.healtBarAmount > 0 && this.healt == 0) 
+        if (this.healtBarAmount > 0 && this.healt == 0)
         {
             this.healtBarAmount--;
             this.healt = 100;
         }
-    }
-
-    public override void Die()
-    {
-        if (this.healtBarAmount == 0 && this.healt == 0)
+        else 
         {
-            base.Die();
+            this.Die();
         }
     }
 
@@ -52,4 +47,5 @@ public class EasterBunny : EnemyController, IEasterBunny
         if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
         if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
     }
+
 }
