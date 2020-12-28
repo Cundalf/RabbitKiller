@@ -9,6 +9,12 @@ public class MainMenuManager : MonoBehaviour
     public GameObject ConfigPanel;
     public GameObject CreditsPanel;
     public GameObject TutorialPanel;
+    public Slider AudioSlider;
+    public Slider SFXSlider;
+    public GameObject MusicOnButton;
+    public GameObject MusicOffButton;
+    public GameObject SFXOnButton;
+    public GameObject SFXOffButton;
     public Text txtRabbitFeet;
 
     //Animeted
@@ -26,6 +32,17 @@ public class MainMenuManager : MonoBehaviour
     public void ShowConfig()
     {
         ConfigPanel.SetActive(true);
+        UpdateConfig();
+    }
+
+    private void UpdateConfig()
+    {
+        AudioSlider.value = AudioVolumeManager.SharedInstance.CurrentAudioVolume;
+        SFXSlider.value = AudioVolumeManager.SharedInstance.CurrentSFXVolume;
+        MusicOnButton.SetActive(!AudioVolumeManager.SharedInstance.AudioMute);
+        MusicOffButton.SetActive(AudioVolumeManager.SharedInstance.AudioMute);
+        SFXOnButton.SetActive(!AudioVolumeManager.SharedInstance.SFXMute);
+        SFXOffButton.SetActive(AudioVolumeManager.SharedInstance.SFXMute);
     }
 
     public void HideConfig()
