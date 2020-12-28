@@ -23,21 +23,19 @@ public class EasterBunny : EnemyController, IEasterBunny
 
     public void healtControl()
     {
-        if (this.healtBarAmount > 0 && this.healt == 0)
+        this.healt--;
+        if (this.healt <= 0) 
         {
-            this.healtBarAmount--;
-            this.healt = 100;
-
-        }
-        else if (this.healt <= 0)
-        {
-
-            this.Die();
-        }
-        else 
-        {
-            this.healt--;
-        }
+            if (this.healtBarAmount > 0)
+            {
+                this.healtBarAmount--;
+                this.healt = 100;
+            }
+            else 
+            {
+                this.Die();
+            }
+        }      
     }
 
     public override void movePNJ() 

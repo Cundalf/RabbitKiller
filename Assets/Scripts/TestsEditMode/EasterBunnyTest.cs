@@ -78,7 +78,7 @@ namespace Tests
         }
         private void seVerificaQueLaBarraDeVidaNoSeRecarga()
         {
-            Assert.IsTrue(this.boss.healt == 0,"Se esperaba que la vida esta en cero y esta en: "+ this.boss.healt);
+            Assert.IsTrue(this.boss.healt <= 0,"Se esperaba que la vida esta en cero y esta en: "+ this.boss.healt);
             Assert.IsTrue(this.boss.healtBarAmount == 0, "Se esperaba que la cantidad de vidas esta en cero y esta en: "+this.boss.healtBarAmount);
         }
 
