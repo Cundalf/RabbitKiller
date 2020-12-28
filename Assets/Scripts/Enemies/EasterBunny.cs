@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 
-public class EasterBunny : EnemyController
+public class EasterBunny : EnemyController, IEasterBunny
 {
-    public GameObject slavePrefab;
-    public GameObject respanPoint1;
-    public GameObject respanPoint2;
-    public GameObject respanPoint3;
-    public GameObject respanPoint4;
+    public GameObject slavePrefab { get; set; }
+    public GameObject respanPoint1 { get; set; }
+    public GameObject respanPoint2 { get; set; }
+    public GameObject respanPoint3 { get; set; }
+    public GameObject respanPoint4 { get; set; }
 
+    public int healtBarAmount { get; set; }
+
+    public override void Update() 
+    {
+        base.Update();
+        this.healtControl();
+    }
     public override void Start()
     {
         base.Start();
@@ -16,8 +22,21 @@ public class EasterBunny : EnemyController
         timeStop = 15f;
     }
 
+    public void healtControl()
+    {
+        if (this.healtBarAmount > 0 && this.healt == 0)
+        {
+            this.healtBarAmount--;
+            this.healt = 100;
+        }
+        else 
+        {
+            this.Die();
+        }
+    }
 
-    public override void movePNJ() {
+    public override void movePNJ() 
+    {
         base.movePNJ();
         Instantiate(slavePrefab, respanPoint1.transform.position, respanPoint1.transform.rotation);
         Instantiate(slavePrefab, respanPoint2.transform.position, respanPoint2.transform.rotation);
@@ -28,4 +47,5 @@ public class EasterBunny : EnemyController
         if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
         if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
     }
+
 }
