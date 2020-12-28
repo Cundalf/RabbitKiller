@@ -27,11 +27,16 @@ public class EasterBunny : EnemyController, IEasterBunny
         {
             this.healtBarAmount--;
             this.healt = 100;
-            
+
         }
-        else if(this.healt <=0){ 
-        
+        else if (this.healt <= 0)
+        {
+
             this.Die();
+        }
+        else 
+        {
+            this.healt--;
         }
     }
 

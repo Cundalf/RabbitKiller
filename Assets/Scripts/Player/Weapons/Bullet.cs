@@ -15,8 +15,7 @@ public class Bullet : MonoBehaviour
     {
         _rb.velocity = transform.forward * velocity;
     }
-
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
@@ -26,6 +25,10 @@ public class Bullet : MonoBehaviour
         {
             other.gameObject.GetComponent<Bust>().appliBust();
         }
-        Destroy(gameObject);
+        else if (other.gameObject.CompareTag("Boss"))
+        {
+            other.gameObject.GetComponent<EasterBunny>().healtControl();
+        }
+        DestroyImmediate(gameObject);
     }
 }
