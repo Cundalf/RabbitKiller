@@ -46,14 +46,29 @@ namespace Tests
             this.seVerificaQueSeEjecutaElMetodoDieUnaVes();
         }
 
+        [Test]
+        public void cuandoElBossTieneVidaYNoTieneMasBarrasDeVidaElMismoElMetodoDieNoSeEjecuta()
+        {
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+            
+            this.cuandoElBossSeQuedaSinBarraDeVidaExtrasPeroTieneVida();
+
+            this.seVerificaQueNoSeEjecutaElMetodoDieUnaVes();
+        }
+
         private void dadoQueSeVaAEjecutarElMetodoDie()
         {
             this.boss.When(x => x.Die()).DoNotCallBase();
         }
 
+        private void seVerificaQueNoSeEjecutaElMetodoDieUnaVes()
+        {
+            this.boss.Received(0).Die();
+        }
+
         private void seVerificaQueSeEjecutaElMetodoDieUnaVes()
         {
-            this.boss.Received().Die();
+            this.boss.Received(1).Die();
         }
 
         private void seVerificaQueLaBarraDeVidaSeRecarga() 
@@ -70,8 +85,15 @@ namespace Tests
         private EasterBunnyTest cuandoLaVidaDelBossLlegaACero()
         {
             this.boss.healt = 0;
-            this.boss. healtControl();
+            this.boss.healtControl();
             return this;
+        }
+
+        private void cuandoElBossSeQuedaSinBarraDeVidaExtrasPeroTieneVida() 
+        {
+            this.boss.healt = 10;
+            this.boss.healtBarAmount = 0;
+            this.boss.healtControl();
         }
 
         private EasterBunnyTest con( int barras)

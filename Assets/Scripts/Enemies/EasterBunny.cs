@@ -13,7 +13,6 @@ public class EasterBunny : EnemyController, IEasterBunny
     public override void Update() 
     {
         base.Update();
-        this.healtControl();
     }
     public override void Start()
     {
@@ -28,9 +27,10 @@ public class EasterBunny : EnemyController, IEasterBunny
         {
             this.healtBarAmount--;
             this.healt = 100;
+            
         }
-        else 
-        {
+        else if(this.healt <=0){ 
+        
             this.Die();
         }
     }
