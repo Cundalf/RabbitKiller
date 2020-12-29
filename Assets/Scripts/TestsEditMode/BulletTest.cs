@@ -16,7 +16,7 @@ namespace Tests
         [Test]
         public void dadoQueSeTieneUnaObjetoBulletYColicionaConUnGameObjectConElTagBossSeEjecutaElMetodoHelatControl()
         {
-            this.dadoQueTengoUnBullet();
+            this.dadoQueTengoUnBullet().conDanioConfigurado(1);
             this.dadoQueTengoBoss().conElTag("Boss").conVida(100).yUnaContidadDeBarrasDeVidaIgual(1);
 
             this.cuandoColicionaConElObjecotBullet();
@@ -25,9 +25,26 @@ namespace Tests
 
         }
 
+        [Test]
+        public void dadoQueLaBalaTieneDañoCargadoCuandoColicionaConUnBossSeVerificaQueSuVidaDisminuye()
+        {
+            this.dadoQueTengoUnBullet().conDanioConfigurado(10);
+            this.dadoQueTengoBoss().conElTag("Boss").conVida(100).yUnaContidadDeBarrasDeVidaIgual(1);
+
+            this.cuandoColicionaConElObjecotBullet();
+
+            this.seVerificaQueLaVidaDelBossDisminuye();
+        }
+
         private void cuandoColicionaConElObjecotBullet() 
         {
             this.bullet.GetComponent<Bullet>().OnTriggerEnter(this.boss.GetComponent<Collider>());
+        }
+
+        private BulletTest conDanioConfigurado(int danioConfigurado)
+        {
+            this.bullet.GetComponent<Bullet>().cargarDanio(danioConfigurado);
+            return this;
         }
 
         private BulletTest conElTag(string tag) 
@@ -63,7 +80,11 @@ namespace Tests
 
         private void seVerificaQueSeEjecutaElHealtControlDeEasterBunny() 
         {
-            Assert.IsTrue(this.boss.GetComponent<EasterBunny>().healt != 100,"Se esoeraba que la vida del jugador sea menor ya que se ejecuta el metodo heart control");
+            Assert.IsTrue(this.boss.GetComponent<EasterBunny>().healt != 100,"Se esperaba que la vida del jugador sea menor ya que se ejecuta el metodo heart control");
+        }
+        private void seVerificaQueLaVidaDelBossDisminuye() 
+        {
+            Assert.IsTrue(this.boss.GetComponent<EasterBunny>().healt == 90);   
         }
     }
 }

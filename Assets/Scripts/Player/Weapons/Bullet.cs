@@ -5,16 +5,24 @@ public class Bullet : MonoBehaviour
 {
     public float velocity;
     Rigidbody _rb;
-    
+    private int danio;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        this.danio = 1;
     }
 
     void Update()
     {
         _rb.velocity = transform.forward * velocity;
     }
+
+    public void cargarDanio(int danio) 
+    {
+        this.danio = danio;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
@@ -27,7 +35,7 @@ public class Bullet : MonoBehaviour
         }
         else if (other.gameObject.CompareTag("Boss"))
         {
-            other.gameObject.GetComponent<EasterBunny>().healtControl();
+            other.gameObject.GetComponent<EasterBunny>().healtControl(danio);
         }
         DestroyImmediate(gameObject);
     }

@@ -1,7 +1,5 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using System;
-using UnityEngine;
 
 namespace Tests
 {
@@ -85,7 +83,7 @@ namespace Tests
         private EasterBunnyTest cuandoLaVidaDelBossLlegaACero()
         {
             this.boss.healt = 0;
-            this.boss.healtControl();
+            this.boss.healtControl(1);
             return this;
         }
 
@@ -93,7 +91,7 @@ namespace Tests
         {
             this.boss.healt = 10;
             this.boss.healtBarAmount = 0;
-            this.boss.healtControl();
+            this.boss.healtControl(1);
         }
 
         private EasterBunnyTest con( int barras)
