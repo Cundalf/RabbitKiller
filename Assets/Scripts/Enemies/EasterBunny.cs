@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EasterBunny : EnemyController, IEasterBunny
+public class EasterBunny : EnemyController 
 {
     public GameObject slavePrefab { get; set; }
     public GameObject respanPoint1 { get; set; }
@@ -21,9 +21,9 @@ public class EasterBunny : EnemyController, IEasterBunny
         timeStop = 15f;
     }
 
-    public void healtControl()
+    public void healtControl(int danio)
     {
-        this.healt--;
+        this.healt = this.healt - danio;
         if (this.healt <= 0) 
         {
             if (this.healtBarAmount > 0)
