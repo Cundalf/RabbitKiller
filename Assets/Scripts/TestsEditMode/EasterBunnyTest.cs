@@ -1,5 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace Tests
 {
@@ -54,9 +56,20 @@ namespace Tests
             this.seVerificaQueNoSeEjecutaElMetodoDieUnaVes();
         }
 
-        private void dadoQueSeVaAEjecutarElMetodoDie()
+        [Test]
+        public void dadoQueElBossEstaQuietoCuandoRetomaElMovientoYTerminaSeVerficaQueSpawneanConejosAlrededor()
         {
-            this.boss.When(x => x.Die()).DoNotCallBase();
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+
+            this.cuandoElBossEmpiesaMoverseYTermina();
+
+            this.seVerificaQueSpawneaCincoConejosMasAlRededor();
+
+        }
+        
+        private void seVerificaQueSpawneaCincoConejosMasAlRededor() 
+        {
+            this.boss.Received(1).useSkill();
         }
 
         private void seVerificaQueNoSeEjecutaElMetodoDieUnaVes()
@@ -78,6 +91,19 @@ namespace Tests
         {
             Assert.IsTrue(this.boss.healt <= 0,"Se esperaba que la vida esta en cero y esta en: "+ this.boss.healt);
             Assert.IsTrue(this.boss.healtBarAmount == 0, "Se esperaba que la cantidad de vidas esta en cero y esta en: "+this.boss.healtBarAmount);
+        }
+
+        private void cuandoElBossEmpiesaMoverseYTermina() 
+        {
+            this.boss.slavePrefab = new GameObject();
+
+            this.boss.respanPoint1 = new GameObject();
+            this.boss.respanPoint2 = new GameObject();
+            this.boss.respanPoint3 = new GameObject();
+            this.boss.respanPoint4 = new GameObject();
+
+            this.boss.When(x => x.movePNJ()).DoNotCallBase();          
+            this.boss.movePNJ();
         }
 
         private EasterBunnyTest cuandoLaVidaDelBossLlegaACero()
@@ -106,5 +132,9 @@ namespace Tests
             return this;
         }
 
+        private void dadoQueSeVaAEjecutarElMetodoDie()
+        {
+            this.boss.When(x => x.Die()).DoNotCallBase();
+        }
     }
 }

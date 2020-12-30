@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 4024359983606535327}
   m_Layer: 0
   m_Name: ConejoDePascuas
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -389,15 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88660be3c0d33044a89316c9f0da089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BloodPS: {fileID: 0}
-  timeStop: 1
-  healt: 1
-  slavePrefab: {fileID: 4119822921054261650, guid: 9e2cc98c88900cb45a0422c3f3f3c011,
-    type: 3}
-  respanPoint1: {fileID: 5322559900314490505}
-  respanPoint2: {fileID: 1784984556603136401}
-  respanPoint3: {fileID: 4950967578655857945}
-  respanPoint4: {fileID: 7620238630364135028}
 --- !u!1 &7001775330586263976
 GameObject:
   m_ObjectHideFlags: 0

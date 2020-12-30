@@ -41,14 +41,20 @@ public class EasterBunny : EnemyController
     public override void movePNJ() 
     {
         base.movePNJ();
-        Instantiate(slavePrefab, respanPoint1.transform.position, respanPoint1.transform.rotation);
-        Instantiate(slavePrefab, respanPoint2.transform.position, respanPoint2.transform.rotation);
-        Instantiate(slavePrefab, respanPoint3.transform.position, respanPoint3.transform.rotation);
-        Instantiate(slavePrefab, respanPoint4.transform.position, respanPoint4.transform.rotation);
+        this.useSkill();
+    }
 
-        int randomSFX = Random.Range(0, 2);
-        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
-        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+    public void useSkill() 
+    {
+        instantiateRabbit(respanPoint1);
+        instantiateRabbit(respanPoint2);
+        instantiateRabbit(respanPoint3);
+        instantiateRabbit(respanPoint4);
+    }
+
+    private void instantiateRabbit(GameObject randomPoint) 
+    {
+        Instantiate(slavePrefab, randomPoint.transform.position, randomPoint.transform.rotation);
     }
 
 }
