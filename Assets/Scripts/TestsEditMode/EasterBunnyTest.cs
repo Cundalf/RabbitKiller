@@ -1,7 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using System;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Tests
 {
@@ -46,14 +46,40 @@ namespace Tests
             this.seVerificaQueSeEjecutaElMetodoDieUnaVes();
         }
 
-        private void dadoQueSeVaAEjecutarElMetodoDie()
+        [Test]
+        public void cuandoElBossTieneVidaYNoTieneMasBarrasDeVidaElMismoElMetodoDieNoSeEjecuta()
         {
-            this.boss.When(x => x.Die()).DoNotCallBase();
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+            
+            this.cuandoElBossSeQuedaSinBarraDeVidaExtrasPeroTieneVida();
+
+            this.seVerificaQueNoSeEjecutaElMetodoDieUnaVes();
+        }
+
+        [Test]
+        public void dadoQueElBossEstaQuietoCuandoRetomaElMovientoYTerminaSeVerficaQueSpawneanConejosAlrededor()
+        {
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+
+            this.cuandoElBossEmpiesaMoverseYTermina();
+
+            this.seVerificaQueSpawneaCincoConejosMasAlRededor();
+
+        }
+        
+        private void seVerificaQueSpawneaCincoConejosMasAlRededor() 
+        {
+            this.boss.Received(1).useSkill();
+        }
+
+        private void seVerificaQueNoSeEjecutaElMetodoDieUnaVes()
+        {
+            this.boss.Received(0).Die();
         }
 
         private void seVerificaQueSeEjecutaElMetodoDieUnaVes()
         {
-            this.boss.Received().Die();
+            this.boss.Received(1).Die();
         }
 
         private void seVerificaQueLaBarraDeVidaSeRecarga() 
@@ -63,15 +89,35 @@ namespace Tests
         }
         private void seVerificaQueLaBarraDeVidaNoSeRecarga()
         {
-            Assert.IsTrue(this.boss.healt == 0,"Se esperaba que la vida esta en cero y esta en: "+ this.boss.healt);
+            Assert.IsTrue(this.boss.healt <= 0,"Se esperaba que la vida esta en cero y esta en: "+ this.boss.healt);
             Assert.IsTrue(this.boss.healtBarAmount == 0, "Se esperaba que la cantidad de vidas esta en cero y esta en: "+this.boss.healtBarAmount);
+        }
+
+        private void cuandoElBossEmpiesaMoverseYTermina() 
+        {
+            this.boss.slavePrefab = new GameObject();
+
+            this.boss.respanPoint1 = new GameObject();
+            this.boss.respanPoint2 = new GameObject();
+            this.boss.respanPoint3 = new GameObject();
+            this.boss.respanPoint4 = new GameObject();
+
+            this.boss.When(x => x.movePNJ()).DoNotCallBase();          
+            this.boss.movePNJ();
         }
 
         private EasterBunnyTest cuandoLaVidaDelBossLlegaACero()
         {
             this.boss.healt = 0;
-            this.boss. healtControl();
+            this.boss.healtControl(1);
             return this;
+        }
+
+        private void cuandoElBossSeQuedaSinBarraDeVidaExtrasPeroTieneVida() 
+        {
+            this.boss.healt = 10;
+            this.boss.healtBarAmount = 0;
+            this.boss.healtControl(1);
         }
 
         private EasterBunnyTest con( int barras)
@@ -86,5 +132,9 @@ namespace Tests
             return this;
         }
 
+        private void dadoQueSeVaAEjecutarElMetodoDie()
+        {
+            this.boss.When(x => x.Die()).DoNotCallBase();
+        }
     }
 }

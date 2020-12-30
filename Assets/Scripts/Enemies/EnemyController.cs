@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
-public class EnemyController : MonoBehaviour, IEnemyController
+public class EnemyController : MonoBehaviour
 {
     public ParticleSystem BloodPS { get; set; }
     public float timeStop { get; set; }
