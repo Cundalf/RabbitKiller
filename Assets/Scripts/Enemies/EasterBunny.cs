@@ -2,11 +2,11 @@
 
 public class EasterBunny : EnemyController 
 {
-    public GameObject slavePrefab { get; set; }
-    public GameObject respanPoint1 { get; set; }
-    public GameObject respanPoint2 { get; set; }
-    public GameObject respanPoint3 { get; set; }
-    public GameObject respanPoint4 { get; set; }
+    public GameObject slavePrefab;
+    public GameObject respanPoint1;
+    public GameObject respanPoint2;
+    public GameObject respanPoint3;
+    public GameObject respanPoint4;
 
     public int healtBarAmount { get; set; }
 
