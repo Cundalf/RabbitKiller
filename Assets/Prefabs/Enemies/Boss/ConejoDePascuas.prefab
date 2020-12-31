@@ -389,6 +389,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88660be3c0d33044a89316c9f0da089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeStop: 0
+  healt: 0
+  time: 0
+  enemyRespawnController: {fileID: 0}
+  isMoving: 0
+  playerT: {fileID: 0}
+  agent: {fileID: 0}
+  _Anim: {fileID: 0}
+  BloodPS: {fileID: 6659588706510264770, guid: adb77499e9e7e274fa1921d821e35996, type: 3}
+  bloodPSPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &7001775330586263976
 GameObject:
   m_ObjectHideFlags: 0

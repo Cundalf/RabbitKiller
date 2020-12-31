@@ -34,7 +34,7 @@ public class EnemyRespawnController : MonoBehaviour
         enemisDead          = 0;
         enemisCounter       = 20;
         currentOrdeNumber   = 1;
-        ordeNumberBoss      = 5;
+        ordeNumberBoss      = 2;
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
@@ -51,7 +51,7 @@ public class EnemyRespawnController : MonoBehaviour
         timeCounter = 0;
         timeStop = Random.Range(minStopTime, maxStopTime);
         ordeControl();
-        currentUI.updateOrdeInfo(enemisCounter, currentOrdeNumber);
+        //currentUI.updateOrdeInfo(enemisCounter, currentOrdeNumber);
     }
 
     void ordeControl() 
@@ -102,7 +102,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     void InstantiateEnemis(Transform respawnTransform, List<GameObject> EnemyPrefab)
     {
-        if (enemisSapwn ==enemisInOrde ) return;
+        if (enemisSapwn == enemisInOrde ) return;
         enemisSapwn++;
         Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
 

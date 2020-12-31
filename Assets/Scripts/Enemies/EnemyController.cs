@@ -4,23 +4,26 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
+
 public class EnemyController : MonoBehaviour
 {
-    public ParticleSystem BloodPS { get; set; }
-    public float timeStop { get; set; }
-    public int healt { get; set; }
-    public float time { get; set; }
-    public EnemyRespawnController enemyRespawnController { get; set; }
-    public bool isMoving { get; set; }
+    public float timeStop;
+    public int healt;
+    public float time;
+    public EnemyRespawnController enemyRespawnController;
+    public bool isMoving;
 
-    public Transform playerT { get; set; }
-    public NavMeshAgent agent { get; set; }
-    public Animator _Anim { get; set; }
-    public Vector3 bloodPSPoint { get; set; }
+    public Transform playerT;
+    public NavMeshAgent agent;
+    public Animator _Anim;
+    
+    public ParticleSystem BloodPS;
+    public Vector3 bloodPSPoint;
 
     public virtual void Start()
     {
         timeStop = 1f;
+        time = 0;
         healt = 1;
         isMoving = false;
         enemyRespawnController = FindObjectOfType<EnemyRespawnController>();

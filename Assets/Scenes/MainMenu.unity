@@ -1399,6 +1399,18 @@ PrefabInstance:
     - {fileID: 5706866076866719572, guid: b7f39516c7097794b9f8939363813737, type: 3}
     - {fileID: 4925384928939361464, guid: b7f39516c7097794b9f8939363813737, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b7f39516c7097794b9f8939363813737, type: 3}
+--- !u!95 &360086954 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 859134787505329003, guid: b7f39516c7097794b9f8939363813737,
+    type: 3}
+  m_PrefabInstance: {fileID: 360086953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &360086955 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 795791894397585505, guid: b7f39516c7097794b9f8939363813737,
+    type: 3}
+  m_PrefabInstance: {fileID: 360086953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &400240356
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,8 +5913,8 @@ MonoBehaviour:
   CreditsPanel: {fileID: 609130471}
   TutorialPanel: {fileID: 981504957}
   txtRabbitFeet: {fileID: 1826325009}
-  _playerAnime: {fileID: 0}
-  _rabbitAnime: {fileID: 0}
+  _playerAnime: {fileID: 360086955}
+  _rabbitAnime: {fileID: 360086954}
   animeted: 1
 --- !u!95 &1718860675
 Animator:

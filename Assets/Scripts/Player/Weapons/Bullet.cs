@@ -37,6 +37,6 @@ public class Bullet : MonoBehaviour
         {
             other.gameObject.GetComponent<EasterBunny>().healtControl(danio);
         }
-        DestroyImmediate(gameObject);
+        Destroy(gameObject);
     }
 }
