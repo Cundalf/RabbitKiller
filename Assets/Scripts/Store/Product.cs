@@ -9,6 +9,7 @@ public class Product : MonoBehaviour
     public Text txtTitle;
     public Text txtDesc;
     public Text txtCost;
+    public SO_Category.CategoriesShop category;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +17,4 @@ public class Product : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

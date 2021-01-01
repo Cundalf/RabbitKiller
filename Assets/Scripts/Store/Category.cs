@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class Category : MonoBehaviour
+public class Category : MonoBehaviour, IPointerClickHandler
 {
     public Text txtCategoryName;
     public SO_Category.CategoriesShop CategoryType;
 
-    // Start is called before the first frame update
+    private CatalogController catalogController;
+
     void Start()
     {
-        
+        catalogController = FindObjectOfType<CatalogController>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        catalogController.LoadProducts(CategoryType);
     }
 }
