@@ -8,8 +8,10 @@ public class CatalogController : MonoBehaviour
     public List<SO_Category> categories;
     public GameObject categoryOptionPrefab;
     public GameObject productPrefab;
+    public GameObject ShopPanel;
     public GameObject TabPanel;
-    public GameObject CardPanel;
+    public GameObject ProductsPanel;
+    public GameObject ProductDetailGO;
 
     private void Start()
     {
@@ -29,8 +31,6 @@ public class CatalogController : MonoBehaviour
             pfCategory = Instantiate(categoryOptionPrefab, TabPanel.transform);
             pfCategory.GetComponent<Category>().txtCategoryName.text = categories[i].categoryName;
             pfCategory.GetComponent<Category>().CategoryType = categories[i].category;
-            // Se marca como inactiva
-            //pfCategory.GetComponent<Image>().color = new Color(255, 255, 255, 100);
         }
     }
 
@@ -47,12 +47,8 @@ public class CatalogController : MonoBehaviour
             {
                 for (int j = 0; j < categories[i].products.Count; j++)
                 {
-                    pfProduct = Instantiate(productPrefab, CardPanel.transform);
-                    pfProduct.GetComponent<Product>().imgProduct.sprite = categories[i].products[j].icon;
-                    pfProduct.GetComponent<Product>().txtTitle.text = categories[i].products[j].title;
-                    pfProduct.GetComponent<Product>().txtDesc.text = categories[i].products[j].shortDescription;
-                    pfProduct.GetComponent<Product>().txtCost.text = categories[i].products[j].cost.ToString();
-                    pfProduct.GetComponent<Product>().category = categories[i].products[j].category;
+                    pfProduct = Instantiate(productPrefab, ProductsPanel.transform);
+                    pfProduct.GetComponent<Product>().LoadProduct(categories[i].products[i]);
                 }
             }
         }
@@ -92,5 +88,28 @@ public class CatalogController : MonoBehaviour
         {
             Destroy(categories[i].gameObject);
         }
+    }
+
+    public void CloseProductDetail()
+    {
+        ShopPanel.SetActive(true);
+        ProductDetailGO.SetActive(false);
+    }
+
+    public void OpenProductDetail(SO_Product product)
+    {
+        ShopPanel.SetActive(false);
+        ProductDetailGO.SetActive(true);
+
+        Transform productContent = ProductDetailGO.transform.Find("ProductContentPanel");
+        productContent.Find("txtProduct").GetComponent<Text>().text = product.title;
+        productContent.Find("txtDescription").GetComponent<Text>().text = product.description;
+        productContent.Find("imgProduct").GetComponent<Image>().sprite = product.icon;
+        productContent.Find("CostPanel").Find("txtCost").GetComponent<Text>().text = product.cost.ToString();
+    }
+
+    public void BuyProduct()
+    {
+        Debug.Log("Comprar!");
     }
 }

@@ -9,6 +9,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject ConfigPanel;
     public GameObject CreditsPanel;
     public GameObject TutorialPanel;
+    public GameObject ShopPanel;
     public Slider AudioSlider;
     public Slider SFXSlider;
     public GameObject MusicOnButton;
@@ -33,6 +34,17 @@ public class MainMenuManager : MonoBehaviour
     {
         ConfigPanel.SetActive(true);
         UpdateConfig();
+    }
+
+    public void ToggleStore()
+    {
+        ShopPanel.SetActive(!ShopPanel.activeSelf);
+        transform.Find("frOptions").gameObject.SetActive(!ShopPanel.activeSelf);
+        transform.Find("Banner").gameObject.SetActive(!ShopPanel.activeSelf);
+        transform.Find("btnShop").gameObject.SetActive(!ShopPanel.activeSelf);
+        transform.Find("RabbitFeetFrame").gameObject.SetActive(!ShopPanel.activeSelf);
+        transform.Find("btnExit").gameObject.SetActive(!ShopPanel.activeSelf);
+        transform.Find("btnConfig").gameObject.SetActive(!ShopPanel.activeSelf);
     }
 
     private void UpdateConfig()

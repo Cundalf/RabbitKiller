@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8778337fcc55b0146b67b2e9a622593f, type: 3}
   m_Name: Ammo_Premium
   m_EditorClassIdentifier: 
+  ID: 
   category: 2
   icon: {fileID: -6841541403887542906, guid: 85832531d5f89ca409ae2d0a4b43b90a, type: 3}
   title: Premium
+  description: Balas premium
   shortDescription: Municion
   cost: 100

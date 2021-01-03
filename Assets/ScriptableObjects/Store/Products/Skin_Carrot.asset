@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8778337fcc55b0146b67b2e9a622593f, type: 3}
   m_Name: Skin_Carrot
   m_EditorClassIdentifier: 
+  ID: 
   category: 0
   icon: {fileID: 1364001935035579184, guid: 72247d375c9e49e4390b58b0a2dc9a93, type: 3}
   title: Zanahoria
+  description: Skin Clasico
   shortDescription: Markov
   cost: 1000
