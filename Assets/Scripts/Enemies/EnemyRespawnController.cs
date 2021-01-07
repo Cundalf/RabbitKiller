@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyRespawnController : MonoBehaviour
 {
     public List<GameObject> EnemyPrefab;
-    public List<GameObject> EnemyBossPrefab;
+    public GameObject EnemyBossPrefab;
     public float minStopTime;
     public float maxStopTime;
 
@@ -13,28 +13,32 @@ public class EnemyRespawnController : MonoBehaviour
     private float timeStop = 0f;
 
     //Orde variable
+    [SerializeField]
     private int enemisInOrde;
-    private int enemisSapwn;
+    [SerializeField]
+    private int enemisSpawn;
+    [SerializeField]
     private int enemisDead;
-    private int enemisCounter;
+    [SerializeField]
     private int currentOrdeNumber;
-    private int DELAYNEWORDE = 5;
+    [SerializeField]
+    private int DELAYNEWORDE = 1;
+    [SerializeField]
     private int ordeNumberBoss;
+    [SerializeField]
     private bool SPAWNEARBOSS = false;
+    private bool BOSSSTILLALIVE = false;
+
     private UIManager currentUI;
     private List<GameObject> respawnPoints;
+    public GameObject respawnPointBoss;
 
     void Start()
     {
         timeStop            = Random.Range(minStopTime, maxStopTime);
         respawnPoints       = new List<GameObject>();
         currentUI           = FindObjectOfType<UIManager>();
-        enemisInOrde        = 20;
-        enemisSapwn         = 0;
-        enemisDead          = 0;
-        enemisCounter       = 20;
-        currentOrdeNumber   = 1;
-        ordeNumberBoss      = 2;
+
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
@@ -56,20 +60,22 @@ public class EnemyRespawnController : MonoBehaviour
 
     void ordeControl() 
     {
-        if (enemisSapwn <= enemisInOrde)
-        {
-            if (SPAWNEARBOSS)
-            {
-                spawnEnemiBoss();
-            }
-            else 
-            {
-                spawnEnemis();
-            }
-        }
-        if (enemisDead == enemisInOrde)
+        if (enemisInOrde <= enemisDead && !BOSSSTILLALIVE)
         {
             newOrde();
+        }
+        else {
+            if (enemisSpawn < enemisInOrde) 
+            {
+                if (SPAWNEARBOSS)
+                {
+                    spawnEnemiBoss();
+                }
+                else
+                {
+                    spawnEnemis();
+                }
+            }
         }
     }
 
@@ -90,28 +96,31 @@ public class EnemyRespawnController : MonoBehaviour
         }
         
     }
-
     void spawnEnemiBoss() 
     {
-        GameObject respawnPointGO;
-        int iRespawnPoint = Random.Range(0, respawnPoints.Count);
-        respawnPointGO = respawnPoints[iRespawnPoint];
+        Debug.Log("Instanciando boss");
+  
+        Instantiate(EnemyBossPrefab, respawnPointBoss.transform.position, respawnPointBoss.transform.rotation);
 
-        InstantiateEnemis(respawnPointGO.transform, EnemyBossPrefab);
+        int randomSFX = Random.Range(0, 2);
+        if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
+        if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+        enemisSpawn++;
+        BOSSSTILLALIVE = true;
+
     }
-
     void InstantiateEnemis(Transform respawnTransform, List<GameObject> EnemyPrefab)
     {
-        if (enemisSapwn == enemisInOrde ) return;
-        enemisSapwn++;
         Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
 
         int randomSFX = Random.Range(0, 2);
         if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
         if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
+        enemisSpawn++;
     }
     void newOrde()
     {
+        Debug.Log("Nueva orda");
         StartCoroutine(delayForNewOrde());
         currentOrdeNumber++;
         if (currentOrdeNumber == ordeNumberBoss)
@@ -124,16 +133,21 @@ public class EnemyRespawnController : MonoBehaviour
             enemisInOrde = enemisInOrde + 10;
             SPAWNEARBOSS = false;
         }
-        enemisCounter = enemisInOrde;
         enemisDead = 0;
-        enemisSapwn = 0;
+        enemisSpawn = 0;
+        Debug.Log("Numero de orda actual: " + currentOrdeNumber);
+        Debug.Log("Tiene que spwanear boss?: " + SPAWNEARBOSS);
     }
 
     public void enemiDead() 
     {
         enemisDead++;
-        enemisCounter--;
         currentUI.PointsControl();
+    }
+
+    public void setBossStillAlive(bool value)
+    {
+        this.BOSSSTILLALIVE = value;
     }
 
     IEnumerator delayForNewOrde()

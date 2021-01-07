@@ -34,6 +34,7 @@ public class EasterBunny : EnemyController
             else 
             {
                 this.Die();
+                this.enemyRespawnController.setBossStillAlive(false);
             }
         }      
     }
