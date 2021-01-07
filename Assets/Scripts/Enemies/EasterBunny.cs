@@ -17,7 +17,6 @@ public class EasterBunny : EnemyController
     public override void Start()
     {
         base.Start();
-        healt = 100;
         timeStop = 15f;
     }
 
@@ -34,6 +33,7 @@ public class EasterBunny : EnemyController
             else 
             {
                 this.Die();
+                this.enemyRespawnController.setBossStillAlive(false);
             }
         }      
     }

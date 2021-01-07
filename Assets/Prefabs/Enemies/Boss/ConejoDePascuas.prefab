@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeStop: 0
-  healt: 0
+  healt: 2
   time: 0
   enemyRespawnController: {fileID: 0}
   isMoving: 0

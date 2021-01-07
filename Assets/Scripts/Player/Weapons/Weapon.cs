@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     public int rateOfFire;
     public GameObject bullet;
     public ShootController shootController;
+    public Animator weaponAnimator;
     public string nombre { get; set; }
     
     private float time;
@@ -17,6 +18,7 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         this.ammoInCharger = this.chargerCapacity;
+        this.weaponAnimator = GetComponent<Animator>();
     }
 
     void Update() 
@@ -43,6 +45,7 @@ public class Weapon : MonoBehaviour
     {
         if (this.ammoInCharger != 0)
         {
+            this.weaponAnimator.SetTrigger("Shooting");
             if (rateOfFire == 0)
             {
                 shootController.Shoot(this.bullet);
@@ -54,6 +57,7 @@ public class Weapon : MonoBehaviour
             {
                 this.rateOfFire--;
             }
+            this.weaponAnimator.SetTrigger("Shooting");
         }
     }
 

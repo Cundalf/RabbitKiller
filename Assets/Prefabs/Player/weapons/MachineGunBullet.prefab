@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: -2258974212740541}
   - component: {fileID: 336660765682646829}
   m_Layer: 0
-  m_Name: Disparo_Arma
+  m_Name: MachineGunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,7 +138,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6716099069029428393}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.2102204, y: 0.09581566, z: 0.09750956}

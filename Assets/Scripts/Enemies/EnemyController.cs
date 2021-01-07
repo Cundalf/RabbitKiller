@@ -73,8 +73,8 @@ public class EnemyController : MonoBehaviour
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
 
         Instantiate(BloodPS, this.bloodPSPoint, gameObject.transform.rotation);
-        Destroy(gameObject);
         enemyRespawnController.enemiDead();
+        Destroy(gameObject);
     }
 
 }
