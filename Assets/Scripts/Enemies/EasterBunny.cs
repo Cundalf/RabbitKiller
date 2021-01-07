@@ -17,7 +17,6 @@ public class EasterBunny : EnemyController
     public override void Start()
     {
         base.Start();
-        healt = 100;
         timeStop = 15f;
     }
 
