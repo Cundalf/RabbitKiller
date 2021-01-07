@@ -22,11 +22,7 @@ public class VirtualGoodsManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> WeaponsAvailable;
-    public List<GameObject> PurchasedWeapons;
-
-    public List<GameObject> SkinsAvailable;
-    public List<GameObject> PurchasedSkins;
+    public List<SO_Product> VirtualGoodsPurchased;
 
     private void Awake()
     {

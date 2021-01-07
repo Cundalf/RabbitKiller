@@ -12,6 +12,7 @@ public class CatalogController : MonoBehaviour
     public GameObject TabPanel;
     public GameObject ProductsPanel;
     public GameObject ProductDetailGO;
+    public GameObject CloseCatalogButtonGO;
 
     private void Start()
     {
@@ -94,10 +95,12 @@ public class CatalogController : MonoBehaviour
     {
         ShopPanel.SetActive(true);
         ProductDetailGO.SetActive(false);
+        CloseCatalogButtonGO.SetActive(true);
     }
 
     public void OpenProductDetail(SO_Product product)
     {
+        CloseCatalogButtonGO.SetActive(false);
         ShopPanel.SetActive(false);
         ProductDetailGO.SetActive(true);
 

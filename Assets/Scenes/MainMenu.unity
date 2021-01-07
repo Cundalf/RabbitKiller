@@ -10393,6 +10393,7 @@ MonoBehaviour:
   TabPanel: {fileID: 2106209195}
   ProductsPanel: {fileID: 16249205}
   ProductDetailGO: {fileID: 5112373637015882724}
+  CloseCatalogButtonGO: {fileID: 1079053263}
 --- !u!1 &2027325625
 GameObject:
   m_ObjectHideFlags: 0
