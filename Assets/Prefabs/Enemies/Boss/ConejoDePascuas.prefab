@@ -389,7 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88660be3c0d33044a89316c9f0da089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStop: 0
+  timeStop: 1
+  timeInAir: 0.5
   healt: 2
   time: 0
   enemyRespawnController: {fileID: 0}
