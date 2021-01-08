@@ -8,8 +8,9 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     public float timeStop;
+    public float timeInAir;
     public int healt;
-    public float time;
+    private float time;
     public EnemyRespawnController enemyRespawnController;
     public bool isMoving;
 
@@ -22,14 +23,11 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Start()
     {
-        timeStop = 1f;
         time = 0;
-        healt = 1;
         isMoving = false;
         enemyRespawnController = FindObjectOfType<EnemyRespawnController>();
         playerT = FindObjectOfType<PlayerController>().transform;
         agent = GetComponent<NavMeshAgent>();
-        _Anim = GetComponent<Animator>();
     }
 
     public virtual void Update()
@@ -51,7 +49,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator StopMoving()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(timeInAir);
         agent.ResetPath();
         _Anim.SetBool("Jump", false);
         time = 0;

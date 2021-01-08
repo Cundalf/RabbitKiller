@@ -44,10 +44,10 @@ Animator:
   m_GameObject: {fileID: 1801806149515414472}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 42b78031d09eef44a8a115729fd99eb7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 268f9d0f3eac7084c9c51562239a63a0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -109,6 +109,7 @@ MonoBehaviour:
   rateOfFire: 10
   bullet: {fileID: 6716099069029428393, guid: 6dc362b812c057c4080b264a3b432b6f, type: 3}
   shootController: {fileID: 0}
+  weaponAnimator: {fileID: 0}
 --- !u!1 &5548656235915953949
 GameObject:
   m_ObjectHideFlags: 0
