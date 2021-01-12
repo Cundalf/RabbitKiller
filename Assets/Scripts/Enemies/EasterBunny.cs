@@ -9,6 +9,10 @@ public class EasterBunny : EnemyController
     public GameObject respanPoint4;
 
     public int healtBarAmount { get; set; }
+    private int maxHelat;
+
+    [SerializeField]
+    private Canvas healBar;
 
     public override void Update() 
     {
@@ -17,18 +21,21 @@ public class EasterBunny : EnemyController
     public override void Start()
     {
         base.Start();
+        this.maxHelat = this.healt;
         timeStop = 15f;
     }
 
     public void healtControl(int danio)
     {
         healt = healt - danio;
+        updateHealBar();
         if (healt <= 0) 
         {
             if (healtBarAmount > 0)
             {
                 healtBarAmount--;
-                healt = 100;
+                updateHealBar();
+                healt = maxHelat;
             }
             else 
             {
@@ -55,6 +62,12 @@ public class EasterBunny : EnemyController
     private void instantiateRabbit(GameObject randomPoint) 
     {
         Instantiate(slavePrefab, randomPoint.transform.position, randomPoint.transform.rotation);
+    }
+
+    private void updateHealBar() 
+    {
+        float x = this.healt / this.maxHelat;
+        healBar.transform.localScale = new Vector3(x, 1, 1);
     }
 
 }
