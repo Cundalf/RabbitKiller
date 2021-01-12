@@ -22,7 +22,8 @@ public class VirtualGoodsManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> audios;
+    public List<SO_Product> VirtualGoodsPurchased;
+
     private void Awake()
     {
         if (sharedInstance != null && sharedInstance != this)
@@ -45,6 +46,7 @@ public class VirtualGoodsManager : MonoBehaviour
 
     public void AddRabbitFeet(int cant)
     {
+        if (GameManager.SharedInstance.ActualGameState == GameManager.GameState.IN_GAME) return;
         if (cant <= 0) return;
         rabbitFeet += cant;
         PlayerPrefs.SetInt("RabbitFeet", rabbitFeet);
