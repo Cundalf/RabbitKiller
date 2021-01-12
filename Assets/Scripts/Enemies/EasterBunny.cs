@@ -22,18 +22,18 @@ public class EasterBunny : EnemyController
 
     public void healtControl(int danio)
     {
-        this.healt = this.healt - danio;
-        if (this.healt <= 0) 
+        healt = healt - danio;
+        if (healt <= 0) 
         {
-            if (this.healtBarAmount > 0)
+            if (healtBarAmount > 0)
             {
-                this.healtBarAmount--;
-                this.healt = 100;
+                healtBarAmount--;
+                healt = 100;
             }
             else 
             {
-                this.Die();
-                this.enemyRespawnController.setBossStillAlive(false);
+                Die();
+                enemyRespawnController.setBossStillAlive(false);
             }
         }      
     }
@@ -41,7 +41,7 @@ public class EasterBunny : EnemyController
     public override void movePNJ() 
     {
         base.movePNJ();
-        this.useSkill();
+        useSkill();
     }
 
     public void useSkill() 

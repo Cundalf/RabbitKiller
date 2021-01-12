@@ -35,9 +35,9 @@ public class EnemyRespawnController : MonoBehaviour
 
     void Start()
     {
-        timeStop            = Random.Range(minStopTime, maxStopTime);
-        respawnPoints       = new List<GameObject>();
-        currentUI           = FindObjectOfType<UIManager>();
+        timeStop = Random.Range(minStopTime, maxStopTime);
+        respawnPoints = new List<GameObject>();
+        currentUI = FindObjectOfType<UIManager>();
 
         foreach (Transform t in transform)
         {
@@ -147,7 +147,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     public void setBossStillAlive(bool value)
     {
-        this.BOSSSTILLALIVE = value;
+        BOSSSTILLALIVE = value;
     }
 
     IEnumerator delayForNewOrde()

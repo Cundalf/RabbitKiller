@@ -116,6 +116,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void StartLifeBarBoss() 
+    { 
+    }
+    public void UpdateLifeBarBoss()
+    {
+    }
+
+    public void HideLifeBarBoss()
+    { 
+    }
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
