@@ -4,20 +4,20 @@ using UnityEngine;
 
 public  class Bust : MonoBehaviour
 {
-    public int healtbust { set; get; }
-    public float timeReloadBust { set; get; }
-    public float time { set; get; }
-    private BustController bustController { set; get; }
-    private Animator animationComponent;
+    [SerializeField]
+    private int healtbust;
+    [SerializeField]
+    private float timeReloadBust;
+    private float time;
+    [SerializeField]
+    private BustController bustController;
+    [SerializeField]
+    private Animator _Anim;
 
     public string typeOfBust;
     void Start()
     {
         bustController = (BustController)FindObjectOfType(typeof(BustController));
-        animationComponent = GetComponent<Animator>();
-        animationComponent.SetBool("Activate", false);
-        timeReloadBust = 300;
-        healtbust = 2;
     }
     void Update()
     {
@@ -39,7 +39,7 @@ public  class Bust : MonoBehaviour
         if (typeOfBust!="" && typeOfBust != null)
         {
             bustController.appliBust(typeOfBust);
-            animationComponent.SetBool("Activate",true);
+            _Anim.SetBool("Activate",true);
         }
         else { return; }
         
@@ -47,7 +47,7 @@ public  class Bust : MonoBehaviour
 
     public virtual void reloadBust() 
     {
-        animationComponent.SetBool("Activate", false);
+        _Anim.SetBool("Activate", false);
         healtbust = 2;
         time = 0;
     }

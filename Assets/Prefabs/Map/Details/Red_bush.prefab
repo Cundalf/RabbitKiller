@@ -140,6 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6acee013d3e2ad45846dab4cfa2efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healtbust: 2
+  timeReloadBust: 300
+  bustController: {fileID: 0}
+  _Anim: {fileID: 7871744021947075897}
   typeOfBust: redBushBust
 --- !u!95 &7871744021947075897
 Animator:
@@ -174,6 +178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -189,6 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -201,16 +215,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8177346528065525631, guid: e61d98f64cd2b474e9ef5437e150faaa,
         type: 3}
