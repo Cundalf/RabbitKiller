@@ -55,7 +55,6 @@ public class EnemyRespawnController : MonoBehaviour
         timeCounter = 0;
         timeStop = Random.Range(minStopTime, maxStopTime);
         ordeControl();
-        //currentUI.updateOrdeInfo(enemisCounter, currentOrdeNumber);
     }
 
     void ordeControl() 
@@ -88,7 +87,7 @@ public class EnemyRespawnController : MonoBehaviour
 
         InstantiateEnemis(respawnPointGO.transform,EnemyPrefab);
 
-        if (iRespawnPoint != iRespawnPoint2)
+        if (iRespawnPoint != iRespawnPoint2 && enemisSpawn <= enemisInOrde-1)
         {
             respawnPointGO = respawnPoints[iRespawnPoint2];
 
