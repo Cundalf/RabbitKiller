@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HidenGround : MonoBehaviour
+public class LandToHide : MonoBehaviour
 {
     private string VALID_TYPE = "Enemy";
 
