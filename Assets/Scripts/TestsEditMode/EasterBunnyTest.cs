@@ -1,7 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Tests
 {
@@ -50,7 +49,7 @@ namespace Tests
         public void cuandoElBossTieneVidaYNoTieneMasBarrasDeVidaElMismoElMetodoDieNoSeEjecuta()
         {
             this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
-            
+ 
             this.cuandoElBossSeQuedaSinBarraDeVidaExtrasPeroTieneVida();
 
             this.seVerificaQueNoSeEjecutaElMetodoDieUnaVes();
@@ -66,7 +65,7 @@ namespace Tests
             this.seVerificaQueSpawneaCincoConejosMasAlRededor();
 
         }
-        
+ 
         private void seVerificaQueSpawneaCincoConejosMasAlRededor() 
         {
             this.boss.Received(1).useSkill();
