@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using NSubstitute;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -40,20 +41,23 @@ namespace Tests
 
         private void dadoQueSeMuestraElMenuPrincipal()
         {
-            gManager = new GameManager();
-            eRespawnController = new EnemyRespawnController();
+            this.dadoQueTengoUnGameMangar();
             mainMenu = new MainMenuManager();
         }
 
         private void dadoQueTengoUnGameMangar()
         {
-            gManager = new GameManager();
+            gManager = Substitute.ForPartsOf<GameManager>();
             eRespawnController = new EnemyRespawnController();
+            eRespawnController.setGameManager(this.gManager);
+            eRespawnController.setOrdeChangMap(CANTIDAD_DE_ORDAS_LIMITE);
         }
 
         private void cuandoElNumeroDeOrdasLlegaA10()
         {
+            gManager.When(x => x.nexMap()).DoNotCallBase();
             eRespawnController.setCurrentOrde(CANTIDAD_DE_ORDAS_LIMITE);
+            eRespawnController.ordeControl();
         }
 
         private void cuandoSeClikeaElBotonStart()
@@ -63,7 +67,7 @@ namespace Tests
 
         private void seEsperaQueSeCambieDeNivel()
         {
-            
+            this.gManager.Received().nexMap();
         }
 
         private void seEsperaQueSeCargeElPrimerMapa()

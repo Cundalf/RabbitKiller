@@ -9,10 +9,14 @@ public class EnemyRespawnController : MonoBehaviour
     public float minStopTime;
     public float maxStopTime;
 
+    [SerializeField]
+    private GameManager gManager;
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
     //Orde variable
+    [SerializeField]
+    private int ordeChangeMap;
     [SerializeField]
     private int enemisInOrde;
     [SerializeField]
@@ -57,22 +61,30 @@ public class EnemyRespawnController : MonoBehaviour
         ordeControl();
     }
 
-    void ordeControl() 
+    public void ordeControl() 
     {
-        if (enemisInOrde <= enemisDead && !BOSSSTILLALIVE)
+        if (this.ordeChangeMap == this.currentOrdeNumber)
         {
-            newOrde();
+            this.gManager.nexMap();
         }
-        else {
-            if (enemisSpawn < enemisInOrde) 
+        else
+        {
+            if (enemisInOrde <= enemisDead && !BOSSSTILLALIVE)
             {
-                if (SPAWNEARBOSS)
+                newOrde();
+            }
+            else
+            {
+                if (enemisSpawn < enemisInOrde)
                 {
-                    spawnEnemiBoss();
-                }
-                else
-                {
-                    spawnEnemis();
+                    if (SPAWNEARBOSS)
+                    {
+                        spawnEnemiBoss();
+                    }
+                    else
+                    {
+                        spawnEnemis();
+                    }
                 }
             }
         }
@@ -152,6 +164,16 @@ public class EnemyRespawnController : MonoBehaviour
     public void setBossStillAlive(bool value)
     {
         BOSSSTILLALIVE = value;
+    }
+
+    public void setOrdeChangMap(int numberOrder)
+    {
+        this.ordeChangeMap = numberOrder;
+    }
+
+    public void setGameManager(GameManager gManager)
+    {
+        this.gManager = gManager;
     }
 
     IEnumerator delayForNewOrde()

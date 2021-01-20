@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         return cant;
     }
 
-    public void nexMap() 
+    public virtual void nexMap() 
     {
         currentMap++;
         SceneManager.LoadScene(this.configuredMap[currentMap]);
