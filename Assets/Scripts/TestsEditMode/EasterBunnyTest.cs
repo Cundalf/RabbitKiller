@@ -1,5 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
+using System;
 using UnityEngine;
 
 namespace Tests
@@ -7,13 +8,15 @@ namespace Tests
     public class EasterBunnyTest 
     {
         private EasterBunny boss;
+        private EnemyRespawnController enemyRespawnController;
         private static int DOS_BARRAS_DE_VIDA = 2;
         private static int UNA_BARRA_DE_VIDA = 1;
+        private static int VIDA_INICIAL_BOSS = 100;
 
         [Test]
         public void cuandoLaVidaDelBossLlegaACeroPorPrimeraVesNoMuereSinoQueSeRecarga()
         {
-            this.dadoQueTengoUnBoss().con(DOS_BARRAS_DE_VIDA);
+            this.dadoQueTengoUnBoss().con(DOS_BARRAS_DE_VIDA).conVida(VIDA_INICIAL_BOSS);
 
             this.cuandoLaVidaDelBossLlegaACero();
 
@@ -23,7 +26,7 @@ namespace Tests
         [Test]
         public void cuandoLaVidaDelBossLlegaACeroPorSegundaVesLaVidaQuedaEnCero()
         {
-            this.dadoQueTengoUnBoss().con(DOS_BARRAS_DE_VIDA);
+            this.dadoQueTengoUnBoss().con(DOS_BARRAS_DE_VIDA).conVida(VIDA_INICIAL_BOSS);
             this.dadoQueSeVaAEjecutarElMetodoDie();
 
             this.cuandoLaVidaDelBossLlegaACero();
@@ -36,7 +39,7 @@ namespace Tests
         [Test]
         public void cuandoLaVidaDelBossLlegaACeroYNoTieneMasBarrasDeVidaElMismoSeMuere() 
         {
-            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA).conVida(VIDA_INICIAL_BOSS);
             this.dadoQueSeVaAEjecutarElMetodoDie();
 
             this.cuandoLaVidaDelBossLlegaACero();
@@ -48,7 +51,7 @@ namespace Tests
         [Test]
         public void cuandoElBossTieneVidaYNoTieneMasBarrasDeVidaElMismoElMetodoDieNoSeEjecuta()
         {
-            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA).conVida(VIDA_INICIAL_BOSS);
  
             this.cuandoElBossSeQuedaSinBarraDeVidaExtrasPeroTieneVida();
 
@@ -58,7 +61,7 @@ namespace Tests
         [Test]
         public void dadoQueElBossEstaQuietoCuandoRetomaElMovientoYTerminaSeVerficaQueSpawneanConejosAlrededor()
         {
-            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA);
+            this.dadoQueTengoUnBoss().con(UNA_BARRA_DE_VIDA).conVida(VIDA_INICIAL_BOSS);
 
             this.cuandoElBossEmpiesaMoverseYTermina();
 
@@ -125,9 +128,19 @@ namespace Tests
             return this;
         }
 
+        private EasterBunnyTest conVida(int cantidadDeVida) 
+        {
+            this.boss.healt = cantidadDeVida;
+            this.boss.maxHelat = cantidadDeVida;
+            return this;
+        }
+
         private EasterBunnyTest dadoQueTengoUnBoss()
         {
+            this.enemyRespawnController = new EnemyRespawnController();
             this.boss = Substitute.ForPartsOf<EasterBunny>();
+            this.boss.When(x=> x.updateHealtBar()).DoNotCallBase();
+            this.boss.enemyRespawnController = enemyRespawnController;
             return this;
         }
 
@@ -135,5 +148,6 @@ namespace Tests
         {
             this.boss.When(x => x.Die()).DoNotCallBase();
         }
+
     }
 }

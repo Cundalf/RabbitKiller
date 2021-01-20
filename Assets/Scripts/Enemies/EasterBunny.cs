@@ -9,7 +9,7 @@ public class EasterBunny : EnemyController
     public GameObject respanPoint4;
 
     public int healtBarAmount { get; set; }
-    private int maxHelat;
+    public int maxHelat { get; set; }
 
     [SerializeField]
     private Canvas healBar;
@@ -28,13 +28,13 @@ public class EasterBunny : EnemyController
     public void healtControl(int danio)
     {
         healt = healt - danio;
-        updateHealBar();
+        this.updateHealtBar();
         if (healt <= 0) 
         {
             if (healtBarAmount > 0)
             {
                 healtBarAmount--;
-                updateHealBar();
+                this.updateHealtBar();
                 healt = maxHelat;
             }
             else 
@@ -64,10 +64,13 @@ public class EasterBunny : EnemyController
         Instantiate(slavePrefab, randomPoint.transform.position, randomPoint.transform.rotation);
     }
 
-    private void updateHealBar() 
+    public void updateHealtBar() 
     {
-        float x = this.healt / this.maxHelat;
-        healBar.transform.localScale = new Vector3(x, 1, 1);
+        if (healBar != null) 
+        {
+            float x = healt / maxHelat;
+            healBar.transform.localScale = new Vector3(x, 1, 1);
+        }
     }
 
 }

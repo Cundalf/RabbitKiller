@@ -138,6 +138,11 @@ public class EnemyRespawnController : MonoBehaviour
         Debug.Log("Tiene que spwanear boss?: " + SPAWNEARBOSS);
     }
 
+    public void setCurrentOrde(int numberOrde) 
+    {
+        currentOrdeNumber = numberOrde;
+    }
+
     public void enemiDead() 
     {
         enemisDead++;

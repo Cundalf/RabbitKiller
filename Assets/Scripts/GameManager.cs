@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +8,10 @@ public class GameManager : MonoBehaviour
     {
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
-    
+
+    [SerializeField]
+    private string[] configuredMap;
+    private int currentMap = 0;
     private GameState actualGameState;
     public GameState ActualGameState { 
         get
@@ -60,6 +64,12 @@ public class GameManager : MonoBehaviour
         }
 
         return cant;
+    }
+
+    public void nexMap() 
+    {
+        currentMap++;
+        SceneManager.LoadScene(this.configuredMap[currentMap]);
     }
 
     public void PauseGame()
