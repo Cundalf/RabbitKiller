@@ -27,18 +27,6 @@ namespace Tests
             seEsperaQueSeCambieDeNivel();
         }
 
-        //[Test] cambiar a play mode 
-        public void dadoQueSeMuestraElMenuCuandoSeClickeaElBotonStartSeCargaElPrimerMapa()
-        {
-
-            dadoQueSeMuestraElMenuPrincipal();
-
-            cuandoSeClikeaElBotonStart();
-
-            seEsperaQueSeCargeElPrimerMapa();
-
-        }
-
         private void dadoQueSeMuestraElMenuPrincipal()
         {
             this.dadoQueTengoUnGameMangar();
@@ -60,19 +48,9 @@ namespace Tests
             eRespawnController.ordeControl();
         }
 
-        private void cuandoSeClikeaElBotonStart()
-        {
-            mainMenu.StartGame();
-        }
-
         private void seEsperaQueSeCambieDeNivel()
         {
             this.gManager.Received().nexMap();
-        }
-
-        private void seEsperaQueSeCargeElPrimerMapa()
-        {
-            
         }
 
         //[UnityTest]

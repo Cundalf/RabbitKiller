@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField]
-    private string[] configuredMap;
-    private int currentMap = 0;
+    private string[] configuredMap = new string[] {"Stage1"};
+    public int currentMap = 0;
     private GameState actualGameState;
     public GameState ActualGameState { 
         get
@@ -68,8 +68,12 @@ public class GameManager : MonoBehaviour
 
     public virtual void nexMap() 
     {
-        currentMap++;
-        SceneManager.LoadScene(this.configuredMap[currentMap]);
+        if (this.currentMap<this.configuredMap.Length) 
+        {
+            actualGameState = GameState.PAUSE;
+            currentMap++;
+            //SceneManager.LoadScene(this.configuredMap[currentMap], LoadSceneMode.Single);
+        }
     }
 
     public void PauseGame()
@@ -88,4 +92,15 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void setMaps(string[] maps) 
+    {
+        this.configuredMap = maps;
+    }
+
+    public void setCurrentMap(int numberCurrenMap)
+    {
+        this.currentMap = numberCurrenMap;
+    }
+
 }
