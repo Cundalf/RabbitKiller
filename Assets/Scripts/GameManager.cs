@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -9,9 +11,10 @@ public class GameManager : MonoBehaviour
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
 
+    public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage2.unity"};
+    bool sceneLoaded;
     [SerializeField]
-    private string[] configuredMap = new string[] {"Stage1"};
-    public int currentMap = 0;
+    public int nextSceneConfig = 0;
     private GameState actualGameState;
     public GameState ActualGameState { 
         get
@@ -66,14 +69,23 @@ public class GameManager : MonoBehaviour
         return cant;
     }
 
-    public virtual void nexMap() 
+    public virtual IEnumerator nexMap() 
     {
-        if (this.currentMap<this.configuredMap.Length) 
+        if (this.nextSceneConfig < EditorBuildSettings.scenes.Length) 
         {
             actualGameState = GameState.PAUSE;
-            currentMap++;
-            //SceneManager.LoadScene(this.configuredMap[currentMap], LoadSceneMode.Single);
+            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig], LoadSceneMode.Single);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
+            yield return new WaitWhile(() => sceneLoaded == false);
+            nextSceneConfig++;
+            actualGameState = GameState.IN_GAME;
+            yield return null;
         }
+    }
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        sceneLoaded = true;
     }
 
     public void PauseGame()
@@ -95,12 +107,22 @@ public class GameManager : MonoBehaviour
 
     public void setMaps(string[] maps) 
     {
-        this.configuredMap = maps;
+        this.scenasConfig = maps;                   
     }
 
     public void setCurrentMap(int numberCurrenMap)
     {
-        this.currentMap = numberCurrenMap;
+        this.nextSceneConfig = numberCurrenMap;
+    }
+
+    public string getNameCurrentScene() 
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
+    public Scene getActiveScene() 
+    {
+        return SceneManager.GetActiveScene();
     }
 
 }

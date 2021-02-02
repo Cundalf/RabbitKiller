@@ -7133,7 +7133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a571ac1736ece43818d8c2e4d911f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  configuredMap: []
+  scenasConfig:
+  - Assets/Scenes/Stage/Stage1.unity
+  - Assets/Scenes/Stage/Stage2.unity
+  nextSceneConfig: 0
 --- !u!4 &1353989580
 Transform:
   m_ObjectHideFlags: 0
@@ -8908,6 +8911,7 @@ MonoBehaviour:
   _playerAnime: {fileID: 0}
   _rabbitAnime: {fileID: 0}
   animeted: 1
+  gManager: {fileID: 1353989579}
 --- !u!95 &1718860675
 Animator:
   serializedVersion: 3

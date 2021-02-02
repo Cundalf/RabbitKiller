@@ -25,6 +25,9 @@ public class MainMenuManager : MonoBehaviour
     private float time;
     private System.Random random;
 
+    [SerializeField]
+    private GameManager gManager;
+
     void Start()
     {
         random = new System.Random(859633);
@@ -80,7 +83,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Stage1");
+        gManager.nexMap();
     }
 
     void Update()
@@ -112,4 +115,10 @@ public class MainMenuManager : MonoBehaviour
     {
         txtRabbitFeet.text = cant.ToString();
     }
+
+    public void setGameManager(GameManager gManager) 
+    {
+        this.gManager = gManager;
+    }
+
 }
