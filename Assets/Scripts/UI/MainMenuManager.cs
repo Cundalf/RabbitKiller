@@ -80,7 +80,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Stage1");
+        GameManager.SharedInstance.changeMap();
     }
 
     void Update()
@@ -112,4 +112,5 @@ public class MainMenuManager : MonoBehaviour
     {
         txtRabbitFeet.text = cant.ToString();
     }
+
 }

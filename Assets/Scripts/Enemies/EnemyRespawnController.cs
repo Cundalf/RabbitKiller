@@ -9,10 +9,13 @@ public class EnemyRespawnController : MonoBehaviour
     public float minStopTime;
     public float maxStopTime;
 
+    [SerializeField]
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
     //Orde variable
+    [SerializeField]
+    private int ordeChangeMap;
     [SerializeField]
     private int enemisInOrde;
     [SerializeField]
@@ -39,6 +42,7 @@ public class EnemyRespawnController : MonoBehaviour
         respawnPoints = new List<GameObject>();
         currentUI = FindObjectOfType<UIManager>();
 
+
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
@@ -57,22 +61,30 @@ public class EnemyRespawnController : MonoBehaviour
         ordeControl();
     }
 
-    void ordeControl() 
+    public void ordeControl() 
     {
-        if (enemisInOrde <= enemisDead && !BOSSSTILLALIVE)
+        if (this.ordeChangeMap == this.currentOrdeNumber)
         {
-            newOrde();
+            GameManager.SharedInstance.changeMap();
         }
-        else {
-            if (enemisSpawn < enemisInOrde) 
+        else
+        {
+            if (enemisInOrde <= enemisDead && !BOSSSTILLALIVE)
             {
-                if (SPAWNEARBOSS)
+                newOrde();
+            }
+            else
+            {
+                if (enemisSpawn < enemisInOrde)
                 {
-                    spawnEnemiBoss();
-                }
-                else
-                {
-                    spawnEnemis();
+                    if (SPAWNEARBOSS)
+                    {
+                        spawnEnemiBoss();
+                    }
+                    else
+                    {
+                        spawnEnemis();
+                    }
                 }
             }
         }
@@ -138,6 +150,11 @@ public class EnemyRespawnController : MonoBehaviour
         Debug.Log("Tiene que spwanear boss?: " + SPAWNEARBOSS);
     }
 
+    public void setCurrentOrde(int numberOrde) 
+    {
+        currentOrdeNumber = numberOrde;
+    }
+
     public void enemiDead() 
     {
         enemisDead++;
@@ -147,6 +164,11 @@ public class EnemyRespawnController : MonoBehaviour
     public void setBossStillAlive(bool value)
     {
         BOSSSTILLALIVE = value;
+    }
+
+    public void setOrdeChangMap(int numberOrder)
+    {
+        this.ordeChangeMap = numberOrder;
     }
 
     IEnumerator delayForNewOrde()

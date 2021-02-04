@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,9 +10,14 @@ public class GameManager : MonoBehaviour
     {
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
-    
+
+    public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage2.unity"};
+    bool sceneLoaded;
+    [SerializeField]
+    public int nextSceneConfig = 0;
     private GameState actualGameState;
-    public GameState ActualGameState { 
+    public GameState ActualGameState 
+    { 
         get
         {
             return actualGameState;
@@ -62,6 +70,16 @@ public class GameManager : MonoBehaviour
         return cant;
     }
 
+    public void changeMap() 
+    {
+        if (this.nextSceneConfig < scenasConfig.Length) 
+        {
+            PauseGame();
+            sceneLoaded = false;
+            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig], LoadSceneMode.Single);
+        }
+    }
+
     public void PauseGame()
     {
         actualGameState = GameState.PAUSE;
@@ -78,4 +96,25 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void setMaps(string[] maps) 
+    {
+        this.scenasConfig = maps;                   
+    }
+
+    public void setCurrentMap(int numberCurrenMap)
+    {
+        this.nextSceneConfig = numberCurrenMap;
+    }
+
+    public string getNameCurrentScene() 
+    {
+        return SceneManager.GetActiveScene().name;
+    }
+
+    public Scene getActiveScene() 
+    {
+        return SceneManager.GetActiveScene();
+    }
+
 }
