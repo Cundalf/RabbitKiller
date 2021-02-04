@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     public int nextSceneConfig = 0;
     private GameState actualGameState;
-    public GameState ActualGameState { 
+    public GameState ActualGameState 
+    { 
         get
         {
             return actualGameState;
@@ -69,23 +70,14 @@ public class GameManager : MonoBehaviour
         return cant;
     }
 
-    public virtual IEnumerator nexMap() 
+    public void changeMap() 
     {
-        if (this.nextSceneConfig < EditorBuildSettings.scenes.Length) 
+        if (this.nextSceneConfig < scenasConfig.Length) 
         {
-            actualGameState = GameState.PAUSE;
+            PauseGame();
+            sceneLoaded = false;
             SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig], LoadSceneMode.Single);
-            SceneManager.sceneLoaded += OnSceneLoaded;
-
-            yield return new WaitWhile(() => sceneLoaded == false);
-            nextSceneConfig++;
-            actualGameState = GameState.IN_GAME;
-            yield return null;
         }
-    }
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        sceneLoaded = true;
     }
 
     public void PauseGame()

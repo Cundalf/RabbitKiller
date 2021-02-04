@@ -37,20 +37,19 @@ namespace Tests
         {
             gManager = Substitute.ForPartsOf<GameManager>();
             eRespawnController = new EnemyRespawnController();
-            eRespawnController.setGameManager(this.gManager);
             eRespawnController.setOrdeChangMap(CANTIDAD_DE_ORDAS_LIMITE);
         }
 
         private void cuandoElNumeroDeOrdasLlegaA10()
         {
-            gManager.When(x => x.nexMap()).DoNotCallBase();
+            gManager.When(x => x.changeMap()).DoNotCallBase();
             eRespawnController.setCurrentOrde(CANTIDAD_DE_ORDAS_LIMITE);
             eRespawnController.ordeControl();
         }
 
         private void seEsperaQueSeCambieDeNivel()
         {
-            this.gManager.Received().nexMap();
+            this.gManager.Received().changeMap();
         }
 
         //[UnityTest]

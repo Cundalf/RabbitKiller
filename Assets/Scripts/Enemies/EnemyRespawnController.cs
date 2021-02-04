@@ -10,7 +10,6 @@ public class EnemyRespawnController : MonoBehaviour
     public float maxStopTime;
 
     [SerializeField]
-    private GameManager gManager;
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
@@ -43,6 +42,7 @@ public class EnemyRespawnController : MonoBehaviour
         respawnPoints = new List<GameObject>();
         currentUI = FindObjectOfType<UIManager>();
 
+
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
@@ -65,7 +65,7 @@ public class EnemyRespawnController : MonoBehaviour
     {
         if (this.ordeChangeMap == this.currentOrdeNumber)
         {
-            this.gManager.nexMap();
+            GameManager.SharedInstance.changeMap();
         }
         else
         {
@@ -169,11 +169,6 @@ public class EnemyRespawnController : MonoBehaviour
     public void setOrdeChangMap(int numberOrder)
     {
         this.ordeChangeMap = numberOrder;
-    }
-
-    public void setGameManager(GameManager gManager)
-    {
-        this.gManager = gManager;
     }
 
     IEnumerator delayForNewOrde()

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using NSubstitute;
 using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
@@ -12,7 +12,6 @@ namespace Tests
 {
     public class ChangeMapaTpm
     {
-        private GameManager gManager;
         private EnemyRespawnController eRespawnController;
         private MainMenuManager mainMenu;
 
@@ -31,21 +30,26 @@ namespace Tests
             buildSettingsScenesBackup = EditorBuildSettings.scenes;
 
             var MainMenu = new EditorBuildSettingsScene("Assets/Scenes/MainMenu.unity", true);
-            var Stage1 = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage1.unity", true);
-            var Stage2 = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage2.unity", true);
+            var Stage1Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage1.unity", true);
+            var Stage2Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage2.unity", true);
 
             EditorBuildSettings.scenes.Append(MainMenu).ToArray();
-            EditorBuildSettings.scenes.Append(Stage1).ToArray();
-            EditorBuildSettings.scenes = EditorBuildSettings.scenes.Append(Stage2).ToArray();
-
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            EditorBuildSettings.scenes.Append(Stage1Test).ToArray();
+            EditorBuildSettings.scenes = EditorBuildSettings.scenes.Append(Stage2Test).ToArray();
+            loadSceneTest("MainMenu");
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             EditorBuildSettings.scenes = buildSettingsScenesBackup;
+        }
+
+        void loadSceneTest(string sceneName) 
+        {
+            sceneLoaded = false;
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -56,8 +60,10 @@ namespace Tests
         [UnityTest]
         public IEnumerator dadoQueSeLlegoAUnLimiteDeRondasParaCambiarDeMapaSeVerificaQueElJuegoSePoneEnPausa()
         {
+            loadSceneTest("Stage1");
             yield return new WaitWhile(() => sceneLoaded == false);
-            dadoQueTengoUnGameMangar();
+            
+            dadoQueTengoUnEnemyRespawnController();
             dadoQueTengoDosMapasConfiguradosEnElGameManager();
 
             cuandoElNumeroDeOrdasLlegaA10();
@@ -70,8 +76,10 @@ namespace Tests
         [UnityTest]
         public IEnumerator dadoQueSeLlegoAlLimiteDeRondaParaCambiarDeMapaElInidiceDeSeleccionNoSuperaLaCantidadDeMapaConfigurados()
         {
+            loadSceneTest("Stage1");
             yield return new WaitWhile(() => sceneLoaded == false);
-            dadoQueTengoUnGameMangar();
+
+            dadoQueTengoUnEnemyRespawnController();
             dadoQueTengoDosMapasConfiguradosEnElGameManager();
             dadoQueSeCargoElUltimoMapaConfigurado();
 
@@ -84,14 +92,17 @@ namespace Tests
         [UnityTest] 
         public IEnumerator dadoQueSeMuestraElMenuCuandoSeClickeaElBotonStartSeCargaElPrimerMapa()
         {
+            loadSceneTest("MainMenu");
             yield return new WaitWhile(() => sceneLoaded == false);
 
             dadoQueSeMuestraElMenuPrincipal();
-            dadoQueTengoLosMapasCargadosAssetBundel();
             dadoQueTengoDosMapasConfiguradosEnElGameManager();
 
             cuandoSeClikeaElBotonStart();
 
+            sceneLoaded = false;
+            SceneManager.sceneLoaded += OnSceneLoaded;
+            yield return new WaitWhile(() => sceneLoaded == false);
             seEsperaQueSeCargeElPrimerMapa();
             
             yield return null;
@@ -99,30 +110,24 @@ namespace Tests
 
         private void dadoQueSeMuestraElMenuPrincipal()
         {
-            this.dadoQueTengoUnGameMangar();
-            mainMenu = new MainMenuManager();
+            mainMenu = GameObject.Find("Canvas").GetComponent<MainMenuManager>();
         }
 
-        private void dadoQueTengoUnGameMangar()
+        private void dadoQueTengoUnEnemyRespawnController()
         {
-            gManager = new GameManager();
             eRespawnController = new EnemyRespawnController();
-            eRespawnController.setGameManager(gManager);
+
             eRespawnController.setOrdeChangMap(CANTIDAD_DE_ORDAS_LIMITE);
         }
 
         private void dadoQueTengoDosMapasConfiguradosEnElGameManager()
         {
-            this.gManager.setMaps(MAPAS_TEST);
+            GameManager.SharedInstance.setMaps(MAPAS_TEST);
         }
 
         private void dadoQueSeCargoElUltimoMapaConfigurado()
         {
-            this.gManager.setCurrentMap(2);
-        }
-        private void dadoQueTengoLosMapasCargadosAssetBundel()
-        {
-            this.mainMenu.setGameManager(this.gManager);
+            GameManager.SharedInstance.setCurrentMap(2);
         }
 
         private void cuandoElNumeroDeOrdasLlegaA10()
@@ -138,18 +143,20 @@ namespace Tests
 
         private void seEsperaQueElJuegoEsteEnPausa()
         {
-            Assert.IsTrue(gManager.ActualGameState.ToString() == GameState.PAUSE.ToString());
+            String message = String.Format("Se esperaba {0} y se obtuvo {1}", GameState.PAUSE.ToString(), GameManager.SharedInstance.ActualGameState.ToString());
+            Assert.IsTrue(GameManager.SharedInstance.ActualGameState == GameManager.GameState.PAUSE,message);
         }
 
         private void seEsperaQueElIndiceNoSupereLaCantidadDeMapasConfigurados()
         {
-            Assert.IsTrue(gManager.nextSceneConfig != 3);
+            Assert.IsTrue(GameManager.SharedInstance.nextSceneConfig != 3);
         }
 
         private void seEsperaQueSeCargeElPrimerMapa()
         {
-            String mensage = String.Format("Se esperaba {0} y se obtuvo {1}", MAPAS_TEST[0], gManager.getActiveScene().name); 
-            Assert.IsTrue(gManager.getActiveScene().name == MAPAS_TEST[0], mensage); 
+            String mapName = "Stage1";
+            String message = String.Format("Se esperaba {0} y se obtuvo {1}", mapName, GameManager.SharedInstance.getActiveScene().name); 
+            Assert.IsTrue(GameManager.SharedInstance.getActiveScene().name == mapName, message); 
         }
     }
 }
