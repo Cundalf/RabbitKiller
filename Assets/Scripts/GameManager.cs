@@ -76,7 +76,8 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
             sceneLoaded = false;
-            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig], LoadSceneMode.Single);
+            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig]);
+            nextSceneConfig++;
         }
     }
 

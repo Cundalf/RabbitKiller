@@ -81,6 +81,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         GameManager.SharedInstance.changeMap();
+        GameObject.Destroy(GameObject.Find("CanvasMainMenu"));
     }
 
     void Update()
