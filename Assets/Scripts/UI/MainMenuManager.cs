@@ -6,107 +6,86 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject ConfigPanel;
-    public GameObject CreditsPanel;
-    public GameObject TutorialPanel;
-    public GameObject ShopPanel;
-    public Slider AudioSlider;
-    public Slider SFXSlider;
-    public GameObject MusicOnButton;
-    public GameObject MusicOffButton;
-    public GameObject SFXOnButton;
-    public GameObject SFXOffButton;
+    public CatalogController catalogController;
+    public GameObject tutorialPanel;
     public Text txtRabbitFeet;
 
-    //Animeted
-    public Animator _playerAnime;
-    public Animator _rabbitAnime;
-    public bool animeted = true;
-    private float time;
-    private System.Random random;
+    // Config panel components
+    public Slider audioSlider;
+    public Slider sfxSlider;
+    public GameObject musicOnButton;
+    public GameObject musicOffButton;
+    public GameObject sfxOnButton;
+    public GameObject sfxOffButton;
+
+    private Animator _animator;
 
     void Start()
     {
-        random = new System.Random(859633);
+        //random = new System.Random(859633);
+        _animator = GetComponent<Animator>();
     }
 
-    public void ShowConfig()
+    public void OpenConfig()
     {
-        ConfigPanel.SetActive(true);
-        UpdateConfig();
+        _animator.SetTrigger("ExitMenu");
+        _animator.SetTrigger("EnterConfig");
     }
 
-    public void ToggleStore()
+    public void CloseConfig()
     {
-        ShopPanel.SetActive(!ShopPanel.activeSelf);
-        transform.Find("frOptions").gameObject.SetActive(!ShopPanel.activeSelf);
-        transform.Find("Banner").gameObject.SetActive(!ShopPanel.activeSelf);
-        transform.Find("btnShop").gameObject.SetActive(!ShopPanel.activeSelf);
-        transform.Find("RabbitFeetFrame").gameObject.SetActive(!ShopPanel.activeSelf);
-        transform.Find("btnExit").gameObject.SetActive(!ShopPanel.activeSelf);
-        transform.Find("btnConfig").gameObject.SetActive(!ShopPanel.activeSelf);
+        _animator.SetTrigger("ExitConfig");
     }
 
-    private void UpdateConfig()
+    public void OpenStore()
     {
-        AudioSlider.value = AudioVolumeManager.SharedInstance.CurrentAudioVolume;
-        SFXSlider.value = AudioVolumeManager.SharedInstance.CurrentSFXVolume;
-        MusicOnButton.SetActive(!AudioVolumeManager.SharedInstance.AudioMute);
-        MusicOffButton.SetActive(AudioVolumeManager.SharedInstance.AudioMute);
-        SFXOnButton.SetActive(!AudioVolumeManager.SharedInstance.SFXMute);
-        SFXOffButton.SetActive(AudioVolumeManager.SharedInstance.SFXMute);
+        _animator.SetTrigger("ExitMenu");
+        _animator.SetTrigger("EnterStore");
     }
 
-    public void HideConfig()
+    public void CloseStore()
     {
-        ConfigPanel.SetActive(false);
+        _animator.SetTrigger("ExitStore");
     }
 
-    public void ShowCredits()
+    public void OpenCredits()
     {
-        CreditsPanel.SetActive(true);
+        _animator.SetTrigger("ExitMenu");
+        _animator.SetTrigger("EnterCredits");
     }
 
-    public void HideCredits()
+    public void CloseCredits()
     {
-        CreditsPanel.SetActive(false);
+        _animator.SetTrigger("ExitCredits");
     }
 
-    public void ShowTutorial()
+    public void LoadShopData()
     {
-        animeted = false;
-        TutorialPanel.SetActive(true);
+        catalogController.LoadShopData();
+        _animator.SetTrigger("StoreLoaded");
     }
 
-    public void StartGame()
+    public void UpdateConfig()
     {
+        audioSlider.value = AudioVolumeManager.SharedInstance.CurrentAudioVolume;
+        sfxSlider.value = AudioVolumeManager.SharedInstance.CurrentSFXVolume;
+        musicOnButton.SetActive(!AudioVolumeManager.SharedInstance.AudioMute);
+        musicOffButton.SetActive(AudioVolumeManager.SharedInstance.AudioMute);
+        sfxOnButton.SetActive(!AudioVolumeManager.SharedInstance.SFXMute);
+        sfxOffButton.SetActive(AudioVolumeManager.SharedInstance.SFXMute);
         GameManager.SharedInstance.changeMap();
 
     }
 
-    void Update()
+    //TODO: Hay que definir como sera el tutorial para desarrollarlo y cambiar esto.
+    public void ShowTutorial()
     {
-        if (animeted)
-        {
-            time += Time.deltaTime;
-            if ((int)time == 5)
-            {
-                var ran = random.Next(0, 5);
-                time = 0;
-                switch (ran)
-                {
-                    case 1:
-                        _rabbitAnime.SetTrigger("LookCarrot");
-                        break;
-                    case 2:
-                        _playerAnime.SetTrigger("UpWepon");
-                        break;
-                    default:
-                        _playerAnime.SetTrigger("LookRabbit");
-                        break;
-                }
-            }
-        }
+        tutorialPanel.SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Stage1");
     }
 
     public void UpdateRabbitFeet(int cant)
