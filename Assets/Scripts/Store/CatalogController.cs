@@ -8,28 +8,29 @@ public class CatalogController : MonoBehaviour
     public List<SO_Category> categories;
     public GameObject categoryOptionPrefab;
     public GameObject productPrefab;
-    public GameObject ShopPanel;
-    public GameObject TabPanel;
-    public GameObject ProductsPanel;
-    public GameObject ProductDetailGO;
-    public GameObject CloseCatalogButtonGO;
+    public GameObject shopPanel;
+    public GameObject tabPanel;
+    public GameObject productsPanel;
+    public GameObject productDetailGO;
+    public GameObject closeCatalogButtonGO;
 
-    private void Start()
+    public void LoadShopData()
     {
-        if (categories.Count > 0) {
+        if (categories.Count > 0)
+        {
             LoadCategories();
             LoadProducts(categories[0].category);
         }
     }
 
-    public void LoadCategories()
+    private void LoadCategories()
     {
         ClearStore();
 
         GameObject pfCategory;
         for (int i = 0; i < categories.Count; i++)
         {
-            pfCategory = Instantiate(categoryOptionPrefab, TabPanel.transform);
+            pfCategory = Instantiate(categoryOptionPrefab, tabPanel.transform);
             pfCategory.GetComponent<Category>().txtCategoryName.text = categories[i].categoryName;
             pfCategory.GetComponent<Category>().CategoryType = categories[i].category;
         }
@@ -48,7 +49,7 @@ public class CatalogController : MonoBehaviour
             {
                 for (int j = 0; j < categories[i].products.Count; j++)
                 {
-                    pfProduct = Instantiate(productPrefab, ProductsPanel.transform);
+                    pfProduct = Instantiate(productPrefab, productsPanel.transform);
                     pfProduct.GetComponent<Product>().LoadProduct(categories[i].products[i]);
                 }
             }
@@ -93,18 +94,18 @@ public class CatalogController : MonoBehaviour
 
     public void CloseProductDetail()
     {
-        ShopPanel.SetActive(true);
-        ProductDetailGO.SetActive(false);
-        CloseCatalogButtonGO.SetActive(true);
+        shopPanel.SetActive(true);
+        productDetailGO.SetActive(false);
+        closeCatalogButtonGO.SetActive(true);
     }
 
     public void OpenProductDetail(SO_Product product)
     {
-        CloseCatalogButtonGO.SetActive(false);
-        ShopPanel.SetActive(false);
-        ProductDetailGO.SetActive(true);
+        closeCatalogButtonGO.SetActive(false);
+        shopPanel.SetActive(false);
+        productDetailGO.SetActive(true);
 
-        Transform productContent = ProductDetailGO.transform.Find("ProductContentPanel");
+        Transform productContent = productDetailGO.transform.Find("ProductContentPanel");
         productContent.Find("txtProduct").GetComponent<Text>().text = product.title;
         productContent.Find("txtDescription").GetComponent<Text>().text = product.description;
         productContent.Find("imgProduct").GetComponent<Image>().sprite = product.icon;
