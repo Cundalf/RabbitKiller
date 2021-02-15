@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8778337fcc55b0146b67b2e9a622593f, type: 3}
-  m_Name: Weapon_Shotgun
+  m_Name: Weapon_TommyGun
   m_EditorClassIdentifier: 
   id: 
   category: 0
-  icon: {fileID: 21300000, guid: 64ed18662fad1114eb3aaa4eafe2e50e, type: 3}
-  title: Shotgun
-  description: A quien no les gusta las escopetas?
-  shortDescription: La Clasica
-  cost: 0
+  icon: {fileID: 21300000, guid: ebf087b803d1f5349ba3812e93454cf9, type: 3}
+  title: TommyGun
+  description: No te hubiera gustado molestar a los hombres que usaban estas armas
+  shortDescription: Tu mejor amiga
+  cost: 250

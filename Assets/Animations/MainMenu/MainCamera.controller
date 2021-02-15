@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0f69160723871524fa47efc4679f9953, type: 2}
+  m_Motion: {fileID: 7400000, guid: f9a44e3319e05744b9feacbdde2d5ceb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -81,7 +81,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainMenuStoreIdle
+  m_Name: StoreIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -95,7 +95,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f238c8fd604d29747b337924c70d1129, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8358da4f4d3625f42af5d7eaf7c09a42, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -108,7 +108,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainMenuReturnFromStore
+  m_Name: ReturnFromStore
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -134,7 +134,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Main Camera
+  m_Name: MainCamera
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: GoToStore
@@ -142,13 +142,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ReturnFromStore
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -204,7 +204,7 @@ AnimatorStateMachine:
     m_Position: {x: 600, y: 0, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -212040694697023009}
-    m_Position: {x: 600, y: 200, z: 0}
+    m_Position: {x: 600, y: 210, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1546780936217862796}
     m_Position: {x: 600, y: 100, z: 0}
@@ -225,7 +225,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainMenuStore
+  m_Name: GoToStore
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
