@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
 
-    public string[] scenasConfig = new string[] { "Stage1", "Stage2"};
+    public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage3.unity" };
     [SerializeField]
     public int nextSceneConfig = 0;
     private GameState actualGameState;

@@ -7134,7 +7134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenasConfig:
   - Assets/Scenes/Stage/Stage1.unity
-  - Assets/Scenes/Stage/Stage2.unity
+  - Assets/Scenes/Stage/Stage3.unity
   nextSceneConfig: 0
 --- !u!4 &1353989580
 Transform:

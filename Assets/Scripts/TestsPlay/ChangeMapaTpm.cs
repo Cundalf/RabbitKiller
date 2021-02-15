@@ -32,7 +32,7 @@ namespace Tests
 
             var MainMenu = new EditorBuildSettingsScene("Assets/Scenes/MainMenu.unity", true);
             var Stage1Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage1.unity", true);
-            var Stage2Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage2.unity", true);
+            var Stage2Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage3.unity", true);
 
             EditorBuildSettings.scenes.Append(MainMenu).ToArray();
             EditorBuildSettings.scenes.Append(Stage1Test).ToArray();
