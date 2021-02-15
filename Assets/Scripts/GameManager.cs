@@ -11,8 +11,12 @@ public class GameManager : MonoBehaviour
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
 
+    // TODO: No cargar desde disco
     public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage2.unity"};
+
+    //FIXME: No se esta usando para nada, Cual era el proposito?
     bool sceneLoaded;
+    
     [SerializeField]
     public int nextSceneConfig = 0;
     private GameState actualGameState;
