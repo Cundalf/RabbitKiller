@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "FB Store/Product")]
 public class SO_Product : ScriptableObject
 {
-    public string ID;
+    public string id;
     public SO_Category.CategoriesShop category;
     public Sprite icon;
     public string title;
