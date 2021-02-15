@@ -6,7 +6,7 @@ public class LandToHide : MonoBehaviour
 {
     private string VALID_TYPE = "Enemy";
 
-    public void OnCollisionEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
         if (isAValidGameObject(other.gameObject))
         {
@@ -14,7 +14,7 @@ public class LandToHide : MonoBehaviour
         }
     }
 
-    public void OnCollisionExit(Collider other)
+    public void OnCollisionExit(Collision other)
     {
         if (isAValidGameObject(other.gameObject))
         {

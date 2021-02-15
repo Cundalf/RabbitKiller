@@ -90,15 +90,15 @@ public class MainMenuManager : MonoBehaviour
 
     }
 
-    //TODO: Hay que definir como sera el tutorial para desarrollarlo y cambiar esto.
     public void ShowTutorial()
     {
-        tutorialPanel.SetActive(true);
+        _animator.SetTrigger("ExitMenu");
+        _animator.SetTrigger("EnterTutorial");
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Stage1");
+        GameManager.SharedInstance.changeMap();
     }
 
     public void UpdateRabbitFeet(int cant)
