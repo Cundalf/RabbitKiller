@@ -50,7 +50,7 @@ public class CatalogController : MonoBehaviour
                 for (int j = 0; j < categories[i].products.Count; j++)
                 {
                     pfProduct = Instantiate(productPrefab, productsPanel.transform);
-                    pfProduct.GetComponent<Product>().LoadProduct(categories[i].products[i]);
+                    pfProduct.GetComponent<Product>().LoadProduct(categories[i].products[j]);
                 }
             }
         }
@@ -95,6 +95,7 @@ public class CatalogController : MonoBehaviour
     public void CloseProductDetail()
     {
         shopPanel.SetActive(true);
+        productDetailGO.GetComponent<ImProduct>().product = null;
         productDetailGO.SetActive(false);
         closeCatalogButtonGO.SetActive(true);
     }
@@ -105,6 +106,8 @@ public class CatalogController : MonoBehaviour
         shopPanel.SetActive(false);
         productDetailGO.SetActive(true);
 
+        productDetailGO.GetComponent<ImProduct>().product = product;
+
         Transform productContent = productDetailGO.transform.Find("ProductContentPanel");
         productContent.Find("txtProduct").GetComponent<Text>().text = product.title;
         productContent.Find("txtDescription").GetComponent<Text>().text = product.description;
@@ -114,6 +117,11 @@ public class CatalogController : MonoBehaviour
 
     public void BuyProduct()
     {
-        Debug.Log("Comprar!");
+        if (!productDetailGO.activeSelf) return;
+
+        SO_Product product = productDetailGO.GetComponent<ImProduct>().product;
+        if (!product) return;
+
+        
     }
 }

@@ -9,6 +9,7 @@ public class SO_Category : ScriptableObject
     {
         WEAPONS, SKINS, AMMUNITION
     }
+
     public CategoriesShop category;
     public string categoryName;
     public List<SO_Product> products;

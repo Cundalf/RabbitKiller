@@ -22,7 +22,10 @@ public class VirtualGoodsManager : MonoBehaviour
         }
     }
 
-    public List<SO_Product> VirtualGoodsPurchased;
+    private List<SO_Product> virtualGoodsPurchased;
+    private SO_Product activeCharacter;
+    private SO_Product activeMunition;
+    private SO_Product activeWeapon;
 
     private void Awake()
     {
@@ -58,5 +61,10 @@ public class VirtualGoodsManager : MonoBehaviour
         {
             GetComponent<MainMenuManager>().UpdateRabbitFeet(rabbitFeet);
         }
+    }
+
+    public void BuyProduct(SO_Product product)
+    {
+
     }
 }

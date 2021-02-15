@@ -19,11 +19,13 @@ public class MainMenuManager : MonoBehaviour
     public GameObject sfxOffButton;
 
     private Animator _animator;
+    private Animator mainMenuCameraAnimator;
 
     void Start()
     {
         //random = new System.Random(859633);
         _animator = GetComponent<Animator>();
+        mainMenuCameraAnimator = GameObject.Find("MainCamera").GetComponent<Animator>();
     }
 
     public void OpenConfig()
@@ -40,12 +42,23 @@ public class MainMenuManager : MonoBehaviour
     public void OpenStore()
     {
         _animator.SetTrigger("ExitMenu");
+        mainMenuCameraAnimator.SetTrigger("GoToStore");
+    }
+
+    public void ShowStoreUI()
+    {
         _animator.SetTrigger("EnterStore");
+    }
+
+    public void RestoreMainMenu()
+    {
+        _animator.SetTrigger("EnterMenu");
     }
 
     public void CloseStore()
     {
         _animator.SetTrigger("ExitStore");
+        mainMenuCameraAnimator.SetTrigger("ReturnFromStore");
     }
 
     public void OpenCredits()
