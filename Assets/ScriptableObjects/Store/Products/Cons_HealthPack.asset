@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8778337fcc55b0146b67b2e9a622593f, type: 3}
-  m_Name: Cons_Health
+  m_Name: Cons_HealthPack
   m_EditorClassIdentifier: 
-  id: 
-  category: 0
-  icon: {fileID: 0}
-  title: 
-  description: 
-  shortDescription: 
-  cost: 0
+  id: C01
+  category: 2
+  icon: {fileID: 21300000, guid: 51cbf6e0aefa3464ba1c716d3be413aa, type: 3}
+  title: Health Pack
+  description: Primeros Auxilios
+  shortDescription: No olvides de salir sin tu health pack
+  cost: 200
