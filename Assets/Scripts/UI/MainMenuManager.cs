@@ -86,8 +86,6 @@ public class MainMenuManager : MonoBehaviour
         musicOffButton.SetActive(AudioVolumeManager.SharedInstance.AudioMute);
         sfxOnButton.SetActive(!AudioVolumeManager.SharedInstance.SFXMute);
         sfxOffButton.SetActive(AudioVolumeManager.SharedInstance.SFXMute);
-        GameManager.SharedInstance.changeMap();
-
     }
 
     public void ShowTutorial()
