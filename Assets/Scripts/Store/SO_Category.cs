@@ -7,7 +7,7 @@ public class SO_Category : ScriptableObject
 {
     public enum CategoriesShop
     {
-        WEAPONS, SKINS, AMMUNITION
+        WEAPONS, SKINS, CONSUMABLE
     }
 
     public CategoriesShop category;
