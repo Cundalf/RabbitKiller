@@ -21,6 +21,13 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem BloodPS;
     public Vector3 bloodPSPoint;
 
+    public void Awake()
+    {
+        enemyRespawnController = FindObjectOfType<EnemyRespawnController>();
+        playerT = FindObjectOfType<PlayerController>().transform;
+        agent = GetComponent<NavMeshAgent>();
+    }
+
     public virtual void Start()
     {
         time = 0;

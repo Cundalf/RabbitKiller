@@ -284,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 1025336441682417537, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_Name
-      value: Arma1_Escopeta
+      value: Wepon2_ShootGun
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
@@ -294,37 +294,37 @@ PrefabInstance:
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.4
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.25
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.69
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7059339
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1.3872865e-10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7082777
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -1.4074221e-10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
@@ -334,13 +334,18 @@ PrefabInstance:
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -90.19
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4823093751911864453, guid: a77f89c50ac56e940a5855aff5fb8fe9,
+        type: 3}
+      propertyPath: weaponAnimator
+      value: 
+      objectReference: {fileID: 4921334212312758588}
     - target: {fileID: 4823093751911864453, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}
       propertyPath: shootController
@@ -351,6 +356,12 @@ PrefabInstance:
 --- !u!4 &1587354304690457145 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
+    type: 3}
+  m_PrefabInstance: {fileID: 764808614133753418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4921334212312758588 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5679375605091082102, guid: a77f89c50ac56e940a5855aff5fb8fe9,
     type: 3}
   m_PrefabInstance: {fileID: 764808614133753418}
   m_PrefabAsset: {fileID: 0}
@@ -376,13 +387,18 @@ PrefabInstance:
     - target: {fileID: 1801806149515414472, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_Name
-      value: Arma2_Ametralladora
+      value: Wepon1_MachineGun
       objectReference: {fileID: 0}
     - target: {fileID: 1801806149515414472, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5507284789990475693, guid: bfd3adc0d11c5bf439071da3930025ab,
+        type: 3}
+      propertyPath: weaponAnimator
+      value: 
+      objectReference: {fileID: 7066291507976726032}
     - target: {fileID: 5507284789990475693, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: shootController
@@ -396,17 +412,17 @@ PrefabInstance:
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.538
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.653
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.66499984
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
@@ -416,17 +432,17 @@ PrefabInstance:
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70710677
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
@@ -436,7 +452,7 @@ PrefabInstance:
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
         type: 3}
@@ -448,6 +464,12 @@ PrefabInstance:
 --- !u!4 &132512279637491295 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8067661293480520008, guid: bfd3adc0d11c5bf439071da3930025ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 7935571262820603671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7066291507976726032 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -8345079172469116665, guid: bfd3adc0d11c5bf439071da3930025ab,
     type: 3}
   m_PrefabInstance: {fileID: 7935571262820603671}
   m_PrefabAsset: {fileID: 0}

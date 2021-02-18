@@ -3176,7 +3176,6 @@ Transform:
   m_Children:
   - {fileID: 1195426900}
   - {fileID: 1543791291}
-  - {fileID: 1718860673}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4862,7 +4861,7 @@ GameObject:
   - component: {fileID: 981504958}
   m_Layer: 5
   m_Name: TutorialPanel
-  m_TagString: Untagged
+  m_TagString: TutPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6863,7 +6862,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenasConfig:
   - Assets/Scenes/Stage/Stage1.unity
-  - Assets/Scenes/Stage/Stage2.unity
+  - Assets/Scenes/Stage/Stage3.unity
   nextSceneConfig: 0
 --- !u!4 &1353989580
 Transform:
@@ -10777,7 +10776,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2086764493
 GameObject:

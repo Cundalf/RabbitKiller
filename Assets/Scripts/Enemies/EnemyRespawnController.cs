@@ -13,7 +13,6 @@ public class EnemyRespawnController : MonoBehaviour
     private float timeCounter = 0f;
     private float timeStop = 0f;
 
-    //Orde variable
     [SerializeField]
     private int ordeChangeMap;
     [SerializeField]

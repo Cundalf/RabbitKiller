@@ -15,8 +15,9 @@ namespace Tests
         private EnemyRespawnController eRespawnController;
         private MainMenuManager mainMenu;
 
-        private string[] MAPAS_TEST = new string[] {"Assets/Scenes/Stage/Stage1.unity","Assets/Scenes/Stage/Stage2.unity"};
+        private string[] MAPAS_TEST = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage2.unity" };
         private int CANTIDAD_DE_ORDAS_LIMITE = 10;
+        private GameObject tutorialPanel;
         private enum GameState
         {
             MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
@@ -31,7 +32,7 @@ namespace Tests
 
             var MainMenu = new EditorBuildSettingsScene("Assets/Scenes/MainMenu.unity", true);
             var Stage1Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage1.unity", true);
-            var Stage2Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage2.unity", true);
+            var Stage2Test = new EditorBuildSettingsScene("Assets/Scenes/Stage/Stage3.unity", true);
 
             EditorBuildSettings.scenes.Append(MainMenu).ToArray();
             EditorBuildSettings.scenes.Append(Stage1Test).ToArray();
@@ -45,7 +46,7 @@ namespace Tests
             EditorBuildSettings.scenes = buildSettingsScenesBackup;
         }
 
-        void loadSceneTest(string sceneName) 
+        void loadSceneTest(string sceneName)
         {
             sceneLoaded = false;
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
@@ -62,7 +63,7 @@ namespace Tests
         {
             loadSceneTest("Stage1");
             yield return new WaitWhile(() => sceneLoaded == false);
-            
+
             dadoQueTengoUnEnemyRespawnController();
             dadoQueTengoDosMapasConfiguradosEnElGameManager();
 
@@ -89,7 +90,7 @@ namespace Tests
             yield return null;
         }
 
-        [UnityTest] 
+        [UnityTest]
         public IEnumerator dadoQueSeMuestraElMenuCuandoSeClickeaElBotonStartSeCargaElPrimerMapa()
         {
             loadSceneTest("MainMenu");
@@ -99,18 +100,17 @@ namespace Tests
             dadoQueTengoDosMapasConfiguradosEnElGameManager();
 
             cuandoSeClikeaElBotonStart();
-
-            sceneLoaded = false;
             SceneManager.sceneLoaded += OnSceneLoaded;
             yield return new WaitWhile(() => sceneLoaded == false);
+
             seEsperaQueSeCargeElPrimerMapa();
-            
+            seEsperaQueElCanvanDesaparesaca();
             yield return null;
         }
 
         private void dadoQueSeMuestraElMenuPrincipal()
         {
-            mainMenu = GameObject.Find("Canvas").GetComponent<MainMenuManager>();
+            mainMenu = GameObject.Find("CanvasMainMenu").GetComponent<MainMenuManager>();
         }
 
         private void dadoQueTengoUnEnemyRespawnController()
@@ -139,6 +139,7 @@ namespace Tests
         private void cuandoSeClikeaElBotonStart()
         {
             mainMenu.StartGame();
+            
         }
 
         private void seEsperaQueElJuegoEsteEnPausa()
@@ -158,5 +159,12 @@ namespace Tests
             String message = String.Format("Se esperaba {0} y se obtuvo {1}", mapName, GameManager.SharedInstance.getActiveScene().name); 
             Assert.IsTrue(GameManager.SharedInstance.getActiveScene().name == mapName, message); 
         }
+        private void seEsperaQueElCanvanDesaparesaca()
+        {
+            GameObject canvas = GameObject.Find("CanvasMainMenu");
+            String message = String.Format("Se esperaba null y se obtuvo {0}", canvas);
+            Assert.IsTrue(canvas == null, message);
+        }
+
     }
 }

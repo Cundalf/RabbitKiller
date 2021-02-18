@@ -11,12 +11,16 @@ public class GameManager : MonoBehaviour
         MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
     }
 
+<<<<<<< HEAD
     // TODO: No cargar desde disco
     public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage2.unity"};
 
     //FIXME: No se esta usando para nada, Cual era el proposito?
     bool sceneLoaded;
     
+=======
+    public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage3.unity" };
+>>>>>>> mapa_trigal_2.0
     [SerializeField]
     public int nextSceneConfig = 0;
     private GameState actualGameState;
@@ -79,8 +83,9 @@ public class GameManager : MonoBehaviour
         if (this.nextSceneConfig < scenasConfig.Length) 
         {
             PauseGame();
-            sceneLoaded = false;
-            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig], LoadSceneMode.Single);
+            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig]);
+            nextSceneConfig++;
+            ResumeGame();
         }
     }
 

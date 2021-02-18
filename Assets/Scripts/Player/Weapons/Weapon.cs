@@ -18,7 +18,6 @@ public class Weapon : MonoBehaviour
     void Start()
     {
         this.ammoInCharger = this.chargerCapacity;
-        this.weaponAnimator = GetComponent<Animator>();
     }
 
     void Update() 
