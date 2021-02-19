@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
 
     public enum GameState
     {
-        MAIN_MENU, IN_GAME, PAUSE, GAME_OVER
+        MAIN_MENU, IN_GAME, PAUSE, GAME_OVER, STARTING_GAME
     }
 
-    // TODO: No cargar desde disco
-    public string[] scenasConfig = new string[] { "Assets/Scenes/Stage/Stage1.unity", "Assets/Scenes/Stage/Stage3.unity" };
+    //? No va el Stage2?
+    public string[] scenasConfig = new string[] { "Stage1", "Stage3" };
 
     //FIXME: No se esta usando para nada, Cual era el proposito?
     bool sceneLoaded;
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    public void ChangeGameManager(GameState newGameState)
+    public void ChangeGameState(GameState newGameState)
     {
         actualGameState = newGameState;
 
@@ -76,12 +76,11 @@ public class GameManager : MonoBehaviour
 
     public void changeMap() 
     {
-        if (this.nextSceneConfig < scenasConfig.Length) 
+        if (nextSceneConfig < scenasConfig.Length) 
         {
-            PauseGame();
-            SceneManager.LoadScene(this.scenasConfig[this.nextSceneConfig]);
+            SceneManager.LoadScene(scenasConfig[nextSceneConfig]);
             nextSceneConfig++;
-            ResumeGame();
+            ChangeGameState(GameState.STARTING_GAME);
         }
     }
 
@@ -104,12 +103,12 @@ public class GameManager : MonoBehaviour
 
     public void setMaps(string[] maps) 
     {
-        this.scenasConfig = maps;                   
+        scenasConfig = maps;                   
     }
 
     public void setCurrentMap(int numberCurrenMap)
     {
-        this.nextSceneConfig = numberCurrenMap;
+        nextSceneConfig = numberCurrenMap;
     }
 
     public string getNameCurrentScene() 

@@ -62,7 +62,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     public void ordeControl() 
     {
-        if (this.ordeChangeMap == this.currentOrdeNumber)
+        if (ordeChangeMap == currentOrdeNumber)
         {
             GameManager.SharedInstance.changeMap();
         }
@@ -167,7 +167,7 @@ public class EnemyRespawnController : MonoBehaviour
 
     public void setOrdeChangMap(int numberOrder)
     {
-        this.ordeChangeMap = numberOrder;
+        ordeChangeMap = numberOrder;
     }
 
     IEnumerator delayForNewOrde()

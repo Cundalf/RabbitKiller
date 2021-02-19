@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
     {
         txtPoints.text = points.ToString();
     }
+
     public void BulletsControl(int cantBullets)
     {
         if(cantBullets == 2)
@@ -57,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     public void updateOrdeInfo(int cantRabbitInOrde, int currentOrdeNumber) 
     {
-        currentHorde.text = "Orde:" + currentOrdeNumber.ToString();
+        currentHorde.text = "Horde:" + currentOrdeNumber.ToString();
         enemisCurrentHorde.text = "Rabbits:" + cantRabbitInOrde.ToString();
     }
 
@@ -118,6 +119,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        GameManager.SharedInstance.ChangeGameState(GameManager.GameState.MAIN_MENU);
         SceneManager.LoadScene("MainMenu");
     }
 

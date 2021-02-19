@@ -29,7 +29,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && canHit)
         {
-            other.gameObject.GetComponent<PlayerController>().Hit(this.damage);
+            other.gameObject.GetComponent<PlayerController>().Hit(damage);
             canHit = false;
 
             int randomSFX = Random.Range(0, 2);
