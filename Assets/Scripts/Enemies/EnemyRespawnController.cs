@@ -143,7 +143,7 @@ public class EnemyRespawnController : MonoBehaviour
             enemisInOrde = enemisInOrde + 10;
             SPAWNEARBOSS = false;
         }
-        enemisDead = 0;
+        enemisDead  = 0;
         enemisSpawn = 0;
         Debug.Log("Numero de orda actual: " + currentOrdeNumber);
         Debug.Log("Tiene que spwanear boss?: " + SPAWNEARBOSS);

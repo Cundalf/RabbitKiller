@@ -129,7 +129,7 @@ MonoBehaviour:
   enemyRespawnController: {fileID: 0}
   isMoving: 0
   playerT: {fileID: 0}
-  agent: {fileID: 0}
+  agent: {fileID: 8556469002311014858}
   _Anim: {fileID: 6479329743792109042}
   BloodPS: {fileID: 6659588706510264770, guid: adb77499e9e7e274fa1921d821e35996, type: 3}
   bloodPSPoint: {x: 0, y: 0, z: 0}

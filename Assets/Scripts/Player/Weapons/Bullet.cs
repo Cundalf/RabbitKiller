@@ -28,15 +28,18 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyController>().Die();
+            Destroy(gameObject);
 
         } else if (other.gameObject.CompareTag("BustMap")) 
         {
             other.gameObject.GetComponent<Bust>().appliBust();
+            Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Boss"))
         {
             other.gameObject.GetComponent<EasterBunny>().healtControl(danio);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 }

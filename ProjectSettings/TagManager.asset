@@ -12,6 +12,7 @@ TagManager:
   - BustMap
   - Boss
   - TutPanel
+  - LandToHide
   layers:
   - Default
   - TransparentFX
