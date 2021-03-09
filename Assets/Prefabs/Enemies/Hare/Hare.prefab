@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9125708298191914534}
   m_Layer: 0
   m_Name: Model 0
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3228361516643995047}
   - component: {fileID: -4115108233931697689}
   - component: {fileID: -6945607936976892694}
+  - component: {fileID: 8279566322515531691}
   m_Layer: 0
   m_Name: Hare
   m_TagString: Enemy
@@ -218,12 +219,25 @@ MonoBehaviour:
   timeInAir: 0.5
   healt: 1
   enemyRespawnController: {fileID: 0}
-  isMoving: 0
+  isMoving: 1
   playerT: {fileID: 0}
   agent: {fileID: 0}
   _Anim: {fileID: 3228361516643995047}
   BloodPS: {fileID: 6659588706510264770, guid: adb77499e9e7e274fa1921d821e35996, type: 3}
   bloodPSPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &8279566322515531691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859138422093252697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17378871dfe34fb45b011b3ef504eabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 4564656988218440892}
 --- !u!21 &-3505640843625650235
 Material:
   serializedVersion: 6
