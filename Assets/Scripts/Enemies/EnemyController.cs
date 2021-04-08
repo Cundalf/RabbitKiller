@@ -74,10 +74,10 @@ public class EnemyController : MonoBehaviour
 
     public virtual void Die()
     {
-        this.bloodPSPoint = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, gameObject.transform.position.z);
+        bloodPSPoint = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 3, gameObject.transform.position.z);
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
 
-        Instantiate(BloodPS, this.bloodPSPoint, gameObject.transform.rotation);
+        Instantiate(BloodPS, bloodPSPoint, gameObject.transform.rotation);
         enemyRespawnController.enemiDead();
         Destroy(gameObject);
     }
