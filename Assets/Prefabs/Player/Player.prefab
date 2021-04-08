@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 4327128506882521636}
   m_Layer: 0
   m_Name: ShootController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7845969814692433492}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 1.143, z: 2.09}
+  m_LocalPosition: {x: -0.05, y: 1, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8386536072831251964}
@@ -285,6 +285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wepon2_ShootGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025336441682417537, guid: a77f89c50ac56e940a5855aff5fb8fe9,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2061046870965939315, guid: a77f89c50ac56e940a5855aff5fb8fe9,
         type: 3}

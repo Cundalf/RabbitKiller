@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeReload: 3
   chargerCapacity: 10
-  rateOfFire: 10
+  rateOfFire: 0.1
   bullet: {fileID: 6716099069029428393, guid: 6dc362b812c057c4080b264a3b432b6f, type: 3}
   shootController: {fileID: 0}
   weaponAnimator: {fileID: 0}

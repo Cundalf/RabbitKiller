@@ -32,11 +32,11 @@ public  class Bust : MonoBehaviour
         }
     }
 
-    public virtual void appliBust() 
+    public virtual void applyBust() 
     {
         if (typeOfBust!="" && typeOfBust != null)
         {
-            bustController.appliBust(typeOfBust);
+            bustController.applyBust(typeOfBust);
             _Anim.SetBool("Activate",true);
         }
         else { return; }

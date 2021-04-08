@@ -25,6 +25,10 @@ public class Bullet : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        // Se ignora totalmente al player
+        if (other.gameObject.CompareTag("Player")) return;
+
+        // Control de daño
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.gameObject.GetComponent<EnemyController>().Die();
@@ -32,7 +36,7 @@ public class Bullet : MonoBehaviour
 
         } else if (other.gameObject.CompareTag("BustMap")) 
         {
-            other.gameObject.GetComponent<Bust>().appliBust();
+            other.gameObject.GetComponent<Bust>().applyBust();
             Destroy(gameObject);
         }
         else if (other.gameObject.CompareTag("Boss"))

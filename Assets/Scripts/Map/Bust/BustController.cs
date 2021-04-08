@@ -9,7 +9,7 @@ public class BustController : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
     }
 
-    public void appliBust(string bust)
+    public void applyBust(string bust)
     {
         switch (bust)
         {

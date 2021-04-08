@@ -6,57 +6,62 @@ public class Weapon : MonoBehaviour
 {
     public float timeReload;
     public int chargerCapacity;
-    public int rateOfFire;
+    public float rateOfFire;
     public GameObject bullet;
     public ShootController shootController;
     public Animator weaponAnimator;
     public string nombre { get; set; }
-    
-    private float time;
     public int ammoInCharger { get; set; }
+
+    private float reloadTime;
+    private float rateOfFireTime;
 
     void Start()
     {
-        this.ammoInCharger = this.chargerCapacity;
+        ammoInCharger = chargerCapacity;
+        rateOfFireTime = 0;
     }
 
     void Update() 
     {
-        if (this.ammoInCharger == 0)
+        if (ammoInCharger == 0)
         {
             reload();
+        }
+        else
+        {
+            if (rateOfFireTime > 0)
+            {
+                rateOfFireTime -= Time.deltaTime;
+            }
         }
     }
 
     public void reload() 
     {
-        this.time += Time.deltaTime;
-        if (this.time >= this.timeReload)
+        reloadTime += Time.deltaTime;
+        if (reloadTime >= timeReload)
         {
-            this.ammoInCharger = this.chargerCapacity;
-            this.time = 0;
+            ammoInCharger = chargerCapacity;
+            reloadTime = 0;
+            rateOfFireTime = 0;
             SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
-            rateOfFire = 0;
         }
     }
 
     public void shoot() 
     {
-        if (this.ammoInCharger != 0)
+        if (ammoInCharger != 0)
         {
-            this.weaponAnimator.SetTrigger("Shooting");
-            if (rateOfFire == 0)
+            weaponAnimator.SetTrigger("Shooting");
+
+            if (rateOfFireTime <= 0)
             {
-                shootController.Shoot(this.bullet);
-                ammoInCharger--;
+                shootController.Shoot(bullet);
                 SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
-                rateOfFire = 10;
+                ammoInCharger--;
+                rateOfFireTime = rateOfFire;
             }
-            else 
-            {
-                this.rateOfFire--;
-            }
-            this.weaponAnimator.SetTrigger("Shooting");
         }
     }
 

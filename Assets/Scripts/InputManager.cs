@@ -16,6 +16,7 @@ public class InputManager : MonoBehaviour
                 player.GetComponent<WeaponController>().shoot();
                 return;
             }
+
             // Ataque secundario del personaje (default: right mouse)
             if (Input.GetButtonUp("Fire2"))
             {
