@@ -90,7 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5358775142601534118}
   m_Layer: 0
-  m_Name: Wepon
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InGameCursor: {fileID: 2800000, guid: dcc8bcabdce4722439038fc29107481b, type: 3}
   uiManager: {fileID: 0}
+  validTag: []
 --- !u!114 &8075916259579534970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,9 +272,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ea229661032624eadf4abbdc45b565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponInInventori: []
   currentWeapon: {fileID: 5220295766211641039}
   innerWeapon: {fileID: 2471665110489436346}
+  weaponInInventory:
+  - {fileID: 5220295766211641039}
+  - {fileID: 2471665110489436346}
+  shootController: {fileID: 4327128506882521636}
 --- !u!1001 &764808614133753418
 PrefabInstance:
   m_ObjectHideFlags: 0

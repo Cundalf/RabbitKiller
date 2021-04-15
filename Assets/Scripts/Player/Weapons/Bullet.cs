@@ -2,15 +2,17 @@
 
 [RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
-{
-    public float velocity;
+{   
     Rigidbody _rb;
+
+    [SerializeField]
+    private float velocity;
+    [SerializeField]
     private int danio;
 
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        this.danio = 1;
     }
 
     void Update()

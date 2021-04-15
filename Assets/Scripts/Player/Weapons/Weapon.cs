@@ -4,74 +4,115 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float timeReload;
-    public int chargerCapacity;
-    public float rateOfFire;
-    public GameObject bullet;
-    public ShootController shootController;
-    public Animator weaponAnimator;
-    public string nombre { get; set; }
-    public int ammoInCharger { get; set; }
+    [SerializeField]
+    private float rateOfFire;
+    [SerializeField]
+    private int chargerCapacity;
+    [SerializeField]
+    private float timeReload;
+    [SerializeField]
+    private string weaponName;
+    [SerializeField]
+    private GameObject bullet;
 
+    private Animator _animator;
     private float reloadTime;
     private float rateOfFireTime;
+    private int ammoInCharger;
+    private int ammoBonus;
+    
+    public GameObject WeaponBullet
+    {
+        get
+        {
+            return bullet;
+        }
+    }
+
+    public int AmmoBonus
+    {
+        get
+        {
+            return ammoBonus;
+        }
+        set
+        {
+            if (value < 0)
+            {
+                ammoBonus = 0;
+            }
+            else
+            {
+                ammoBonus = value;
+            }
+        }
+    }
+
+    public string WeaponName
+    {
+        get
+        {
+            return weaponName;
+        }
+    }
 
     void Start()
     {
         ammoInCharger = chargerCapacity;
         rateOfFireTime = 0;
+        ammoBonus = 0;
+        _animator = GetComponent<Animator>();
     }
 
     void Update() 
     {
-        if (ammoInCharger == 0)
+        if (ammoInCharger == 0 && ammoBonus == 0)
         {
-            reload();
+            //* Recarga automatica temporal
+            if(Reload())
+                SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
         }
         else
         {
-            if (rateOfFireTime > 0)
+            if (rateOfFireTime > 0f)
             {
                 rateOfFireTime -= Time.deltaTime;
             }
         }
     }
 
-    public void reload() 
+    public bool Reload() 
     {
         reloadTime += Time.deltaTime;
         if (reloadTime >= timeReload)
         {
             ammoInCharger = chargerCapacity;
-            reloadTime = 0;
-            rateOfFireTime = 0;
-            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
+            reloadTime = 0f;
+            rateOfFireTime = 0f;
+            return true;
         }
+
+        return false;
     }
 
-    public void shoot() 
+    public bool Shoot() 
     {
-        if (ammoInCharger != 0)
+        if (ammoInCharger != 0 && rateOfFireTime <= 0)
         {
-            weaponAnimator.SetTrigger("Shooting");
-
-            if (rateOfFireTime <= 0)
+            if (ammoBonus > 0)
             {
-                shootController.Shoot(bullet);
-                SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
-                ammoInCharger--;
-                rateOfFireTime = rateOfFire;
+                ammoBonus--;
             }
+            else
+            {
+                ammoInCharger--;
+            }
+
+            _animator.SetTrigger("Shooting");
+            rateOfFireTime = rateOfFire;
+            return true;
         }
-    }
 
-    public void makeVisible() 
-    {
-        gameObject.SetActive(true);
-    }
-
-    public void makeInvisible() 
-    {
-        gameObject.SetActive(false);
+        return false;
     }
 }

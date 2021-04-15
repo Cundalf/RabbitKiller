@@ -9,6 +9,7 @@ public class BustController : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
     }
 
+    //? Podemos cambiarlo a un Enum? - Cunda
     public void applyBust(string bust)
     {
         switch (bust)
@@ -33,6 +34,6 @@ public class BustController : MonoBehaviour
 
     private void purpleBushBust()
     {
-        playerController.GetComponent<WeaponController>().currentWeapon.ammoInCharger = 10;
+        playerController.GetComponent<WeaponController>().CurrentWeapon.AmmoBonus = 10;
     }
 }
