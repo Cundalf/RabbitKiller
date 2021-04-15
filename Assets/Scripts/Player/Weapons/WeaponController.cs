@@ -3,32 +3,44 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public List<Weapon> weaponInInventori;
     public Weapon currentWeapon;
     public Weapon innerWeapon;
 
+    [SerializeField]
+    private List<Weapon> weaponInInventory;
+    [SerializeField]
+    private ShootController shootController;
+
+    public Weapon CurrentWeapon
+    {
+        get 
+        {
+            return currentWeapon;
+        }
+    }
+
     public void changeWepon(string weaponName)
     {
-        foreach (Weapon weapon in weaponInInventori)
+        foreach (Weapon weapon in weaponInInventory)
         {
-            if (weapon.nombre == weaponName)
+            if (weapon.WeaponName == weaponName)
             {
-                currentWeapon.makeInvisible();
+                currentWeapon.gameObject.SetActive(false);
                 innerWeapon = currentWeapon;
                 currentWeapon = weapon;
-                currentWeapon.makeVisible();
+                currentWeapon.gameObject.SetActive(true);
             }
         }
     }
 
     public void purpleBushBust() 
     {
-        currentWeapon.ammoInCharger = 10;
+        currentWeapon.AmmoBonus = 10;
     }
 
     public void addWepon(Weapon weaponToAdd) 
     {
-        weaponInInventori.Add(weaponToAdd);
+        weaponInInventory.Add(weaponToAdd);
     }
 
     public void quickChangeOfWeapon()
@@ -36,21 +48,29 @@ public class WeaponController : MonoBehaviour
         if (innerWeapon != null)
         {
             Weapon current = currentWeapon;
-            currentWeapon.makeInvisible();
+            currentWeapon.gameObject.SetActive(false);
             currentWeapon = innerWeapon;
-            currentWeapon.makeVisible();
+            currentWeapon.gameObject.SetActive(true);
             innerWeapon = current;
         }
     }
 
     public void shoot() 
     {
-        currentWeapon.shoot();
+        bool shootStatus = currentWeapon.Shoot();
+        if (shootStatus)
+        {
+            shootController.MakeShoot(currentWeapon.WeaponBullet);
+            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
+        }
     }
 
     public void reload() 
     {
-        currentWeapon.reload();
+        bool reloadStatus = currentWeapon.Reload();
+
+        if(reloadStatus)
+            SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);
     }
 
 }
