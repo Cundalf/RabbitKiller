@@ -26,14 +26,11 @@ public class BustController : MonoBehaviour
 
     private void redBushBust()
     {
-        if (playerController.health < 4)
-        {
-            playerController.health++;
-        }
+        playerController.heal();
     }
 
     private void purpleBushBust()
     {
-        playerController.GetComponent<WeaponController>().CurrentWeapon.AmmoBonus = 10;
+        playerController.GetComponent<WeaponController>().currentWeapon.AmmoBonus = 10;
     }
 }

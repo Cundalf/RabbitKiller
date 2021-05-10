@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public  class Bust : MonoBehaviour
 {
     [SerializeField]
@@ -9,12 +10,12 @@ public  class Bust : MonoBehaviour
     private float time;
     [SerializeField]
     private BustController bustController;
-    [SerializeField]
-    private Animator _Anim;
+    private Animator _anim;
 
     public string typeOfBust;
     void Start()
     {
+        _anim = GetComponent<Animator>();
         bustController = (BustController)FindObjectOfType(typeof(BustController));
     }
     void Update()
@@ -37,7 +38,7 @@ public  class Bust : MonoBehaviour
         if (typeOfBust!="" && typeOfBust != null)
         {
             bustController.applyBust(typeOfBust);
-            _Anim.SetBool("Activate",true);
+            _anim.SetBool("Activate",true);
         }
         else { return; }
         
@@ -45,7 +46,7 @@ public  class Bust : MonoBehaviour
 
     public virtual void reloadBust() 
     {
-        _Anim.SetBool("Activate", false);
+        _anim.SetBool("Activate", false);
         healtbust = 2;
         time = 0;
     }

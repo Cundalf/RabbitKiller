@@ -3,19 +3,39 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public Weapon currentWeapon;
-    public Weapon innerWeapon;
+    [Tooltip("Indice de la arma activa que se encuentra en weaponInInventory")]
+    [SerializeField]
+    private int initialWeapon;
+    [Tooltip("Indice de la arma secundaria que se encuentra en weaponInInventory")]
+    [SerializeField]
+    private int initialLastWeapon;
+
+    private Weapon _currentWeapon;
+    private Weapon _lastWeapon;
 
     [SerializeField]
     private List<Weapon> weaponInInventory;
     [SerializeField]
     private ShootController shootController;
 
-    public Weapon CurrentWeapon
+    public Weapon currentWeapon
     {
         get 
         {
-            return currentWeapon;
+            return _currentWeapon;
+        }
+    }
+
+    private void Start()
+    {
+        if (weaponInInventory.Count == 0)
+        {
+            Debug.LogWarning("El player no tiene ningun arma en el inventario");
+        }
+        else
+        {
+            _currentWeapon = weaponInInventory[initialWeapon];
+            _lastWeapon = weaponInInventory[initialLastWeapon];
         }
     }
 
@@ -25,17 +45,17 @@ public class WeaponController : MonoBehaviour
         {
             if (weapon.WeaponName == weaponName)
             {
-                currentWeapon.gameObject.SetActive(false);
-                innerWeapon = currentWeapon;
-                currentWeapon = weapon;
-                currentWeapon.gameObject.SetActive(true);
+                _currentWeapon.gameObject.SetActive(false);
+                _lastWeapon = _currentWeapon;
+                _currentWeapon = weapon;
+                _currentWeapon.gameObject.SetActive(true);
             }
         }
     }
 
     public void purpleBushBust() 
     {
-        currentWeapon.AmmoBonus = 10;
+        _currentWeapon.AmmoBonus = 10;
     }
 
     public void addWepon(Weapon weaponToAdd) 
@@ -45,29 +65,29 @@ public class WeaponController : MonoBehaviour
 
     public void quickChangeOfWeapon()
     {
-        if (innerWeapon != null)
+        if (_lastWeapon != null)
         {
-            Weapon current = currentWeapon;
-            currentWeapon.gameObject.SetActive(false);
-            currentWeapon = innerWeapon;
-            currentWeapon.gameObject.SetActive(true);
-            innerWeapon = current;
+            Weapon current = _currentWeapon;
+            _currentWeapon.gameObject.SetActive(false);
+            _currentWeapon = _lastWeapon;
+            _currentWeapon.gameObject.SetActive(true);
+            _lastWeapon = current;
         }
     }
 
     public void shoot() 
     {
-        bool shootStatus = currentWeapon.Shoot();
+        bool shootStatus = _currentWeapon.Shoot();
         if (shootStatus)
         {
-            shootController.MakeShoot(currentWeapon.WeaponBullet);
+            shootController.MakeShoot(_currentWeapon.WeaponBullet);
             SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.FIRE);
         }
     }
 
     public void reload() 
     {
-        bool reloadStatus = currentWeapon.Reload();
+        bool reloadStatus = _currentWeapon.Reload();
 
         if(reloadStatus)
             SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RELOAD);

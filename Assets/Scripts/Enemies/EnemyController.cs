@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
 
     private void moveControl()
     {
-        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.sharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
         time += Time.deltaTime;
 
@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_DEATH);
 
         Instantiate(BloodPS, bloodPSPoint, gameObject.transform.rotation);
-        enemyRespawnController.enemiDead();
+        enemyRespawnController.enemyDead();
         Destroy(gameObject);
     }
 

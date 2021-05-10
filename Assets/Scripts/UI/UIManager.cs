@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.sharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
 
         timeControl += Time.fixedDeltaTime;
 
@@ -87,7 +87,7 @@ public class UIManager : MonoBehaviour
 
         txtTimeGO.text = GetHora();
         txtPointsGO.text = points.ToString();
-        txtRabbitFeet.GetComponent<TextAnimator>().SetIncrement(GameManager.SharedInstance.GetCantRabbitFeet(points));
+        txtRabbitFeet.GetComponent<TextAnimator>().SetIncrement(GameManager.sharedInstance.GetCantRabbitFeet(points));
         SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.LOSE);
     }
 
@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
-        GameManager.SharedInstance.ChangeGameState(GameManager.GameState.MAIN_MENU);
+        GameManager.sharedInstance.changeGameState(GameManager.GameState.MAIN_MENU);
         SceneManager.LoadScene("MainMenu");
     }
 

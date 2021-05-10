@@ -4,32 +4,39 @@ using UnityEngine;
 
 public class EnemyRespawnController : MonoBehaviour
 {
+    //? Separamos la logica en StageController - EnemyRespawnController?
+
     public List<GameObject> EnemyPrefab;
     public GameObject EnemyBossPrefab;
-    public float minStopTime;
-    public float maxStopTime;
 
+    //TODO: Automatizar
     [SerializeField]
-    private float timeCounter = 0f;
-    private float timeStop = 0f;
+    private int initialRabbitCount;
+    [SerializeField]
+    private float minStopTime;
+    [SerializeField]
+    private float maxStopTime;
+    [SerializeField]
+    [Tooltip("En que horda cambia de mapa")]
+    private int hordeChangeMap = 0;
+    [SerializeField]
+    private float newHordeDelay = 1.0f;
+    [SerializeField]
+    private bool stageWithBoss = false;
+    [SerializeField]
+    [Tooltip("Si stageWithBoss es verdadero, indicar en que ronda inicia el boss")]
+    private int hordeNumberBoss = 0;
+    [SerializeField]
+    private int cantRabbitsForHorde = 10;
 
-    [SerializeField]
-    private int ordeChangeMap;
-    [SerializeField]
-    private int enemisInOrde;
-    [SerializeField]
-    private int enemisSpawn;
-    [SerializeField]
-    private int enemisDead;
-    [SerializeField]
-    private int currentOrdeNumber;
-    [SerializeField]
-    private int DELAYNEWORDE = 1;
-    [SerializeField]
-    private int ordeNumberBoss;
-    [SerializeField]
-    private bool SPAWNEARBOSS = false;
-    private bool BOSSSTILLALIVE = false;
+    private float timeStop = 0.0f;
+    private int enemiesInHorde;
+    private int currentHordeNumber;
+    private bool spawnBoss = false;
+    private float timeCounter = 0.0f;
+    private int enemiesDead = 0;
+    private int enemiesSpawn = 0;
+    private bool bossStillAlive = false;
 
     private UIManager currentUI;
     private List<GameObject> respawnPoints;
@@ -41,72 +48,67 @@ public class EnemyRespawnController : MonoBehaviour
         respawnPoints = new List<GameObject>();
         currentUI = FindObjectOfType<UIManager>();
 
-
         foreach (Transform t in transform)
         {
            respawnPoints.Add(t.gameObject);
         }
+
+        enemiesInHorde = initialRabbitCount;
     }
 
     void Update()
     {
-        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.sharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
         timeCounter += Time.deltaTime;
 
-        if (timeCounter < timeStop) return;
+        if (timeCounter < timeStop) 
+            return;
 
         timeCounter = 0;
         timeStop = Random.Range(minStopTime, maxStopTime);
-        ordeControl();
+        hordeControl();
     }
 
-    public void ordeControl() 
+    public void hordeControl() 
     {
-        if (ordeChangeMap == currentOrdeNumber)
+        if (enemiesInHorde <= enemiesDead && !bossStillAlive)
         {
-            GameManager.SharedInstance.changeMap();
+            Invoke("newHorde", newHordeDelay);
         }
         else
         {
-            if (enemisInOrde <= enemisDead && !BOSSSTILLALIVE)
+            if (enemiesSpawn < enemiesInHorde)
             {
-                newOrde();
-            }
-            else
-            {
-                if (enemisSpawn < enemisInOrde)
+                if (spawnBoss)
                 {
-                    if (SPAWNEARBOSS)
-                    {
-                        spawnEnemiBoss();
-                    }
-                    else
-                    {
-                        spawnEnemis();
-                    }
+                    spawnEnemyBoss();
+                }
+                else
+                {
+                    spawnEnemies();
                 }
             }
         }
     }
 
-    void spawnEnemis() 
+    void spawnEnemies() 
     {
         GameObject respawnPointGO;
         int iRespawnPoint = Random.Range(0, respawnPoints.Count);
         int iRespawnPoint2 = Random.Range(0, respawnPoints.Count);
         respawnPointGO = respawnPoints[iRespawnPoint];
 
-        InstantiateEnemis(respawnPointGO.transform,EnemyPrefab);
+        InstantiateEnemies(respawnPointGO.transform,EnemyPrefab);
 
-        if (iRespawnPoint != iRespawnPoint2 && enemisSpawn <= enemisInOrde-1)
+        if (iRespawnPoint != iRespawnPoint2 && enemiesSpawn <= enemiesInHorde-1)
         {
             respawnPointGO = respawnPoints[iRespawnPoint2];
 
-            InstantiateEnemis(respawnPointGO.transform, EnemyPrefab);
+            InstantiateEnemies(respawnPointGO.transform, EnemyPrefab);
         }
         
     }
-    void spawnEnemiBoss() 
+    void spawnEnemyBoss() 
     {
         Debug.Log("Instanciando boss");
   
@@ -115,64 +117,67 @@ public class EnemyRespawnController : MonoBehaviour
         int randomSFX = Random.Range(0, 2);
         if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
         if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
-        enemisSpawn++;
-        BOSSSTILLALIVE = true;
+        enemiesSpawn++;
+        bossStillAlive = true;
 
     }
-    void InstantiateEnemis(Transform respawnTransform, List<GameObject> EnemyPrefab)
+
+    void InstantiateEnemies(Transform respawnTransform, List<GameObject> EnemyPrefab)
     {
         Instantiate(EnemyPrefab[Random.Range(0, 3)], respawnTransform.position, respawnTransform.rotation);
 
         int randomSFX = Random.Range(0, 2);
         if (randomSFX == 0) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN);
         if (randomSFX == 1) SFXManager.SharedInstance.PlaySFX(SFXType.SoundType.RABBIT_RESPAWN_ALT);
-        enemisSpawn++;
+        enemiesSpawn++;
     }
-    void newOrde()
-    {
-        Debug.Log("Nueva orda");
-        StartCoroutine(delayForNewOrde());
-        currentOrdeNumber++;
-        if (currentOrdeNumber == ordeNumberBoss)
+
+    void newHorde()
+    {   
+        currentHordeNumber++;
+        if (hordeChangeMap == currentHordeNumber)
         {
-            enemisInOrde = 1;
-            SPAWNEARBOSS = true;
+            GameManager.sharedInstance.changeMap();
+            return;
+        }
+
+        Debug.Log("Nueva horda");
+
+        if (currentHordeNumber == hordeNumberBoss && stageWithBoss)
+        {
+            enemiesInHorde = 1;
+            spawnBoss = true;
         }
         else 
         {
-            enemisInOrde = enemisInOrde + 10;
-            SPAWNEARBOSS = false;
+            enemiesInHorde = enemiesInHorde + cantRabbitsForHorde;
+            spawnBoss = false;
         }
-        enemisDead  = 0;
-        enemisSpawn = 0;
-        Debug.Log("Numero de orda actual: " + currentOrdeNumber);
-        Debug.Log("Tiene que spwanear boss?: " + SPAWNEARBOSS);
+        
+        enemiesDead  = 0;
+        enemiesSpawn = 0;
+        Debug.Log("Numero de horda actual: " + currentHordeNumber);
+        Debug.Log("Horda de boss?: " + (spawnBoss ? "SI" : "NO"));
     }
 
-    public void setCurrentOrde(int numberOrde) 
+    public void setCurrentHorde(int numberOrde) 
     {
-        currentOrdeNumber = numberOrde;
+        currentHordeNumber = numberOrde;
     }
 
-    public void enemiDead() 
+    public void enemyDead() 
     {
-        enemisDead++;
+        enemiesDead++;
         currentUI.PointsControl();
     }
 
-    public void setBossStillAlive(bool value)
+    public void bossDead()
     {
-        BOSSSTILLALIVE = value;
+        bossStillAlive = false;
     }
 
     public void setOrdeChangMap(int numberOrder)
     {
-        ordeChangeMap = numberOrder;
+        hordeChangeMap = numberOrder;
     }
-
-    IEnumerator delayForNewOrde()
-    {
-        yield return new WaitForSeconds(DELAYNEWORDE);
-    }
-
 }

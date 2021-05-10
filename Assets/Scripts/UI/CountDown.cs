@@ -12,6 +12,6 @@ public class CountDown : MonoBehaviour
     public void Finish()
     {
         Destroy(gameObject);
-        GameManager.SharedInstance.ChangeGameState(GameManager.GameState.IN_GAME);
+        GameManager.sharedInstance.changeGameState(GameManager.GameState.IN_GAME);
     }
 }

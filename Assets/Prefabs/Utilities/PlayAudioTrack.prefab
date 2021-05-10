@@ -46,4 +46,4 @@ MonoBehaviour:
   newTrackID: 0
   noRepeat: 0
   playOnStart: 1
-  destroyAfterStart: 1
+  destroyAfterStart: 0

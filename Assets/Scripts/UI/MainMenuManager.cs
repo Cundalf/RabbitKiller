@@ -96,7 +96,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        GameManager.SharedInstance.changeMap();
+        GameManager.sharedInstance.changeMap();
     }
 
     public void UpdateRabbitFeet(int cant)

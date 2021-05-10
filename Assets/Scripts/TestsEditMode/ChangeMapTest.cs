@@ -43,8 +43,8 @@ namespace Tests
         private void cuandoElNumeroDeOrdasLlegaA10()
         {
             gManager.When(x => x.changeMap()).DoNotCallBase();
-            eRespawnController.setCurrentOrde(CANTIDAD_DE_ORDAS_LIMITE);
-            eRespawnController.ordeControl();
+            eRespawnController.setCurrentHorde(CANTIDAD_DE_ORDAS_LIMITE);
+            eRespawnController.hordeControl();
         }
 
         private void seEsperaQueSeCambieDeNivel()

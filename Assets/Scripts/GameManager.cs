@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,19 +7,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    // Control de estados del juego.
     public enum GameState
     {
-        MAIN_MENU, IN_GAME, PAUSE, GAME_OVER, STARTING_GAME
+        MAIN_MENU,
+        IN_GAME,
+        PAUSE,
+        GAME_OVER,
+        STARTING_GAME
     }
 
-    //? No va el Stage2?
-    public string[] scenasConfig = new string[] { "Stage1", "Stage3" };
-
-    //FIXME: No se esta usando para nada, Cual era el proposito?
-    bool sceneLoaded;
-   
-    [SerializeField]
-    public int nextSceneConfig = 0;
     private GameState actualGameState;
     public GameState ActualGameState 
     { 
@@ -28,30 +26,74 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Singleton
-    private static GameManager sharedInstance = null;
+    // Para controlar los modos de juego
+    public enum GameMode
+    {
+        CAMPAIGN,
+        HORDE,
+        CLASSIC
+    }
 
-    public static GameManager SharedInstance
+    // Para controlar las escenas de una manera practica.
+    public enum GameScenes
+    {
+        MAIN_MENU = 0,
+        STAGE1 = 1,
+        STAGE2 = 2,
+        STAGE3 = 3,
+    }
+
+    // Rotaciones de mapa
+    // Para controlar por que mapa va la rotacion
+    private int currentSceneInRotation = 0;
+    [SerializeField]
+    private List<MapRotationSO> mapRotations;
+    [SerializeField]
+    private int currentMapRotationIdx;
+    private MapRotationSO currentMapRotation;
+
+    // Player actual
+    public GameObject actualPlayer;
+
+    // Cursor in game
+    public Texture2D InGameCursor;
+
+    // Singleton
+    private static GameManager _sharedInstance = null;
+
+    public static GameManager sharedInstance
     {
         get
         {
-            return sharedInstance;
+            return _sharedInstance;
         }
     }
     
     private void Awake()
     {
-        if (sharedInstance != null && sharedInstance != this)
+        if (_sharedInstance != null && _sharedInstance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        sharedInstance = this;
+        _sharedInstance = this;
         DontDestroyOnLoad(this);
     }
 
-    public void ChangeGameState(GameState newGameState)
+    private void Start()
+    {
+        if (mapRotations.Count == 0)
+        {
+            Debug.LogWarning("No se cargo ninguna rotacion de mapa");
+        }
+        else
+        {
+            currentMapRotation = mapRotations[currentMapRotationIdx];
+        }
+    }
+
+    public void changeGameState(GameState newGameState)
     {
         actualGameState = newGameState;
 
@@ -60,9 +102,16 @@ public class GameManager : MonoBehaviour
             case GameState.MAIN_MENU:
                 VirtualGoodsManager.SharedInstance.UpdateUI();
                 break;
+            case GameState.IN_GAME:
+                Cursor.SetCursor(InGameCursor, Vector2.zero, CursorMode.Auto);
+                break;
+            case GameState.GAME_OVER:
+                Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                break;
         }
     }
 
+    //TODO: Pasar a Virtual Goods.
     public int GetCantRabbitFeet(int rabbitDead)
     {
         int cant = 0;
@@ -76,39 +125,37 @@ public class GameManager : MonoBehaviour
 
     public void changeMap() 
     {
-        if (nextSceneConfig < scenasConfig.Length) 
+        if (currentSceneInRotation <= mapRotations.Count)
         {
-            SceneManager.LoadScene(scenasConfig[nextSceneConfig]);
-            nextSceneConfig++;
-            ChangeGameState(GameState.STARTING_GAME);
+            currentSceneInRotation++;
+            SceneManager.LoadScene((int) currentMapRotation.scenes[currentSceneInRotation]);
+            changeGameState(GameState.STARTING_GAME);
         }
     }
 
-    public void PauseGame()
+
+
+    public void pauseGame()
     {
         actualGameState = GameState.PAUSE;
         Time.timeScale = 0;
     }
 
-    public void ResumeGame()
+    public void resumeGame()
     {
         actualGameState = GameState.IN_GAME;
         Time.timeScale = 1;
     }
 
-    public void ExitGame()
+    public void exitGame()
     {
         Application.Quit();
     }
 
-    public void setMaps(string[] maps) 
-    {
-        scenasConfig = maps;                   
-    }
-
+    //? estos test van a necesitar rework?
     public void setCurrentMap(int numberCurrenMap)
     {
-        nextSceneConfig = numberCurrenMap;
+        currentSceneInRotation = numberCurrenMap;
     }
 
     public string getNameCurrentScene() 

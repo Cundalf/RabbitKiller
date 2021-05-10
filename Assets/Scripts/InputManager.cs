@@ -4,16 +4,37 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public GameObject player;
+    // Singleton
+    private static InputManager _sharedInstance = null;
+
+    public static InputManager sharedInstance
+    {
+        get
+        {
+            return _sharedInstance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (_sharedInstance != null && _sharedInstance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        _sharedInstance = this;
+        DontDestroyOnLoad(this);
+    }
 
     private void Update()
     {
-        if (GameManager.SharedInstance.ActualGameState == GameManager.GameState.IN_GAME)
+        if (GameManager.sharedInstance.ActualGameState == GameManager.GameState.IN_GAME)
         {
             // Ataque del personaje (default: left mouse)
             if (Input.GetButton("Fire1")) 
             {
-                player.GetComponent<WeaponController>().shoot();
+                GameManager.sharedInstance.actualPlayer.GetComponent<WeaponController>().shoot();
                 return;
             }
 
@@ -26,14 +47,14 @@ public class InputManager : MonoBehaviour
             // Boton de cambiar arma (default: q)
             if (Input.GetButtonUp("ChangeWeapon"))
             {
-                player.GetComponent<WeaponController>().quickChangeOfWeapon();
+                GameManager.sharedInstance.actualPlayer.GetComponent<WeaponController>().quickChangeOfWeapon();
                 return;
             }
 
             // Boton de recarga (default: r)
             if (Input.GetButtonUp("Reload"))
             {
-                player.GetComponent<WeaponController>().reload();
+                GameManager.sharedInstance.actualPlayer.GetComponent<WeaponController>().reload();
                 return;
             }
 
@@ -42,13 +63,13 @@ public class InputManager : MonoBehaviour
         // Menu (default: Escape)
         if (Input.GetButtonUp("Cancel"))
         {
-            switch(GameManager.SharedInstance.ActualGameState)
+            switch(GameManager.sharedInstance.ActualGameState)
             {
                 case GameManager.GameState.IN_GAME:
-                    GameManager.SharedInstance.PauseGame();
+                    GameManager.sharedInstance.pauseGame();
                     break;
                 case GameManager.GameState.PAUSE:
-                    GameManager.SharedInstance.ResumeGame();
+                    GameManager.sharedInstance.resumeGame();
                     break;
             }
             return;

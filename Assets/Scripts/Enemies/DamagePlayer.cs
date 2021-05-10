@@ -13,7 +13,7 @@ public class DamagePlayer : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.SharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
+        if (GameManager.sharedInstance.ActualGameState != GameManager.GameState.IN_GAME) return;
         if (!canHit)
         {
             timeDamage += Time.deltaTime;

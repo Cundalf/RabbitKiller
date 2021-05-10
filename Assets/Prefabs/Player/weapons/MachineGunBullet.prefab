@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0beae3093c2fdb14f98193db11b5638c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDestroy: 5
+  timeToDestroy: 3
 --- !u!114 &336660765682646829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78eb39c2c533fad4e91590ac66ed580d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
+  velocity: 10
+  danio: 1
 --- !u!28 &-9094500329030096876
 Texture2D:
   m_ObjectHideFlags: 0

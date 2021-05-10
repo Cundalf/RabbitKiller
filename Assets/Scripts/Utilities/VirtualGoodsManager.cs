@@ -95,7 +95,7 @@ public class VirtualGoodsManager : MonoBehaviour
 
     public void AddRabbitFeet(int cant)
     {
-        if (GameManager.SharedInstance.ActualGameState == GameManager.GameState.IN_GAME) return;
+        if (GameManager.sharedInstance.ActualGameState == GameManager.GameState.IN_GAME) return;
         if (cant <= 0) return;
         rabbitFeet += cant;
         SaveData();
@@ -103,7 +103,7 @@ public class VirtualGoodsManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        if(GameManager.SharedInstance.ActualGameState == GameManager.GameState.MAIN_MENU)
+        if(GameManager.sharedInstance.ActualGameState == GameManager.GameState.MAIN_MENU)
         {
             GetComponent<MainMenuManager>().UpdateRabbitFeet(rabbitFeet);
         }

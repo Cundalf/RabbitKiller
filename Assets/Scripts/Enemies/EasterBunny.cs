@@ -40,7 +40,7 @@ public class EasterBunny : EnemyController
             else 
             {
                 Die();
-                enemyRespawnController.setBossStillAlive(false);
+                enemyRespawnController.bossDead();
             }
         }      
     }

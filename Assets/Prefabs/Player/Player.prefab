@@ -257,9 +257,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429f568522235bb4fb679751654403e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InGameCursor: {fileID: 2800000, guid: dcc8bcabdce4722439038fc29107481b, type: 3}
-  uiManager: {fileID: 0}
-  validTag: []
+  initialHealth: 4
+  validCameraRayTag:
+  - Ground
+  - Enemy
+  - Pasture
+  - Details
 --- !u!114 &8075916259579534970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,8 +275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55ea229661032624eadf4abbdc45b565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentWeapon: {fileID: 5220295766211641039}
-  innerWeapon: {fileID: 2471665110489436346}
+  initialWeapon: 0
+  initialLastWeapon: 1
   weaponInInventory:
   - {fileID: 5220295766211641039}
   - {fileID: 2471665110489436346}
